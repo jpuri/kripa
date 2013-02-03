@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @part_model.name %>
+</p>
+
+<p>
+  <b>Part:</b>
+  <%= @part_model.part.partName %>
+</p>
+
+
+<%= link_to 'Edit', edit_part_model_path(@part_model) %> |
+<%= link_to 'Back', part_models_path %>

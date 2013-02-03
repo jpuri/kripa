@@ -1,0 +1,46 @@
+<h1>Generate Quotation</h1>
+
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Currency", :class => 'medium_lbl_grey') %>
+  </div>
+  
+  <div>
+	<%= collection_select(:bill, :currency_id, @currencies, :id, :name, {:prompt => 'Select Currency'}, :class => 'width_medium')%>
+  </div>
+
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Part", :class => 'medium_lbl_grey') %>
+	<%= label_tag(:bill, "Model", :class => 'medium_lbl_grey') %>
+	<%= label_tag(:bill, "Quantity", :class => 'medium_lbl_grey') %>
+  </div>
+
+  <div>
+	<%= collection_select(:bill, :part_id, @parts, :id, :name, {:prompt => 'Select Part'}, :class => 'width_medium')%>
+	<%= collection_select(:bill, :model_id, [], :id, :model_name, {:prompt => 'Select Model'}, :class => 'width_medium')%>
+	<%= text_field_tag(:quantity, nil, :class => 'small_text') %>
+	<%= submit_tag "Add Part" , :onclick => "return addPartToBill()", :class => "plain_button" %>
+  </div>
+  
+  <div class="top_pad_40">
+    <div>
+	  <%= label_tag(:bill, "Part", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Model", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Quantity", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Weight", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Price", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Remove", :class => 'medium_lbl_grey') %>
+    </div>
+    <div id="addedPart"/>
+  </div>
+  
+  <div class="large_div">
+    <div>
+	  <%= label_tag(:bill, "Totals", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:totalweight, "0.0", :id => 'totalweight', :class => 'medium_lbl_grey') %>   
+	  <%= label_tag(:totalprice, "0.0", :id => 'totalprice', :class => 'medium_lbl_grey') %> 
+	  <%= submit_tag "Clear" , :onclick => "return clearGenerateBillPage()", :class => "plain_button" %>
+    </div>
+    <div id="addedPart"/>
+  </div>
+
+<br />

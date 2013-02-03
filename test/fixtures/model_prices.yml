@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  partModel: 
+  currency: 
+  price: 9.99
+
+two:
+  partModel: 
+  currency: 
+  price: 9.99

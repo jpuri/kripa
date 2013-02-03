@@ -1,0 +1,27 @@
+<h1>Listing model_prices</h1>
+
+<table>
+  <tr>
+    <th>Partmodel</th>
+    <th>Currency</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @model_prices.each do |model_price| %>
+  <tr>
+    <td><%= model_price.partModel %></td>
+    <td><%= model_price.currency %></td>
+    <td><%= model_price.price %></td>
+    <td><%= link_to 'Show', model_price %></td>
+    <td><%= link_to 'Edit', edit_model_price_path(model_price) %></td>
+    <td><%= link_to 'Destroy', model_price, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Model price', new_model_price_path %>

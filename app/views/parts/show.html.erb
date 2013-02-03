@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id:</b>
+  <%= @part.id %>
+</p>
+
+<p>
+  <b>Partname:</b>
+  <%= @part.name %>
+</p>
+
+<p>
+  <b>Weight:</b>
+  <%= @part.weight %>
+</p>
+
+<p>
+  <b>Models and Prices:</b>
+  <% for part_model in @part.part_models %>
+    <%= part_model.model_name %></br>
+      <% for model_price in part_model.model_prices %>
+        <%= model_price.currency.name %>
+		<%= model_price.price %></br>
+      <% end %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_part_path(@part) %> |
+<%= link_to 'Back', parts_path %>
+
+
+

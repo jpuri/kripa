@@ -1,0 +1,36 @@
+.width_medium{
+  width: 150px;
+}
+.medium_lbl{
+  width: 150px;
+  display: inline-block;
+}
+.medium_lbl_grey{
+  width: 150px;
+  display: inline-block;
+  background-color: #B0B0B0; 
+}
+.border{
+  border-width: .1em; 
+  border-style: solid; 
+  border-color: #B0B0B0; 
+}
+.top_pad_40{
+  padding-top: 40px;
+}
+.top_pad_20{
+  padding-top: 20px;
+}
+.large_div{
+  position: absolute;
+  top: 700px;
+  left: 320px;
+}
+.plain_button{
+  background-color: #B0B0B0; 
+  width: 100px;
+}
+.remove_image {
+    height: 10px;
+    width: 20px;
+}
