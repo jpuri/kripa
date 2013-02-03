@@ -1,5 +1,6 @@
-gem install pg
-
+group :production do
+  gem "pg"
+end
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.9'
