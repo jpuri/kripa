@@ -1,3 +1,5 @@
+gem install pg
+
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.9'
