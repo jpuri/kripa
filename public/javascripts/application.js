@@ -34,7 +34,7 @@ function addPartsTotals(){
 	  var total_weight = parseFloat($('#totalweight').text()) + parseFloat(data.weight)
 	  var total_price = parseFloat($('#totalprice').text()) + parseFloat(data.price)
 	  $('#totalweight').text(total_weight)
-	  $('#bill_total_weight').text(total_weight)
+	  $('#bill_total_weight').val(total_weight)
 	  $('#totalprice').text(total_price)
 	  $('#bill_total_price').val(total_price)
     }
