@@ -30,6 +30,10 @@
   background-color: #B0B0B0; 
   width: 100px;
 }
+.small_button{
+  background-color: #B0B0B0; 
+  width: 75px;
+}
 .remove_image {
     height: 10px;
     width: 20px;

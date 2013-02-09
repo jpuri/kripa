@@ -4,13 +4,14 @@
 var server_url = 'http://obscure-atoll-7710.herokuapp.com/'
 
 function addPartToBill(){
-	addPartDetails()
-	addPartsTotals()
+  addPartDetails()
+  addPartsTotals()
+  return false;
 }
 
 function addPartDetails(){  
   $.ajax({
-    url : server_url + "parts/getModelDetail",
+    url : server_url + "bills/getModelDetail",
     type : "get",
 	data : {model_id: $('#bill_model_id').val(), 
 		   currency_id: $('#bill_currency_id').val(), 
@@ -23,14 +24,18 @@ function addPartDetails(){
 
 function addPartsTotals(){  
   $.ajax({
-    url : server_url + "parts/getWeigthPrice",
+    url : server_url + "bills/getWeigthPrice",
     type : "get",
 	data : {model_id: $('#bill_model_id').val(), 
 		   currency_id: $('#bill_currency_id').val(), 
 		   quantity: $('#quantity').val()},
     success : function(data){
-	  $('#totalweight').text(parseFloat($('#totalweight').text()) + parseFloat(data.weight))
-	  $('#totalprice').text(parseFloat($('#totalprice').text()) + parseFloat(data.price))
+	  total_weight = parseFloat($('#totalweight').text()) + parseFloat(data.weight)
+	  total_weight = parseFloat($('#totalprice').text()) + parseFloat(data.price)
+	  $('#totalweight').text(total_weight)
+	  $('#bill_total_weight').text(total_weight)
+	  $('#totalprice').text(total_price)
+	  $('#bill_total_price').val(total_price)
     }
   })
 }
@@ -56,19 +61,25 @@ function getPartModels(){
 	  });
     }
   })
+  return false;
 }
 
 function clearGenerateBillPage(){
-  $('#bill_part_id').val("") 
-  $('#bill_model_id').val("") 
-  $('#bill_currency_id').val("")
-  $('#quantity').val("")
-  $('#addedPart').html("")
-  $('#totalweight').text(0.0)
-  $('#totalprice').text(0.0)
+  if(confirm('Are you sure you want to clear page ?')){
+    $('#bill_customer_id').val("") 
+    $('#bill_part_id').val("") 
+    $('#bill_model_id').val("") 
+    $('#bill_currency_id').val("")
+    $('#quantity').val("")
+    $('#addedPart').html("")
+    $('#totalweight').text(0.0)
+    $('#totalprice').text(0.0)
+  }
+  return false;
 }
 
 function removeUpdate(weight, price){
-    $('#totalweight').text(parseFloat($('#totalweight').text()) - parseFloat(weight))
-	$('#totalprice').text(parseFloat($('#totalprice').text()) - parseFloat(price))
+  $('#totalweight').text(parseFloat($('#totalweight').text()) - parseFloat(weight))
+  $('#totalprice').text(parseFloat($('#totalprice').text()) - parseFloat(price))
+  return false;
 }

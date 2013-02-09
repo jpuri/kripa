@@ -18,11 +18,11 @@
 <p>
   <b>Models and Prices:</b>
   <% for part_model in @part.part_models %>
-    <%= part_model.model_name %></br>
+    </br><%= part_model.model_name %>
       <% for model_price in part_model.model_prices %>
         <%= model_price.currency.name %>
-		<%= model_price.price %></br>
-      <% end %>
+		<%= model_price.price %>
+      <% end %></br>
   <% end %>
 </p>
 

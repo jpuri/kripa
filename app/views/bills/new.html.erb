@@ -1,0 +1,76 @@
+<%= form_for(@bill) do |f| %>
+  <% if @bill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
+
+      <ul>
+      <% @bill.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<h1>Generate Quotation</h1>
+
+  <div class="field">
+    <%= f.label :bill_date %><br />
+    <%= f.date_select :bill_date %>
+  </div>
+
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Customer", :class => 'medium_lbl_grey') %>
+  </div>
+
+  <div>
+	<%= collection_select(:bill, :customer_id, @customers, :id, :name, {:prompt => 'Select Customer'}, :class => 'width_medium')%>
+  </div>
+  
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Currency", :class => 'medium_lbl_grey') %>
+  </div>
+  
+  <div>
+	<%= collection_select(:bill, :currency_id, @currencies, :id, :name, {:prompt => 'Select Currency'}, :class => 'width_medium')%>
+  </div>
+
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Part", :class => 'medium_lbl_grey') %>
+	<%= label_tag(:bill, "Model", :class => 'medium_lbl_grey') %>
+	<%= label_tag(:bill, "Quantity", :class => 'medium_lbl_grey') %>
+  </div>
+
+  <div>
+	<%= collection_select(:bill_part, :id, @parts, :id, :name, {:prompt => 'Select Part'}, :class => 'width_medium')%>
+	<%= collection_select(:bill_model, :id, [], :id, :model_name, {:prompt => 'Select Model'}, :class => 'width_medium')%>
+	<%= text_field_tag(:quantity, nil, :class => 'small_text') %>
+	<%= submit_tag "Add Part" , :onclick => "return addPartToBill()", :class => "plain_button" %>
+  </div>
+  
+  <div class="top_pad_40">
+    <div>
+	  <%= label_tag(:bill, "Part", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Model", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Quantity", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Weight", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Price", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Remove", :class => 'medium_lbl_grey') %>
+    </div>
+    <div id="addedPart"/>
+  </div>
+  
+  <div class="large_div">
+    <div>
+	  <%= label_tag(:bill, "Totals", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:totalweight, "0.0", :id => 'totalweight', :class => 'medium_lbl_grey') %>   
+	  <%= label_tag(:totalprice, "0.0", :id => 'totalprice', :class => 'medium_lbl_grey') %> 
+	  <input id="bill_total_price" name="bill[total_cost]" type="hidden" value="0"></input>
+	  <input id="bill_total_weight" name="bill[total_weight]" type="hidden" value="0"></input>
+	  <%= submit_tag "Save", :class => "small_button" %>
+	  <%= submit_tag "Clear" , :onclick => "return clearGenerateBillPage()", :class => "small_button" %>
+    </div>
+    <div id="addedPart"/>
+  </div>
+
+<br/>
+<% end %>

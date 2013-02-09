@@ -69,43 +69,4 @@ class PartsController < ApplicationController
     end
   end
 
-  # GET /part/generatebill
-  def generatebill
-	@currencies = Currency.find(:all)
-	@parts = Part.find(:all)
-	@models = PartModel.find(:all)
-
-    respond_to do |format|
-      format.html # generatebill.html.erb
-    end
-  end
-  
-  # GET /part/getModelDetail
-  def getModelDetail
-
-    @model_price = ModelPrice.where("part_model_id = ? and currency_id = ?", params[:model_id], params[:currency_id]).first
-	@part_model = PartModel.find(@model_price.part_model_id)
-	@part = Part.find(@part_model.part_id)
-	
-	quantity = params[:quantity]
-	price = @model_price.price * Float(quantity)
-	weight = @part.weight * Float(quantity)
-	
-    render :partial => 'partadded', :locals => { :part_name => @part.name, :quantity => quantity, :weight => weight, :price => price }
-  end
-
-  # GET /part/getWeigthPrice
-  def getWeigthPrice
-
-    @model_price = ModelPrice.where("part_model_id = ? and currency_id = ?", params[:model_id], params[:currency_id]).first
-	@part_model = PartModel.find(@model_price.part_model_id)
-	@part = Part.find(@part_model.part_id)
-	
-	quantity = params[:quantity]
-	price = @model_price.price * Float(quantity)
-	weight = @part.weight * Float(quantity)
-	
-    render :json => {:price => price, :weight => weight}
-  end
-  
 end

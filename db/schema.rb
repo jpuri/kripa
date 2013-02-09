@@ -10,11 +10,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202044021) do
+ActiveRecord::Schema.define(:version => 20130209042933) do
+
+  create_table "bill_parts", :force => true do |t|
+    t.integer  "model_price_id"
+    t.integer  "bill_id"
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bills", :force => true do |t|
+    t.date     "bill_date"
+    t.integer  "customer_id"
+    t.integer  "currency_id"
+    t.string   "status"
+    t.float    "total_cost"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "total_weight"
+  end
 
   create_table "currencies", :force => true do |t|
     t.string   "name"
     t.string   "symbol"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "customers", :force => true do |t|
+    t.string   "name"
+    t.string   "contact_person"
+    t.string   "phone"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

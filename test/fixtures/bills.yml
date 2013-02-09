@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bill_date: 2013-02-08
+  customer: 
+  currency: 
+  status: MyString
+  total_cost: 1.5
+
+two:
+  bill_date: 2013-02-08
+  customer: 
+  currency: 
+  status: MyString
+  total_cost: 1.5
