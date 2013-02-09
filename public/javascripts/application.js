@@ -2,6 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 var server_url = 'http://obscure-atoll-7710.herokuapp.com/'
+//var server_url = 'http://localhost:3000/'
 
 function addPartToBill(){
   addPartDetails()
@@ -30,8 +31,8 @@ function addPartsTotals(){
 		   currency_id: $('#bill_currency_id').val(), 
 		   quantity: $('#quantity').val()},
     success : function(data){
-	  total_weight = parseFloat($('#totalweight').text()) + parseFloat(data.weight)
-	  total_weight = parseFloat($('#totalprice').text()) + parseFloat(data.price)
+	  var total_weight = parseFloat($('#totalweight').text()) + parseFloat(data.weight)
+	  var total_price = parseFloat($('#totalprice').text()) + parseFloat(data.price)
 	  $('#totalweight').text(total_weight)
 	  $('#bill_total_weight').text(total_weight)
 	  $('#totalprice').text(total_price)
