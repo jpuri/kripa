@@ -16,6 +16,16 @@
 </p>
 
 <p>
+  <b>Parts:</b></br>
+    <% for bill_part in @bill.bill_parts %>
+      <%= bill_part.model_price.part_model.part.name %>
+      <%= bill_part.model_price.part_model.model_name %>
+      <%= bill_part.model_price.price %>
+      <%= bill_part.quantity %></br>
+    <% end %>
+</p>
+
+<p>
   <b>Total cost:</b>
   <%= @bill.total_cost %>
 </p>
@@ -24,7 +34,6 @@
   <b>Total weight:</b>
   <%= @bill.total_weight %>
 </p>
-
 
 <%= link_to 'Edit', edit_bill_path(@bill) %> |
 <%= link_to 'Back', bills_path %>
