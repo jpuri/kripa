@@ -1,8 +1,10 @@
 <div>
-  <%= label_tag(:bill, part_name, :class => 'medium_lbl') %>
-  <%= label_tag(:bill, @part_model.model_name, :class => 'medium_lbl') %>
-  <%= label_tag(:bill, quantity, :class => 'medium_lbl') %>
-  <%= label_tag(:bill, weight, :class => 'medium_lbl') %>
-  <%= label_tag(:bill, price, :class => 'medium_lbl') %>
+  <%= label_tag(:bill_part, part_name, :class => 'medium_lbl') %>
+  <%= label_tag(:bill_part, @part_model.model_name, :class => 'medium_lbl') %>
+  <%= label_tag(:bill_part, quantity, :class => 'medium_lbl') %>
+  <input id="bill_part_model_price_id[]" name="bill_part_model_price_id[]" type="hidden" value=<%=@part_model.id%> %>
+  <input id="bill_part_quantity[]" name="bill_part_quantity[]" type="hidden" value=<%=quantity%> %>
+  <%= label_tag(:bill_part, weight, :class => 'medium_lbl') %>
+  <%= label_tag(:bill_part, price, :class => 'medium_lbl') %>
   <img src="/images/minus.jpg" class="remove_image" onclick="return removeUpdate(<%=weight%>, <%=price%>)"/>
 </div>

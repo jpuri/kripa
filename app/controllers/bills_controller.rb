@@ -42,7 +42,18 @@ class BillsController < ApplicationController
   # POST /bills
   # POST /bills.xml
   def create
+  
     @bill = Bill.new(params[:bill])
+
+	@bill_parts = params[:bill_part_model_price_id]
+	@quantities = params[:bill_part_quantity]
+	for i in 0...@bill_parts.length
+		@bill_part = BillPart.new
+		@bill_part.bill = @bill
+		@bill_part.model_price = ModelPrice.find(@bill_parts[i])
+		@bill_part.bill = @quantities[i]
+		@bill_part.save
+	end
 
     respond_to do |format|
       if @bill.save
