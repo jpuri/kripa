@@ -25,7 +25,7 @@ class BillsController < ApplicationController
   def new
 	@currencies = Currency.find(:all)
 	@parts = Part.find(:all)
-	@models = PartModel.find(:all)
+	@models = Model.find(:all)
 	@customers = Customer.find(:all)
     @bill = Bill.new
 
@@ -44,16 +44,23 @@ class BillsController < ApplicationController
   def create
   
     @bill = Bill.new(params[:bill])
-
-	@bill_parts = params[:bill_part_model_price_id]
-	@quantities = params[:bill_part_quantity]
-	for i in 0...@bill_parts.length
-		@bill_part = BillPart.new
-		@bill_part.bill = @bill
-		@bill_part.model_price = ModelPrice.find(@bill_parts[i])
-		@bill_part.bill = @quantities[i]
-		@bill_part.save
-	end
+    @bill.status = "GENERATED"
+	  @bill_parts = params[:bill_part_id]
+    @quantities = params[:bill_part_quantity]
+    @discounts = params[:bill_part_discount]
+    @prices = params[:bill_part_price]
+    @weights = params[:bill_part_weight]
+    for i in 0...@bill_parts.length
+		  @bill_part = BillPart.new
+      @part = Part.find(@bill_parts[i])
+      @bill_part.bill = @bill
+      @bill_part.part = @part
+      @bill_part.quantity = @quantities[i]
+      @bill_part.discount = @discounts[i] 
+      @bill_part.price = @prices[i]
+      @bill_part.weight = @weights[i]
+		  @bill_part.save
+	  end
 
     respond_to do |format|
       if @bill.save
@@ -95,31 +102,52 @@ class BillsController < ApplicationController
   end
 
   # GET /part/getModelDetail
-  def getModelDetail
-
-    @model_price = ModelPrice.where("part_model_id = ? and currency_id = ?", params[:model_id], params[:currency_id]).first
-	@part_model = PartModel.find(@model_price.part_model_id)
-	@part = Part.find(@part_model.part_id)
+  def calculatePartDetails
+    @part = Part.find(params[:part_id])
+    @part_price = PartPrice.where("part_id = ? and customer_id = ? and currency_id = ?", params[:part_id], params[:customer_id], params[:currency_id]).first
+    if(!@part_price)
+      @part_price = PartPrice.where("part_id = ? and customer_id = -1 and currency_id = ?", params[:part_id], params[:currency_id]).first
+    end
+	  quantity = params[:quantity]
+    discount = params[:discount]
+	  price = @part_price.price * Float(quantity)
+	  if(discount)
+	    price *= (100 - Float(discount))/100
+	  end
+	  #ternary operator to be put here
+	  weight = @part.weight * Float(quantity)
 	
-	quantity = params[:quantity]
-	price = @model_price.price * Float(quantity)
-	weight = @part.weight * Float(quantity)
-	
-    render :partial => 'partadded', :locals => { :part_name => @part.name, :quantity => quantity, :weight => weight, :price => price }
+    render :partial => 'partadded', :locals => { :part => @part, :price => @part_price.price, :quantity => quantity, :calculated_weight => weight, :calculated_price => price, :discount => discount }
   end
 
   # GET /part/getWeigthPrice
   def getWeigthPrice
 
-    @model_price = ModelPrice.where("part_model_id = ? and currency_id = ?", params[:model_id], params[:currency_id]).first
-	@part_model = PartModel.find(@model_price.part_model_id)
-	@part = Part.find(@part_model.part_id)
-	
-	quantity = params[:quantity]
-	price = @model_price.price * Float(quantity)
-	weight = @part.weight * Float(quantity)
+    @part = Part.find(params[:part_id])
+    @part_price = PartPrice.where("part_id = ? and customer_id = ? and currency_id = ?", params[:part_id], params[:customer_id], params[:currency_id]).first
+    if(!@part_price)
+      @part_price = PartPrice.where("part_id = ? and customer_id = -1 and currency_id = ?", params[:part_id], params[:currency_id]).first
+    end
+    quantity = params[:quantity]
+    discount = params[:discount]
+    price = @part_price.price * Float(quantity)
+    if(discount)
+      price *= (100 - Float(discount))/100
+    end
+    #ternary operator to be put here
+    weight = @part.weight * Float(quantity)
+  
 	
     render :json => {:price => price, :weight => weight}
   end
   
+  # GET /bills/getPartDetails
+  def getPartDetails
+    @part = Part.find(params[:part_id])
+    @part_price = PartPrice.where("part_id = ? and customer_id = ? and currency_id = ?", params[:part_id], params[:customer_id], params[:currency_id]).first
+    if(!@part_price)
+      @part_price = PartPrice.where("part_id = ? and customer_id = -1 and currency_id = ?", params[:part_id], params[:currency_id]).first
+    end
+    render :json => {:part_name => @part.name, :part_weight => @part.weight, :part_price => @part_price.price}
+  end
 end
