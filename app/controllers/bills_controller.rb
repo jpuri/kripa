@@ -58,7 +58,7 @@ class BillsController < ApplicationController
       @bill_part.quantity = @quantities[i]
       @bill_part.discount = @discounts[i] 
       @bill_part.price = @prices[i]
-      @bill_part.weight = @weights[i]update 
+      @bill_part.weight = @weights[i]
 		  @bill_part.save
 	  end
 
