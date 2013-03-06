@@ -1,23 +1,20 @@
 Kripa::Application.routes.draw do
+
   get "welcome/index"
-  get 'bills/getModelDetail'
+  get 'bills/getPartDetails'
+  get 'bills/calculatePartDetails'
   get 'bills/getWeigthPrice'
-  get 'part_models/getModelsForPart'
-  get 'parts_models/getModelsForPart'
+  get 'models/addModelPart'
+  get 'models/saveModelPart'
 
   resources :bill_parts
-
   resources :customers
-
-  resources :model_prices
-
+  resources :part_prices
   resources :bills
-
-  resources :part_models
-
   resources :parts
-
   resources :currencies
+  resources :models
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

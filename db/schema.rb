@@ -10,14 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130301114655) do
+ActiveRecord::Schema.define(:version => 20130306105939) do
+
+  create_table "add_description_to_parts", :force => true do |t|
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "bill_parts", :force => true do |t|
-    t.integer  "model_price_id"
     t.integer  "bill_id"
     t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "discount"
+    t.float    "weight"
+    t.float    "price"
+    t.integer  "part_id"
   end
 
   create_table "bills", :force => true do |t|
@@ -46,21 +55,29 @@ ActiveRecord::Schema.define(:version => 20130301114655) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "address"
+    t.string   "customer_id"
   end
 
-  create_table "model_prices", :force => true do |t|
-    t.integer  "part_model_id"
+  create_table "model_parts", :force => true do |t|
+    t.integer  "model_id"
+    t.integer  "part_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "models", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "part_prices", :force => true do |t|
     t.integer  "currency_id"
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "part_models", :force => true do |t|
-    t.string   "model_name"
+    t.integer  "customer_id"
     t.integer  "part_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "parts", :force => true do |t|
@@ -68,6 +85,8 @@ ActiveRecord::Schema.define(:version => 20130301114655) do
     t.float    "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
+    t.string   "number"
   end
 
 end

@@ -5,31 +5,35 @@ var server_url = 'http://obscure-atoll-7710.herokuapp.com/'
 //var server_url = 'http://localhost:3000/'
 
 function addPartToBill(){
-  addPartDetails()
-  addPartsTotals()
+  calculatePartDetails()
+  addPartsWeightPrice()
   return false;
 }
 
-function addPartDetails(){  
+function calculatePartDetails(){  
   $.ajax({
-    url : server_url + "bills/getModelDetail",
+    url : server_url + "bills/calculatePartDetails",
     type : "get",
-	data : {model_id: $('#bill_model_id').val(), 
-		   currency_id: $('#bill_currency_id').val(), 
-		   quantity: $('#quantity').val()},
+	data : {part_id: $('#bill_part_id').val(),
+		customer_id: $('#bill_customer_id').val(),
+		currency_id: $('#bill_currency_id').val(),
+		quantity: $('#part_quantity').val(),
+		discount: $('#part_discount').val()},
     success : function(html){
 		$('#addedPart').append(html)
     }
   })
 }
 
-function addPartsTotals(){  
+function addPartsWeightPrice(){  
   $.ajax({
     url : server_url + "bills/getWeigthPrice",
     type : "get",
-	data : {model_id: $('#bill_model_id').val(), 
-		   currency_id: $('#bill_currency_id').val(), 
-		   quantity: $('#quantity').val()},
+	data : {part_id: $('#bill_part_id').val(),
+		customer_id: $('#bill_customer_id').val(),
+		currency_id: $('#bill_currency_id').val(),
+		quantity: $('#part_quantity').val(),
+		discount: $('#part_discount').val()},
     success : function(data){
 	  var total_weight = parseFloat($('#totalweight').text()) + parseFloat(data.weight)
 	  var total_price = parseFloat($('#totalprice').text()) + parseFloat(data.price)
@@ -43,23 +47,24 @@ function addPartsTotals(){
 
 $(document).ready(function() {
   $('#bill_part_id').change(function(){
-    getPartModels()
+    getPartDetails()
   })
   $('.remove_image').live("click", function(){
     $(this).parent().remove()
   })
 });
 
-function getPartModels(){
+function getPartDetails(){
   $.ajax({
-    url : server_url + "part_models/getModelsForPart",
+    url : server_url + "bills/getPartDetails",
     type : "get",
-	data : {part_id: $('#bill_part_id').val()},
+	data : {part_id: $('#bill_part_id').val(),
+		customer_id: $('#bill_customer_id').val(),
+		currency_id: $('#bill_currency_id').val()},
     success : function(data){
-	  $('#bill_model_id').html('<option value="">Select Model</option>')
-	  data.each(function(model){
-	    $('#bill_model_id').append('<option value="' + model.part_model.id + '">' + model.part_model.model_name + '</option>');
-	  });
+      $('#part_name').val(data.part_name)
+      $('#part_price').val(data.part_price)
+      $('#part_weight').val(data.part_weight)
     }
   })
   return false;

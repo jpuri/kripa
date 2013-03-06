@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Id:</b>
-  <%= @part.id %>
+  <b>Number:</b>
+  <%= @part.number %>
 </p>
 
 <p>
@@ -16,13 +16,11 @@
 </p>
 
 <p>
-  <b>Models and Prices:</b>
-  <% for part_model in @part.part_models %>
-    </br><%= part_model.model_name %>
-      <% for model_price in part_model.model_prices %>
-        <%= model_price.currency.name %>
-		<%= model_price.price %>
-      <% end %></br>
+  <b>Prices:</b>
+  <% for part_prices in @part.part_prices %>
+    </br><%= part_prices.customer.name %>
+	<%= part_prices.currency.name %>
+	<%= part_prices.price %></br>
   <% end %>
 </p>
 

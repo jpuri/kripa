@@ -18,10 +18,12 @@
 <p>
   <b>Parts:</b></br>
     <% for bill_part in @bill.bill_parts %>
-      <%= bill_part.model_price.part_model.part.name %>
-      <%= bill_part.model_price.part_model.model_name %>
-      <%= bill_part.model_price.price %>
-      <%= bill_part.quantity %></br>
+      <%= bill_part.part.number %>
+      <%= bill_part.part.name %>
+      <%= bill_part.quantity %>
+      <%= bill_part.discount %>
+      <%= bill_part.price %>
+      <%= bill_part.weight %></br>
     <% end %>
 </p>
 

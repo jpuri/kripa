@@ -49,6 +49,8 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            when the item should be highlighted, you can set a regexp which is matched
     #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>. 
     #
+    primary.item :bills, 'Bills', bills_path
+    primary.item :models, 'Models', models_path
     primary.item :parts, 'Parts', parts_path
 
     # Add an item which has a sub navigation (same params, but with block)
@@ -60,7 +62,6 @@ SimpleNavigation::Configuration.run do |navigation|
     # Conditions are part of the options. They are evaluated in the context of the views,
     # thus you can use all the methods and vars you have available in the views.
     primary.item :customers, 'Customers', customers_path
-    primary.item :bills, 'Bills', bills_path
 
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu

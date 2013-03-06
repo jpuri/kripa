@@ -39,6 +39,10 @@
     width: 20px;
 }
 .small_text_area {
+    height: 75px;
+    width: 210px;
+}
+.medium_text_area {
     height: 150px;
     width: 250px;
 }

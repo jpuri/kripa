@@ -36,24 +36,33 @@
 
   <div class="top_pad_20">
 	<%= label_tag(:bill, "Part", :class => 'medium_lbl_grey') %>
-	<%= label_tag(:bill, "Model", :class => 'medium_lbl_grey') %>
+	<%= label_tag(:bill, "Name", :class => 'medium_lbl_grey') %>
+	<%= label_tag(:bill, "Price", :class => 'medium_lbl_grey') %>
+	<%= label_tag(:bill, "Weight", :class => 'medium_lbl_grey') %>
 	<%= label_tag(:bill, "Quantity", :class => 'medium_lbl_grey') %>
+	<%= label_tag(:bill, "Discount", :class => 'medium_lbl_grey') %>
   </div>
 
   <div>
-	<%= collection_select(:bill_part, :id, @parts, :id, :name, {:prompt => 'Select Part'}, :class => 'width_medium')%>
-	<%= collection_select(:bill_model, :id, [], :id, :model_name, {:prompt => 'Select Model'}, :class => 'width_medium')%>
-	<%= text_field_tag(:quantity, nil, :class => 'small_text') %>
+	<%= collection_select(:bill_part, :id, @parts, :id, :number, {:prompt => 'Select Part'}, :class => 'width_medium')%>
+	<%= text_field_tag(:part_name, nil, :class => 'small_text') %>
+	<%= text_field_tag(:part_price, nil, :class => 'small_text') %>
+	<%= text_field_tag(:part_weight, nil, :class => 'small_text') %>
+	<%= text_field_tag(:part_quantity, nil, :class => 'small_text') %>
+	<%= text_field_tag(:part_discount, nil, :class => 'small_text') %>
 	<%= submit_tag "Add Part" , :onclick => "return addPartToBill()", :class => "plain_button" %>
   </div>
   
   <div class="top_pad_40">
     <div>
-	  <%= label_tag(:bill, "Part", :class => 'medium_lbl_grey') %>
-	  <%= label_tag(:bill, "Model", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Part Number", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Part Name", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Unit Weight", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Unit Price", :class => 'medium_lbl_grey') %>
 	  <%= label_tag(:bill, "Quantity", :class => 'medium_lbl_grey') %>
-	  <%= label_tag(:bill, "Weight", :class => 'medium_lbl_grey') %>
-	  <%= label_tag(:bill, "Price", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Discount", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Total Weight", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Calculated Price", :class => 'medium_lbl_grey') %>
 	  <%= label_tag(:bill, "Remove", :class => 'medium_lbl_grey') %>
     </div>
     <div id="addedPart"/>

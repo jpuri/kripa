@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>Id</th>
+    <th>Part Number</th>
     <th>Partname</th>
     <th>Weight</th>
     <th></th>
@@ -12,14 +12,13 @@
 
 <% @parts.each do |part| %>
   <tr>
-    <td><%= part.id %></td>
+    <td><%= part.number %></td>
     <td><%= part.name %></td>
     <td><%= part.weight %></td>
     <td><%= link_to 'Show', part %></td>
     <td><%= link_to 'Edit', edit_part_path(part) %></td>
     <!--<td><%= link_to 'Destroy', part, :confirm => 'Are you sure?', :method => :delete %></td>-->
-    <td><%= link_to 'Add Model', :controller => "part_models", :action => "new", :part_id => part.id %></td>
-    <td><%= link_to 'Add Price', :controller => "model_prices", :action => "new", :part_id => part.id %></td>
+    <td><%= link_to 'Add Price', :controller => "part_prices", :action => "new", :part_id => part.id %></td>
   </tr>
 <% end %>
 </table>
