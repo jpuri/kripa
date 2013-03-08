@@ -23,6 +23,7 @@
     <%= f.label :price %><br />
     <%= f.text_field :price %>
   </div>
+  <input type="hidden" name="part_price[part_id]" value="<%=@part_id%>">
   <div class="actions">
     <%= f.submit %>
   </div>

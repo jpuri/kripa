@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130306105939) do
+ActiveRecord::Schema.define(:version => 20130307120409) do
 
   create_table "add_description_to_parts", :force => true do |t|
     t.string   "description"
@@ -67,6 +67,13 @@ ActiveRecord::Schema.define(:version => 20130306105939) do
 
   create_table "models", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "part_models", :force => true do |t|
+    t.string   "model_name"
+    t.integer  "part_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
