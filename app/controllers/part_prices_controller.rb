@@ -22,6 +22,7 @@ class PartPricesController < ApplicationController
     @model_price = PartPrice.new
 	@currencies = Currency.find(:all)
 	@customers = Customer.find(:all)
+	@part_id = params[:part_id]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,12 +37,13 @@ class PartPricesController < ApplicationController
   # POST /part_prices
   def create
   
-    @model_price = PartPrice.new(params[:part_price])
-	@model_price.currency = Currency.find(params[:part_price][:currency_id])
-	@model_price.customer = Customer.find(params[:part_price][:customer_id])
+  @part_price = PartPrice.new(params[:part_price])
+	@part_price.currency = Currency.find(params[:part_price][:currency_id])
+	@part_price.customer = Customer.find(params[:part_price][:customer_id])
+  @part_price.part = Part.find(params[:part_price][:part_id])
 
     respond_to do |format|
-      if @model_price.save
+      if @part_price.save
 		format.html { redirect_to :controller=>'parts', :action => 'index' }
       else
         format.html { render :action => "new" }
