@@ -89,3 +89,7 @@ function removeUpdate(weight, price){
   $('#totalprice').text(parseFloat($('#totalprice').text()) - parseFloat(price))
   return false;
 }
+
+function show(path, id){
+	window.location = '/' + path + '/' + id
+}

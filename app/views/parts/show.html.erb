@@ -26,6 +26,7 @@
 
 <%= link_to 'Edit', edit_part_path(@part) %> |
 <%= link_to 'Back', parts_path %>
+<%= link_to 'Add Price', :controller => "part_prices", :action => "new", :part_id => @part.id %>
 
 
 

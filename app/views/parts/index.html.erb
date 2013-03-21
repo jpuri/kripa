@@ -1,24 +1,17 @@
 <h1>Listing parts</h1>
 
-<table>
+<table class="borderedTable">
   <tr>
     <th>Part Number</th>
     <th>Partname</th>
     <th>Weight</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @parts.each do |part| %>
-  <tr>
+  <tr onclick="show('parts', <%= part.id %>)">
     <td><%= part.number %></td>
     <td><%= part.name %></td>
     <td><%= part.weight %></td>
-    <td><%= link_to 'Show', part %></td>
-    <td><%= link_to 'Edit', edit_part_path(part) %></td>
-    <!--<td><%= link_to 'Destroy', part, :confirm => 'Are you sure?', :method => :delete %></td>-->
-    <td><%= link_to 'Add Price', :controller => "part_prices", :action => "new", :part_id => part.id %></td>
   </tr>
 <% end %>
 </table>

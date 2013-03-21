@@ -1,20 +1,13 @@
 <h1>Listing models</h1>
 
-<table>
+<table class="borderedTable">
   <tr>
     <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @models.each do |model| %>
-  <tr>
+  <tr onclick="show('models', <%= model.id %>)">
     <td><%= model.name %></td>
-    <td><%= link_to 'Show', model %></td>
-    <td><%= link_to 'Edit', edit_model_path(model) %></td>
-    <!--<td><%= link_to 'Destroy', model, :confirm => 'Are you sure?', :method => :delete %></td>-->
-    <td><%= link_to 'Add Part', :controller => "models", :action => "addModelPart", :model_id => model.id %></td>
   </tr>
 <% end %>
 </table>

@@ -1,27 +1,21 @@
 <h1>Listing bills</h1>
 
-<table>
+<table class="borderedTable">
   <tr>
     <th>Bill date</th>
     <th>Customer</th>
     <th>Currency</th>
     <th>Status</th>
     <th>Total cost</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @bills.each do |bill| %>
-  <tr>
+  <tr onclick="show('bills', <%= bill.id %>)">
     <td><%= bill.bill_date %></td>
     <td><%= bill.customer.name %></td>
     <td><%= bill.currency.name %></td>
     <td><%= bill.status %></td>
     <td><%= bill.total_cost %></td>
-    <td><%= link_to 'Show', bill %></td>
-    <!--<td><%= link_to 'Edit', edit_bill_path(bill) %></td>
-    <td><%= link_to 'Destroy', bill, :confirm => 'Are you sure?', :method => :delete %></td>-->
   </tr>
 <% end %>
 </table>

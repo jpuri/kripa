@@ -10,13 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130307120409) do
-
-  create_table "add_description_to_parts", :force => true do |t|
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20130312112930) do
 
   create_table "bill_parts", :force => true do |t|
     t.integer  "bill_id"
@@ -71,13 +65,6 @@ ActiveRecord::Schema.define(:version => 20130307120409) do
     t.datetime "updated_at"
   end
 
-  create_table "part_models", :force => true do |t|
-    t.string   "model_name"
-    t.integer  "part_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "part_prices", :force => true do |t|
     t.integer  "currency_id"
     t.float    "price"
@@ -94,6 +81,14 @@ ActiveRecord::Schema.define(:version => 20130307120409) do
     t.datetime "updated_at"
     t.string   "description"
     t.string   "number"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

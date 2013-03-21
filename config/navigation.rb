@@ -62,6 +62,7 @@ SimpleNavigation::Configuration.run do |navigation|
     # Conditions are part of the options. They are evaluated in the context of the views,
     # thus you can use all the methods and vars you have available in the views.
     primary.item :customers, 'Customers', customers_path
+    primary.item :sessions, 'Log Out', log_out_path
 
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu
