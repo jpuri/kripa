@@ -8,7 +8,7 @@
 </head>
 <body>
   <div>
-  	<% if true %>
+  	<% if current_user %>
     <div style="position:absolute;left:0px;bottom:0px;top:0px;width:150px;background-color: #D8D8D8;"> 
       <%= link_to 'Bills', :controller => "bills", :action => "index"%><br/>
       <%= link_to 'Models', :controller => "models", :action => "index"%><br/>
