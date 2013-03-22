@@ -8,6 +8,7 @@ function addPartToBill(){
   showSpinner()
   calculatePartDetails()
   addPartsWeightPrice()
+  resetPartValues()
   hideSpinner()
   return false;
 }
@@ -45,6 +46,14 @@ function addPartsWeightPrice(){
 	  $('#bill_total_price').val(total_price)
     }
   })
+}
+
+function resetPartValues(){
+  $('#part_name').val('')
+  $('#part_price').val('')
+  $('#part_weight').val('')
+  $('#part_quantity').val('1')
+  $('#part_discount').val('0')
 }
 
 $(document).ready(function() {
