@@ -10,7 +10,7 @@
   </tr>
 
 <% @customers.each do |customer| %>
-  <tr onclick="show('customers',<%= customer.id %>)">
+  <tr onclick="openPage('customers',<%= customer.id %>)">
     <td><%= customer.customer_id %></td>
     <td><%= customer.name %></td>
     <td><%= customer.contact_person %></td>

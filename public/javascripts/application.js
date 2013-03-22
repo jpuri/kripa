@@ -109,8 +109,8 @@ function removeUpdate(weight, price){
   return false;
 }
 
-function show(path, id){
-	window.location = server_url + '/' + path + '/' + id
+function openPage(path, id){
+	window.location = '/' + path + '/' + id
 }
 
 function showSpinner() {

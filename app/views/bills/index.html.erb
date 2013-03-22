@@ -10,7 +10,7 @@
   </tr>
 
 <% @bills.each do |bill| %>
-  <tr onclick="show('bills', <%= bill.id %>)">
+  <tr onclick="openPage('bills', <%= bill.id %>)">
     <td><%= bill.bill_date %></td>
     <td><%= bill.customer.name %></td>
     <td><%= bill.currency.name %></td>

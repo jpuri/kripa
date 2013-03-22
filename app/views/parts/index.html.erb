@@ -8,7 +8,7 @@
   </tr>
 
 <% @parts.each do |part| %>
-  <tr onclick="show('parts', <%= part.id %>)">
+  <tr onclick="openPage('parts', <%= part.id %>)">
     <td><%= part.number %></td>
     <td><%= part.name %></td>
     <td><%= part.weight %></td>
