@@ -156,7 +156,7 @@ class BillsController < ApplicationController
     if(price)
       render :json => {:status => 'success', :data=>{:part_name => @part.name, :part_weight => weight, :part_price => price}}
     else
-      render :json => {:status => 'failure', :message=>'No price added for ' + @part.name + ' in ' + @currency.name + 's.'}
+      render :json => {:status => 'failure', :message=>'No price added for ' + @part.name + ' in ' + @currency.name + '.'}
     end
   end
 end
