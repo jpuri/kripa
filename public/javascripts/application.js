@@ -5,15 +5,14 @@ var server_url = 'http://obscure-atoll-7710.herokuapp.com/'
 //var server_url = 'http://localhost:3000/'
 
 function addPartToBill(){
-  showSpinner(true)
+  showSpinner()
   calculatePartDetails()
   addPartsWeightPrice()
+  hideSpinner()
   return false;
-  showSpinner(false)
 }
 
 function calculatePartDetails(){
-  if(validateValues()){  
     $.ajax({
       url : server_url + "bills/calculatePartDetails",
       type : "get",
@@ -26,21 +25,6 @@ function calculatePartDetails(){
 		$('#addedPart').append(html)
     }
   })
-  }
-}
-
-function validateValues(){
-	var returnValue = true
-	if($('#bill_part_id').val().length <= 0){
-	  returnValue = false
-	}
-	if($('#bill_customer_id').val().length <= 0){
-	  returnValue = false
-	}
-	if($('#bill_currency_id').val().length <= 0){
-	  returnValue = false
-	}
-	returnValue
 }
 
 function addPartsWeightPrice(){  
