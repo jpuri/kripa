@@ -1,8 +1,8 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
-var server_url = 'http://obscure-atoll-7710.herokuapp.com/'
-//var server_url = 'http://localhost:3000/'
+//var server_url = 'http://obscure-atoll-7710.herokuapp.com/'
+var server_url = 'http://localhost:3000/'
 
 function addPartToBill(){
   showSpinner()
@@ -110,7 +110,7 @@ function removeUpdate(weight, price){
 }
 
 function show(path, id){
-	window.location = '/' + path + '/' + id
+	window.location = server_url + '/' + path + '/' + id
 }
 
 function showSpinner() {
