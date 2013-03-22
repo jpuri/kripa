@@ -5,24 +5,42 @@ var server_url = 'http://obscure-atoll-7710.herokuapp.com/'
 //var server_url = 'http://localhost:3000/'
 
 function addPartToBill(){
+  showSpinner(true)
   calculatePartDetails()
   addPartsWeightPrice()
   return false;
+  showSpinner(false)
 }
 
-function calculatePartDetails(){  
-  $.ajax({
-    url : server_url + "bills/calculatePartDetails",
-    type : "get",
-	data : {part_id: $('#bill_part_id').val(),
+function calculatePartDetails(){
+  if(validateValues()){  
+    $.ajax({
+      url : server_url + "bills/calculatePartDetails",
+      type : "get",
+	  data : {part_id: $('#bill_part_id').val(),
 		customer_id: $('#bill_customer_id').val(),
 		currency_id: $('#bill_currency_id').val(),
 		quantity: $('#part_quantity').val(),
 		discount: $('#part_discount').val()},
-    success : function(html){
+      success : function(html){
 		$('#addedPart').append(html)
     }
   })
+  }
+}
+
+function validateValues(){
+	var returnValue = true
+	if($('#bill_part_id').val().length <= 0){
+	  returnValue = false
+	}
+	if($('#bill_customer_id').val().length <= 0){
+	  returnValue = false
+	}
+	if($('#bill_currency_id').val().length <= 0){
+	  returnValue = false
+	}
+	returnValue
 }
 
 function addPartsWeightPrice(){  
@@ -49,37 +67,54 @@ $(document).ready(function() {
   $('#bill_part_id').change(function(){
     getPartDetails()
   })
+  $('#bill_currency_id').change(function(){
+    getPartDetails()
+  })
+  $('#bill_customer_id').change(function(){
+    getPartDetails()
+  })
   $('.remove_image').live("click", function(){
     $(this).parent().remove()
   })
 });
 
+function validate(){
+	var returnValue = true
+	if($('#bill_part_id').val().length <= 0){
+	  returnValue = false
+	}
+	if($('#bill_currency_id').val().length <= 0){
+	  returnValue = false
+	}
+	if($('#bill_customer_id').val().length <= 0){
+	  returnValue = false
+	}
+	return returnValue
+}
+
 function getPartDetails(){
-  $.ajax({
-    url : server_url + "bills/getPartDetails",
-    type : "get",
-	data : {part_id: $('#bill_part_id').val(),
+  if(validate()){
+    showSpinner()
+    $.ajax({
+      url : server_url + "bills/getPartDetails",
+      type : "get",
+	  data : {part_id: $('#bill_part_id').val(),
 		customer_id: $('#bill_customer_id').val(),
 		currency_id: $('#bill_currency_id').val()},
-    success : function(data){
-      $('#part_name').val(data.part_name)
-      $('#part_price').val(data.part_price)
-      $('#part_weight').val(data.part_weight)
-    }
-  })
-  return false;
+      success : function(data){
+        $('#part_name').val(data.part_name)
+        $('#part_price').val(data.part_price)
+        $('#part_weight').val(data.part_weight)
+      }
+    })
+    hideSpinner()
+  }
+  return false
 }
 
 function clearGenerateBillPage(){
   if(confirm('Are you sure you want to clear page ?')){
-    $('#bill_customer_id').val("") 
-    $('#bill_part_id').val("") 
-    $('#bill_model_id').val("") 
-    $('#bill_currency_id').val("")
-    $('#quantity').val("")
-    $('#addedPart').html("")
-    $('#totalweight').text(0.0)
-    $('#totalprice').text(0.0)
+  	window.location = '/bills/new'
   }
   return false;
 }
@@ -92,4 +127,12 @@ function removeUpdate(weight, price){
 
 function show(path, id){
 	window.location = '/' + path + '/' + id
+}
+
+function showSpinner() {
+    $("#spinner").show()
+}
+
+function hideSpinner() {
+    $("#spinner").hide()
 }

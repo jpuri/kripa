@@ -45,12 +45,13 @@
 
   <div>
 	<%= collection_select(:bill_part, :id, @parts, :id, :number, {:prompt => 'Select Part'}, :class => 'width_medium')%>
-	<%= text_field_tag(:part_name, nil, :class => 'small_text') %>
-	<%= text_field_tag(:part_price, nil, :class => 'small_text') %>
-	<%= text_field_tag(:part_weight, nil, :class => 'small_text') %>
-	<%= text_field_tag(:part_quantity, nil, :class => 'small_text') %>
-	<%= text_field_tag(:part_discount, nil, :class => 'small_text') %>
+	<%= text_field_tag(:part_name, nil, :class => 'small_text', :readonly => true) %>
+	<%= text_field_tag(:part_price, nil, :class => 'small_text', :readonly => true) %>
+	<%= text_field_tag(:part_weight, nil, :class => 'small_text', :readonly => true) %>
+	<%= text_field_tag(:part_quantity, nil, :class => 'small_text', :value=>1) %>
+	<%= text_field_tag(:part_discount, nil, :class => 'small_text', :value=>0) %>
 	<%= submit_tag "Add Part" , :onclick => "return addPartToBill()", :class => "plain_button" %>
+	<img id="spinner" style="display:none;" src="/images/spinner.gif"/>
   </div>
   
   <div class="top_pad_40">

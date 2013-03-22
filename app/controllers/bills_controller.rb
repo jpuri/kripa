@@ -109,7 +109,9 @@ class BillsController < ApplicationController
       @part_price = PartPrice.where("part_id = ? and customer_id = -1 and currency_id = ?", params[:part_id], params[:currency_id]).first
     end
 	  quantity = params[:quantity]
-    discount = params[:discount]
+    discount = params[:discount].length > 0?params[:discount]:"0.0"
+    puts "============================================"
+    puts discount
 	  price = @part_price.price * Float(quantity)
 	  if(discount)
 	    price *= (100 - Float(discount))/100
@@ -129,7 +131,7 @@ class BillsController < ApplicationController
       @part_price = PartPrice.where("part_id = ? and customer_id = -1 and currency_id = ?", params[:part_id], params[:currency_id]).first
     end
     quantity = params[:quantity]
-    discount = params[:discount]
+    discount = params[:discount]?params[:discount]:"0.0"
     price = @part_price.price * Float(quantity)
     if(discount)
       price *= (100 - Float(discount))/100
@@ -148,6 +150,7 @@ class BillsController < ApplicationController
     if(!@part_price)
       @part_price = PartPrice.where("part_id = ? and customer_id = -1 and currency_id = ?", params[:part_id], params[:currency_id]).first
     end
+    price = @part_price ? @part_price.price : 0
     render :json => {:part_name => @part.name, :part_weight => @part.weight, :part_price => @part_price.price}
   end
 end
