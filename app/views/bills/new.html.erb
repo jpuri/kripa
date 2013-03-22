@@ -1,20 +1,9 @@
 <%= form_for(@bill) do |f| %>
-  <% if @bill.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
-
-      <ul>
-      <% @bill.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
 <h1>Generate Bill</h1>
 
   <div class="field">
-    <%= f.label :bill_date %><br />
+    <%= f.label :bill_date, :class => 'big_lbl_grey'%><br />
     <%= f.date_select :bill_date %>
   </div>
 
@@ -45,11 +34,11 @@
 
   <div>
 	<%= collection_select(:bill_part, :id, @parts, :id, :number, {:prompt => 'Select Part'}, :class => 'width_medium')%>
-	<%= text_field_tag(:part_name, nil, :class => 'small_text', :readonly => true) %>
-	<%= text_field_tag(:part_price, nil, :class => 'small_text', :readonly => true) %>
-	<%= text_field_tag(:part_weight, nil, :class => 'small_text', :readonly => true) %>
-	<%= text_field_tag(:part_quantity, nil, :class => 'small_text', :value=>1) %>
-	<%= text_field_tag(:part_discount, nil, :class => 'small_text', :value=>0) %>
+	<%= text_field_tag(:part_name, nil, :class => 'width_medium', :readonly => true) %>
+	<%= text_field_tag(:part_price, nil, :class => 'width_medium', :readonly => true) %>
+	<%= text_field_tag(:part_weight, nil, :class => 'width_medium', :readonly => true) %>
+	<%= text_field_tag(:part_quantity, nil, :class => 'width_medium', :value=>1) %>
+	<%= text_field_tag(:part_discount, nil, :class => 'width_medium', :value=>0) %>
 	<%= submit_tag "Add Part" , :onclick => "return addPartToBill()", :class => "plain_button" %>
 	<img id="spinner" style="display:none;" src="/images/spinner.gif"/>
   </div>
