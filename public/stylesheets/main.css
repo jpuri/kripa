@@ -59,7 +59,12 @@ tr:hover {
     background-color: #D8D8D8;
     cursor: pointer;
 }
-table.borderedTable { border-collapse:collapse; }
+
+th {
+    background-color: #D8D8D8;
+}
+
+table.borderedTable { border-collapse:collapse;border-top:1px dotted black;padding:5px; border-right:1px dotted black; border-left:1px dotted black; }
 table.borderedTable td{ border-bottom:1px dotted black;padding:5px; border-right:1px dotted black; border-left:1px dotted black; }
 table.borderedTable th { border-bottom:1px dotted black;padding:5px;}
 
