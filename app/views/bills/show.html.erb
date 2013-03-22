@@ -1,6 +1,6 @@
-<h1>View Bill</h1>
-
 <p id="notice"><%= notice %></p>
+
+<h1>View Bill</h1>
 
 <p>
   <%= label_tag(:bill, "Bill Date", :class => 'medium_lbl_grey') %><br/>
@@ -29,12 +29,12 @@
 </div>
 
 <p>
-    <% for bill_part in @bill.bill_parts %>
+	<% for bill_part in @bill.bill_parts %>
 	  <div>
 	    <%= label_tag(:bill, bill_part.part.number, :class => 'medium_lbl') %>
 	    <%= label_tag(:bill, bill_part.part.name, :class => 'medium_lbl') %>
-	    <%= label_tag(:bill, "Unit Weight", :class => 'medium_lbl') %>
-	    <%= label_tag(:bill, "Unit Price", :class => 'medium_lbl') %>
+	    <%= label_tag(:bill, bill_part.weight/bill_part.quantity, :class => 'medium_lbl') %>
+	    <%= label_tag(:bill, bill_part.price/bill_part.quantity, :class => 'medium_lbl') %>
 	    <%= label_tag(:bill, bill_part.quantity, :class => 'medium_lbl') %>
 	    <%= label_tag(:bill, bill_part.discount, :class => 'medium_lbl') %>
 	    <%= label_tag(:bill, bill_part.weight, :class => 'medium_lbl') %>
@@ -48,7 +48,7 @@
 	  <%= label_tag(:bill, "Totals", :class => 'medium_lbl_grey') %>
 	  <%= label_tag(:totalweight, @bill.total_weight, :id => 'totalweight', :class => 'medium_lbl_grey') %>   
 	  <%= label_tag(:totalprice, @bill.total_cost, :id => 'totalprice', :class => 'medium_lbl_grey') %> 
-<%= link_to 'Edit', edit_bill_path(@bill) %> |
+<%= link_to 'Edit', edit_bill_path(@bill)%> |
 <%= link_to 'Back', bills_path %>
     </div>
   </div>

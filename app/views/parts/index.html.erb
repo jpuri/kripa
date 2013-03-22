@@ -2,17 +2,22 @@
 
 <table class="borderedTable">
   <tr>
+    <th>S. No.</th>
     <th>Part Number</th>
     <th>Partname</th>
     <th>Weight</th>
   </tr>
 
+<% i = 1 %>
+
 <% @parts.each do |part| %>
   <tr onclick="openPage('parts', <%= part.id %>)">
+    <td><%= i %></td>
     <td><%= part.number %></td>
     <td><%= part.name %></td>
     <td><%= part.weight %></td>
   </tr>
+  <% i = i + 1 %>
 <% end %>
 </table>
 

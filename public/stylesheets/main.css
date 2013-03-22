@@ -72,4 +72,6 @@ table.borderedTable { border-collapse:collapse;border-top:1px dotted black;paddi
 table.borderedTable td{ border-bottom:1px dotted black;padding:5px; border-right:1px dotted black; border-left:1px dotted black; }
 table.borderedTable th { border-bottom:1px dotted black;padding:5px;}
 
+.button_link {
+}
 

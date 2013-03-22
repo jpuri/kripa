@@ -2,14 +2,19 @@
 
 <table class="borderedTable">
   <tr>
+    <th>S. No.</th>
     <th>Name</th>
   </tr>
 
-<% @models.each do |model| %>
-  <tr onclick="openPage('models', <%= model.id %>)">
-    <td><%= model.name %></td>
-  </tr>
-<% end %>
+  <% i = 1 %>
+
+  <% @models.each do |model| %>
+    <tr onclick="openPage('models', <%= model.id %>)">
+      <td><%= i %></td>
+      <td><%= model.name %></td>
+    </tr>
+    <% i = i + 1 %>
+  <% end %>
 </table>
 
 <br />

@@ -2,6 +2,7 @@
 
 <table class="borderedTable">
   <tr>
+    <th>S. No.</th>
     <th>Customer Id</th>
     <th>Name</th>
     <th>Contact person</th>
@@ -9,14 +10,17 @@
     <th>Email</th>
   </tr>
 
+<% i = 1%>
 <% @customers.each do |customer| %>
   <tr onclick="openPage('customers',<%= customer.id %>)">
+    <td><%= i %></td>
     <td><%= customer.customer_id %></td>
     <td><%= customer.name %></td>
     <td><%= customer.contact_person %></td>
     <td><%= customer.phone %></td>
     <td><%= customer.email %></td>
   </tr>
+  <% i = i + 1 %>
 <% end %>
 </table>
 
