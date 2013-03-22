@@ -147,10 +147,16 @@ class BillsController < ApplicationController
   def getPartDetails
     @part = Part.find(params[:part_id])
     @part_price = PartPrice.where("part_id = ? and customer_id = ? and currency_id = ?", params[:part_id], params[:customer_id], params[:currency_id]).first
+    @currency = Currency.find(params[:currency_id])
     if(!@part_price)
       @part_price = PartPrice.where("part_id = ? and customer_id = -1 and currency_id = ?", params[:part_id], params[:currency_id]).first
     end
-    price = @part_price ? @part_price.price : 0
-    render :json => {:part_name => @part.name, :part_weight => @part.weight, :part_price => @part_price.price}
+    weight = @part.weight ? @part.weight : 0
+    price = @part_price ? @part_price.price : nil
+    if(price)
+      render :json => {:status => 'success', :data=>{:part_name => @part.name, :part_weight => weight, :part_price => price}}
+    else
+      render :json => {:status => 'failure', :message=>'No price added for ' + @part.name + ' in ' + @currency.name + 's.'}
+    end
   end
 end

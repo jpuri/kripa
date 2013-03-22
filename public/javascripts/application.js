@@ -88,16 +88,23 @@ function validate(){
 function getPartDetails(){
   if(validate()){
     showSpinner()
+    resetPartValues()
+    $('#message').html('')
     $.ajax({
       url : server_url + "bills/getPartDetails",
       type : "get",
 	  data : {part_id: $('#bill_part_id').val(),
 		customer_id: $('#bill_customer_id').val(),
 		currency_id: $('#bill_currency_id').val()},
-      success : function(data){
-        $('#part_name').val(data.part_name)
-        $('#part_price').val(data.part_price)
-        $('#part_weight').val(data.part_weight)
+      success : function(response){
+      	if(response.status === 'success'){
+      	  var data = response.data
+          $('#part_name').val(data.part_name)
+          $('#part_price').val(data.part_price)
+          $('#part_weight').val(data.part_weight)
+        }else{
+		  $('#message').append('<font color="red">' + response.message + '</font>')
+        }
       }
     })
     hideSpinner()
