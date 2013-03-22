@@ -26,10 +26,14 @@
 .top_pad_20{
   padding-top: 20px;
 }
-.large_div{
+.large_div_bottom{
   position: absolute;
   top: 700px;
   left: 670px;
+}
+.large_div{
+  position: absolute;
+  left: 650px;
 }
 .plain_button{
   background-color: #B0B0B0; 
