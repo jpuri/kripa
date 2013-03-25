@@ -18,6 +18,7 @@ class BillsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @bill }
+      format.pdf { render :layout => false }
     end
   end
 
@@ -63,6 +64,7 @@ class BillsController < ApplicationController
 	  end
 
     respond_to do |format|
+
       if @bill.save
         format.html { redirect_to(@bill, :notice => 'Bill was successfully created.') }
         format.xml  { render :xml => @bill, :status => :created, :location => @bill }
@@ -72,6 +74,12 @@ class BillsController < ApplicationController
       end
     end
   end
+  
+  def generate_pdf
+    Prawn::Document.new do
+        text "Hello Stackoverflow"
+    end.render 
+end
 
   # PUT /bills/1
   # PUT /bills/1.xml

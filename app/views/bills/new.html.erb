@@ -68,6 +68,8 @@
 	  <input id="bill_total_price" name="bill[total_cost]" type="hidden" value="0"></input>
 	  <input id="bill_total_weight" name="bill[total_weight]" type="hidden" value="0"></input>
 	  <%= submit_tag "Save", :class => "small_button" %>
+	  <input id="export_flag" name="export_flag" type="hidden" value="false"></input>
+	  <%= submit_tag "Save and Export", :class => "small_button" , :onclick => "return setExportFlag()"%>
 	  <%= submit_tag "Clear" , :onclick => "return clearGenerateBillPage()", :class => "small_button" %>
     </div>
     <div id="addedPart"/>

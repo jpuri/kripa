@@ -1,8 +1,10 @@
+<h1>View Model</h1>
+
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @model.name %>
+  <%= label_tag(:model, "Model Name", :class => 'medium_lbl_grey') %><br/>
+  <%= label_tag(:model, @model.name, :class => 'medium_lbl') %>
 </p>
 
 <p>

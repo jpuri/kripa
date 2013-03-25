@@ -136,3 +136,8 @@ function showSpinner() {
 function hideSpinner() {
     $("#spinner").hide()
 }
+
+function setExportFlag(){
+    $("#export_flag").val("true")
+    return true
+}

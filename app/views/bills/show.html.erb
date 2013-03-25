@@ -49,6 +49,7 @@
 	  <%= label_tag(:totalweight, @bill.total_weight, :id => 'totalweight', :class => 'medium_lbl_grey') %>   
 	  <%= label_tag(:totalprice, @bill.total_cost, :id => 'totalprice', :class => 'medium_lbl_grey') %> 
 <%= link_to 'Edit', edit_bill_path(@bill)%> |
+<%= link_to 'Generate Pdf', :controller => "bills", :action => "show", :id => @bill.id, :format=> :pdf%> | 
 <%= link_to 'Back', bills_path %>
     </div>
   </div>

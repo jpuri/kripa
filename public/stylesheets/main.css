@@ -8,17 +8,17 @@
 .medium_lbl_grey{
   width: 125px;
   display: inline-block;
-  background-color: #B0B0B0; 
+  background-color: #D8D8D8; 
 }
 .big_lbl_grey{
   width: 200px;
   display: inline-block;
-  background-color: #B0B0B0; 
+  background-color: #D8D8D8; 
 }
 .border{
   border-width: .1em; 
   border-style: solid; 
-  border-color: #B0B0B0; 
+  border-color: #D8D8D8; 
 }
 .top_pad_40{
   padding-top: 40px;
@@ -36,11 +36,11 @@
   left: 650px;
 }
 .plain_button{
-  background-color: #B0B0B0; 
+  background-color: #D8D8D8; 
   width: 100px;
 }
 .small_button{
-  background-color: #B0B0B0; 
+  background-color: #D8D8D8; 
   width: 65px;
 }
 .remove_image {
