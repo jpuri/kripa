@@ -1,6 +1,9 @@
 .width_medium{
   width: 125px;
 }
+.width_large{
+  width: 200px;
+}
 .width_medium_grey{
   width: 125px;
   background-color: #F8F8F8

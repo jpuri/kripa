@@ -1,6 +1,6 @@
 <%= form_for(@bill) do |f| %>
 
-<div id="message"></div>
+<div id="message"><font color="red"><%= @message%></font></div>
 
 <h1>Generate Bill</h1>
 
@@ -63,7 +63,7 @@
   <div class="large_div_bottom">
     <div>
 	  <%= label_tag(:bill, "Totals", :class => 'medium_lbl_grey') %>
-	  <%= label_tag(:totalweight, "0.0", :id => 'totalweight', :class => 'medium_lbl_grey') %>   
+	  <%= label_tag(:totalweight, "0.0 Kg", :id => 'totalweight', :class => 'medium_lbl_grey') %>   
 	  <%= label_tag(:totalprice, "0.0", :id => 'totalprice', :class => 'medium_lbl_grey') %> 
 	  <input id="bill_total_price" name="bill[total_cost]" type="hidden" value="0"></input>
 	  <input id="bill_total_weight" name="bill[total_weight]" type="hidden" value="0"></input>

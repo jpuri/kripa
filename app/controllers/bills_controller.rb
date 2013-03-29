@@ -24,11 +24,12 @@ class BillsController < ApplicationController
 
   # GET /bills/new
   def new
-	@currencies = Currency.find(:all)
-	@parts = Part.find(:all)
-	@models = Model.find(:all)
-	@customers = Customer.find(:all)
+    
+	  @currencies = Currency.find(:all, :order => 'name')
+	  @parts = Part.find(:all, :order => 'number')
+	  @customers = Customer.find(:all, :order => 'name')
     @bill = Bill.new
+    @message = params[:message]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -51,6 +52,7 @@ class BillsController < ApplicationController
     @discounts = params[:bill_part_discount]
     @prices = params[:bill_part_price]
     @weights = params[:bill_part_weight]
+    if(@bill_parts)
     for i in 0...@bill_parts.length
 		  @bill_part = BillPart.new
       @part = Part.find(@bill_parts[i])
@@ -62,10 +64,13 @@ class BillsController < ApplicationController
       @bill_part.weight = @weights[i]
 		  @bill_part.save
 	  end
+	  end
 
     respond_to do |format|
 
-      if @bill.save
+      if !@bill_parts
+        format.html { redirect_to :action => "new", :message => 'Add some parts first !!!'}
+      elsif @bill.save
         format.html { redirect_to(@bill, :notice => 'Bill was successfully created.') }
         format.xml  { render :xml => @bill, :status => :created, :location => @bill }
       else
