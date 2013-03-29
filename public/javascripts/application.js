@@ -105,9 +105,9 @@ function getPartDetails(){
         }else{
 		  $('#message').append('<font color="red">' + response.message + '</font>')
         }
+        hideSpinner()
       }
     })
-    hideSpinner()
   }
   return false
 }
