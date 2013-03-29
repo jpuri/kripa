@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1>View customer</h1>
+
 <p>
   <b>Customer Id:</b>
   <%= @customer.customer_id %>
@@ -21,8 +23,18 @@
 </p>
 
 <p>
+  <b>Country:</b>
+  <%= @customer.country %>
+</p>
+
+<p>
   <b>Phone:</b>
   <%= @customer.phone %>
+</p>
+
+<p>
+  <b>Fax:</b>
+  <%= @customer.fax %>
 </p>
 
 <p>
@@ -30,6 +42,10 @@
   <%= @customer.email %>
 </p>
 
+<p>
+  <b>Web:</b>
+  <%= @customer.web %>
+</p>
 
 <%= link_to 'Edit', edit_customer_path(@customer) %> |
 <%= link_to 'Back', customers_path %>

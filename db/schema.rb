@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312112930) do
+ActiveRecord::Schema.define(:version => 20130329104843) do
 
   create_table "bill_parts", :force => true do |t|
     t.integer  "bill_id"
@@ -50,6 +50,9 @@ ActiveRecord::Schema.define(:version => 20130312112930) do
     t.datetime "updated_at"
     t.string   "address"
     t.string   "customer_id"
+    t.string   "country"
+    t.string   "fax"
+    t.string   "web"
   end
 
   create_table "model_parts", :force => true do |t|

@@ -16,12 +16,24 @@
     <%= f.text_area :address, :class => 'medium_text_area'%>
   </div>
   <div class="field"> 
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </div>
+  <div class="field"> 
     <%= f.label :phone %><br />
     <%= f.text_field :phone %>
+  </div>
+  <div class="field"> 
+    <%= f.label :fax %><br />
+    <%= f.text_field :fax %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :web %><br />
+    <%= f.text_field :web %>
   </div>
   <div class="actions">
     <%= f.submit :class => "small_button" %>
