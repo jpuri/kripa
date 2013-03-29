@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1>View Part</h1>
+
 <p>
   <b>Number:</b>
   <%= @part.number %>
@@ -11,22 +13,35 @@
 </p>
 
 <p>
-  <b>Weight:</b>
+  <b>Weight(Kg):</b>
   <%= @part.weight %>
 </p>
 
 <p>
-  <b>Prices:</b>
-  <% for part_prices in @part.part_prices %>
-    </br><%= part_prices.customer.name %>
-	<%= part_prices.currency.name %>
-	<%= part_prices.price %></br>
+  <b>Price List:</b>
+  <table class="borderedTable"><tr>
+  <tr>
+    <th>S.No.</th>
+    <th>Customer</th>
+    <th>Currency</th>
+    <th>Price</th>
+  </tr>
+  <% i = 1 %>
+  <% for part_price in @part.part_prices %>
+  <tr onclick="openPage('part_prices',<%= part_price.id %>)">
+    <td><%= i %></td>
+    <td><%= part_price.customer.name %></td>
+	<td><%= part_price.currency.name %></td>
+	<td><%= part_price.price %></td>
+  </tr>
+  <% i = i + 1 %>
   <% end %>
+  </table>
 </p>
 
 <%= link_to 'Edit', edit_part_path(@part) %> |
+<%= link_to 'Add Price', :controller => "part_prices", :action => "new", :part_id => @part.id %> | 
 <%= link_to 'Back', parts_path %>
-<%= link_to 'Add Price', :controller => "part_prices", :action => "new", :part_id => @part.id %>
 
 
 

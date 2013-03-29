@@ -1,16 +1,17 @@
 <h1>Add Part To Model</h1>
 <%= form_tag({:controller=>"models", :action => "saveModelPart"}, :method => "get") do %>
 <div class="field">
-  <%= label_tag(:model_part, "Model") %>:
+  <%= label_tag(:model_part, "Model") %><br/>
   <%= label_tag(:model_part, @model.name) %>
   <input id="model_part[model_id]" name="model_part[model_id]" type="hidden" value=<%=@model.id%> %>
 </div>
 
 <div class="field">
-  <%= label_tag(:model_part, "Part") %>:
+  <%= label_tag(:model_part, "Part") %><br/>
   <%= collection_select(:model_part, :part_id, @parts, :id, :name, {:prompt => 'Select Part'}, :class => 'width_medium')%>
 </div>
 
 <%= submit_tag "Add Part", :class => "small_button" %>
+<%= link_to 'Back', model_path(@model) %>
 
 <% end %>

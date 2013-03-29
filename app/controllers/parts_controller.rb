@@ -35,8 +35,6 @@ class PartsController < ApplicationController
   def create
     @part = Part.new(params[:part])
 
-	puts params.inspect
-	
     respond_to do |format|
       if @part.save
         format.html { redirect_to(@part, :notice => 'Part was successfully created.') }

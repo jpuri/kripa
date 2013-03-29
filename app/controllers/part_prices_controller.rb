@@ -10,7 +10,7 @@ class PartPricesController < ApplicationController
 
   # GET /part_prices/1
   def show
-    @model_price = PartPrice.find(params[:id])
+    @part_price = PartPrice.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -19,10 +19,10 @@ class PartPricesController < ApplicationController
 
   # GET /part_prices/new
   def new
-    @model_price = PartPrice.new
+    @part_price = PartPrice.new
 	@currencies = Currency.find(:all)
 	@customers = Customer.find(:all)
-	@part_id = params[:part_id]
+	@part = Part.find(params[:part_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -31,33 +31,43 @@ class PartPricesController < ApplicationController
 
   # GET /part_prices/1/edit
   def edit
-    @model_price = PartPrice.find(params[:id])
+    @part_price = PartPrice.find(params[:id])
+  @currencies = Currency.find(:all)
+  @customers = Customer.find(:all)
   end
 
   # POST /part_prices
   def create
   
   @part_price = PartPrice.new(params[:part_price])
-	@part_price.currency = Currency.find(params[:part_price][:currency_id])
-	@part_price.customer = Customer.find(params[:part_price][:customer_id])
-  @part_price.part = Part.find(params[:part_price][:part_id])
+	#@part_price.currency = 
+	  currency = Currency.where(params[:part_price][:currency_id]).first
+	  puts '==================================='
+	  puts currency.name
+	#@part_price.customer = 
+	  customer = Customer.where(params[:part_price][:customer_id]).first
+    puts customer.name
+	@part_price.part = Part.find(params[:part_price][:part_id])
 
     respond_to do |format|
       if @part_price.save
-		format.html { redirect_to :controller=>'parts', :action => 'index' }
+  	    format.html { redirect_to '/parts/' + String(@part_price.part.id)}
       else
-        format.html { render :action => "new" }
+        @currencies = Currency.find(:all)
+        @customers = Customer.find(:all)
+        @part_id = String(@part_price.part.id)
+        format.html { render :action => "new"}
       end
     end
   end
 
   # PUT /part_prices/1
   def update
-    @model_price = PartPrice.find(params[:id])
+    @part_price = PartPrice.find(params[:id])
 
     respond_to do |format|
-      if @model_price.update_attributes(params[:model_price])
-        format.html { redirect_to(@model_price, :notice => 'Model price was successfully updated.') }
+      if @part_price.update_attributes(params[:part_price])
+        format.html { redirect_to(@part_price, :notice => 'Part price was successfully updated.') }
       else
         format.html { render :action => "edit" }
       end

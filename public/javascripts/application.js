@@ -125,8 +125,13 @@ function removeUpdate(weight, price){
   return false;
 }
 
-function openPage(path, id){
-	window.location = '/' + path + '/' + id
+function openPage(entity, id, action){
+	var path = '/' + entity
+	if(id)
+	  path += '/' + id
+	if(action)
+	  path += '/' + action
+	window.location = path
 }
 
 function showSpinner() {

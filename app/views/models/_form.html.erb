@@ -1,5 +1,9 @@
 <%= form_for(@model) do |f| %>
   <div class="field">
+    <label>Number</label><br />
+    <%= f.text_field :number %>
+  </div>
+  <div class="field">
     <label>Name</label><br />
     <%= f.text_field :name %>
   </div>

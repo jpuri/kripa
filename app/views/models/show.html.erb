@@ -1,19 +1,37 @@
-<h1>View Model</h1>
-
 <p id="notice"><%= notice %></p>
 
+<h1>View Model</h1>
+
 <p>
-  <%= label_tag(:model, "Model Name", :class => 'medium_lbl_grey') %><br/>
-  <%= label_tag(:model, @model.name, :class => 'medium_lbl') %>
+  <b>Model Number:</b>
+  <%= label_tag(:model, @model.number) %>
+</p>
+
+<p>
+  <b>Model Name:</b>
+  <%= label_tag(:model, @model.name) %>
 </p>
 
 <p>
   <b>Parts:</b>
+  <table class="borderedTable">
+  <tr>
+    <th>S.No.</th>
+    <th>Part Number</th>
+    <th>Part Name</th>
+  </tr>
+  <% i = 1 %>
   <% for part in @model.parts %>
-    <%= part.name %></br>
+    <tr>
+    <td><%= i %></td>
+    <td><%= part.number %></td>
+    <td><%= part.name %></td>
+    <% i = i + 1 %>
+    </tr>
   <% end %>
+  </table>
 </p>
 
 <%= link_to 'Edit', edit_model_path(@model) %> |
+<%= link_to 'Add Part', :controller => "models", :action => "addModelPart", :model_id => @model.id %> | 
 <%= link_to 'Back', models_path %>
-<%= link_to 'Add Part', :controller => "models", :action => "addModelPart", :model_id => @model.id %>

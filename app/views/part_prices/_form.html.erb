@@ -1,29 +1,22 @@
-<%= form_for(@model_price) do |f| %>
-  <% if @model_price.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@model_price.errors.count, "error") %> prohibited this model_price from being saved:</h2>
-
-      <ul>
-      <% @model_price.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for(@part_price) do |f| %>
 
   <div class="field">
-    <%= f.label :Currency %><br />
-	<%= collection_select(:part_price, :currency_id, @currencies, :id, :name)%>
+    <%= f.label :Part %><br />
+    <%= @part.name %>
   </div>
   <div class="field">
     <%= f.label :Customer %><br />
-	<%= collection_select(:part_price, :customer_id, @customers, :id, :name)%>
+	<%= f.collection_select :customer_id, @customers, :id, :name, {:prompt => 'Select Customer'}%>
+  </div>
+  <div class="field">
+    <%= f.label :Currency %><br />
+	<%= f.collection_select :currency_id, @currencies, :id, :name, {:prompt => 'Select Currency'}%>
   </div>
   <div class="field">
     <%= f.label :price %><br />
     <%= f.text_field :price %>
   </div>
-  <input type="hidden" name="part_price[part_id]" value="<%=@part_id%>">
+  <input type="hidden" name="part_price[part_id]" value="<%=@part.id%>">
   <div class="actions">
     <%= f.submit %>
   </div>

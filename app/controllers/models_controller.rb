@@ -96,7 +96,7 @@ class ModelsController < ApplicationController
 
     respond_to do |format|
       if @model_part.save
-        format.html { redirect_to :action => "index" }
+        format.html { redirect_to @model_part.model }
       else
 		 # tbd
       end

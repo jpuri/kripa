@@ -1,8 +1,9 @@
-<h1>Listing Models</h1>
+<h1>List Models</h1>
 
 <table class="borderedTable">
   <tr>
     <th>S. No.</th>
+    <th>Number</th>
     <th>Name</th>
   </tr>
 
@@ -11,6 +12,7 @@
   <% @models.each do |model| %>
     <tr onclick="openPage('models', <%= model.id %>)">
       <td><%= i %></td>
+      <td><%= model.number %></td>
       <td><%= model.name %></td>
     </tr>
     <% i = i + 1 %>
