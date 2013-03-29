@@ -34,6 +34,7 @@ class PartPricesController < ApplicationController
     @part_price = PartPrice.find(params[:id])
   @currencies = Currency.find(:all)
   @customers = Customer.find(:all)
+  @part = @part_price.part
   end
 
   # POST /part_prices
