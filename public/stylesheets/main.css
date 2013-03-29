@@ -1,6 +1,10 @@
 .width_medium{
   width: 125px;
 }
+.width_medium_grey{
+  width: 125px;
+  background-color: #F8F8F8
+}
 .medium_lbl{
   width: 125px;
   display: inline-block;

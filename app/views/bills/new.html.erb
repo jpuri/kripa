@@ -36,9 +36,9 @@
 
   <div>
 	<%= collection_select(:bill_part, :id, @parts, :id, :number, {:prompt => 'Select Part'}, :class => 'width_medium')%>
-	<%= text_field_tag(:part_name, nil, :class => 'width_medium', :readonly => true) %>
-	<%= text_field_tag(:part_price, nil, :class => 'width_medium', :readonly => true) %>
-	<%= text_field_tag(:part_weight, nil, :class => 'width_medium', :readonly => true) %>
+	<%= text_field_tag(:part_name, nil, :class => 'width_medium_grey', :readonly => true) %>
+	<%= text_field_tag(:part_price, nil, :class => 'width_medium_grey', :readonly => true) %>
+	<%= text_field_tag(:part_weight, nil, :class => 'width_medium_grey', :readonly => true) %>
 	<%= text_field_tag(:part_quantity, nil, :class => 'width_medium', :value=>1) %>
 	<%= text_field_tag(:part_discount, nil, :class => 'width_medium', :value=>0) %>
 	<%= submit_tag "Add Part" , :onclick => "return addPartToBill()", :class => "plain_button" %>
