@@ -41,14 +41,6 @@ class PartPricesController < ApplicationController
   def create
   
   @part_price = PartPrice.new(params[:part_price])
-	#@part_price.currency = 
-	  currency = Currency.where(params[:part_price][:currency_id]).first
-	  puts '==================================='
-	  puts currency.name
-	#@part_price.customer = 
-	  customer = Customer.where(params[:part_price][:customer_id]).first
-    puts customer.name
-	@part_price.part = Part.find(params[:part_price][:part_id])
 
     respond_to do |format|
       if @part_price.save
