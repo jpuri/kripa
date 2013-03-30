@@ -4,25 +4,35 @@
 
 <h1>Generate Bill</h1>
 
-  <div class="field">
-    <%= f.label :bill_date, :class => 'big_lbl_grey'%><br />
+  <div class="top_pad_20">
+    <%= f.label :bill_date, :class => 'medium_lbl_grey'%>
     <%= f.date_select :bill_date %>
   </div>
 
   <div class="top_pad_20">
-	<%= label_tag(:bill, "Customer", :class => 'medium_lbl_grey') %>
+    <%= f.label :due_date, :class => 'medium_lbl_grey'%>
   </div>
 
-  <div>
-	<%= collection_select(:bill, :customer_id, @customers, :id, :name, {:prompt => 'Select Customer'}, :class => 'width_medium')%>
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Customer", :class => 'medium_lbl_grey') %>
+	<%= collection_select(:bill, :customer_id, @customers, :id, :name, {:prompt => 'Select Customer'}, :class => 'width_large')%>
+  </div>
+
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Currency", :class => 'medium_lbl_grey') %>
+	<%= collection_select(:bill, :currency_id, @currencies, :id, :name, {:prompt => 'Select Currency'}, :class => 'width_medium')%>
   </div>
   
   <div class="top_pad_20">
-	<%= label_tag(:bill, "Currency", :class => 'medium_lbl_grey') %>
+	<%= label_tag(:bill, "Box Count", :class => 'medium_lbl_grey') %>
   </div>
-  
-  <div>
-	<%= collection_select(:bill, :currency_id, @currencies, :id, :name, {:prompt => 'Select Currency'}, :class => 'width_medium')%>
+
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Air Lift #", :class => 'medium_lbl_grey') %>
+  </div>
+
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Amount Overdue", :class => 'medium_lbl_grey') %>
   </div>
 
   <div class="top_pad_20">
