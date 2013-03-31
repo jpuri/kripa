@@ -2,8 +2,10 @@ class ModelsController < ApplicationController
   # GET /models
   # GET /models.xml
   def index
-    @models = Model.all
+    #@models = Model.all
 
+    @models = Model.joins(:parts).where(:models => {:id => 1})
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @models }

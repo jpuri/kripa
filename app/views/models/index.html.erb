@@ -1,21 +1,32 @@
-<h1>List Models</h1>
+<h1>Search Models</h1>
 
 <table class="borderedTable">
   <tr>
     <th>S. No.</th>
-    <th>Number</th>
-    <th>Name</th>
+    <th>Model #</th>
+    <th>Model Name</th>
+    <th>Part #</th>
+    <th>Part Name</th>
+    <th>Price</th>
   </tr>
 
   <% i = 1 %>
 
   <% @models.each do |model| %>
+  
+    <% for part in model.parts %>
+    <% for part_price in part.part_prices %>
     <tr onclick="openPage('models', <%= model.id %>)">
-      <td><%= i %></td>
-      <td><%= model.number %></td>
-      <td><%= model.name %></td>
-    </tr>
-    <% i = i + 1 %>
+        <td><%= i %></td>
+        <td><%= model.number %></td>
+        <td><%= model.name %></td>
+        <td><%= part.number %></td>
+        <td><%= part.name %></td>
+	    <td><%= part_price.currency.symbol %><%= part_price.price %></td>
+      </tr>
+      <% i = i + 1 %>
+    <% end %>
+    <% end %>
   <% end %>
 </table>
 
