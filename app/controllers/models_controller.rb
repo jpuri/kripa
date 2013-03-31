@@ -4,7 +4,7 @@ class ModelsController < ApplicationController
   def index
     #@models = Model.all
 
-    @models = Model.joins(:parts).where(:models => {:id => 1})
+    @models = Model.joins(:parts).where(:models => {:id => 1}, :parts => {:id => 1})
     
     respond_to do |format|
       format.html # index.html.erb
