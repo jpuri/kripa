@@ -65,7 +65,6 @@
 	  <%= label_tag(:bill, "Discount", :class => 'medium_lbl_grey') %>
 	  <%= label_tag(:bill, "Total Weight", :class => 'medium_lbl_grey') %>
 	  <%= label_tag(:bill, "Calculated Price", :class => 'medium_lbl_grey') %>
-	  <%= label_tag(:bill, "Remove", :class => 'medium_lbl_grey') %>
     </div>
     <div id="addedPart"/>
   </div>
@@ -77,12 +76,13 @@
 	  <%= label_tag(:totalprice, "0.0", :id => 'totalprice', :class => 'medium_lbl_grey') %> 
 	  <input id="bill_total_price" name="bill[total_cost]" type="hidden" value="0"></input>
 	  <input id="bill_total_weight" name="bill[total_weight]" type="hidden" value="0"></input>
-	  <%= submit_tag "Save", :class => "small_button" %>
-	  <input id="export_flag" name="export_flag" type="hidden" value="false"></input>
-	  <%= submit_tag "Clear" , :onclick => "return clearGenerateBillPage()", :class => "small_button" %>
     </div>
-    <div id="addedPart"/>
+    <div id="addedPart">
+  </div>
+  </div>
+  <div class="div_button_bottom">
+	  <%= submit_tag "Save", :class => "small_button" %>
+	  <%= submit_tag "Clear" , :onclick => "return clearGenerateBillPage()", :class => "small_button" %>
   </div>
 
-<br/>
 <% end %>

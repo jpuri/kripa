@@ -33,10 +33,13 @@
 .top_pad_20{
   padding-top: 15px;
 }
+.div_button_bottom{
+  padding-top: 1%;
+  margin-left: 35%;
+}
 .large_div_bottom{
-  position: absolute;
-  top: 700px;
-  left: 670px;
+  margin-top: 2%;
+  margin-left: 45%;
 }
 .large_div{
   position: absolute;
