@@ -1,5 +1,28 @@
-<h1>Search Models</h1>
+<h1>Models and Parts</h1>
 
+<%= form_tag({:controller=>"models", :action => "index"}, :method => "get") do %>
+
+<div class="top_pad_20">
+  <%= label_tag(:model, "Model", :class => 'medium_lbl_grey') %>
+  <%= collection_select(:model, :id,  @models_select, :id, :number, {:prompt => 'Select Model', :selected => @model_id}, :class => 'width_large')%>
+  <%= label_tag(:part, "Part", :class => 'medium_lbl_grey') %>
+  <%= collection_select(:part, :id,  @parts, :id, :number, {:prompt => 'Select Part', :selected => @part_id}, :class => 'width_large')%>
+</div>
+
+<div class="top_pad_20">
+  <%= label_tag(:customer, "Customer", :class => 'medium_lbl_grey') %>
+  <%= collection_select(:customer, :id,  @customers, :id, :name, {:prompt => 'Select Customer', :selected => @customer_id}, :class => 'width_large')%>
+  <%= label_tag(:currency, "Currency", :class => 'medium_lbl_grey') %>
+  <%= collection_select(:currency, :id,  @currencies, :id, :name, {:prompt => 'Select Currency', :selected => @currency_id}, :class => 'width_large')%>
+</div>
+
+<div class="div_button_bottom">
+  <%= submit_tag "Search", :class => "small_button" %>
+</div>
+
+<% end %>
+
+<div class="top_pad_20">
 <table class="borderedTable">
   <tr>
     <th>S. No.</th>
@@ -7,29 +30,27 @@
     <th>Model Name</th>
     <th>Part #</th>
     <th>Part Name</th>
+    <th>Weight(Kg)</th>
+    <th>Customer</th>
     <th>Price</th>
   </tr>
 
   <% i = 1 %>
 
-  <% @models.each do |model| %>
-  
-    <% for part in model.parts %>
-    <% for part_price in part.part_prices %>
-    <tr onclick="openPage('models', <%= model.id %>)">
-        <td><%= i %></td>
-        <td><%= model.number %></td>
-        <td><%= model.name %></td>
-        <td><%= part.number %></td>
-        <td><%= part.name %></td>
-	    <td><%= part_price.currency.symbol %><%= part_price.price %></td>
-      </tr>
-      <% i = i + 1 %>
-    <% end %>
-    <% end %>
+  <% for column in @result %>
+  <tr>
+    <td><%= i %></td>
+    <td><%= column[0] %></td>
+    <td><%= column[1] %></td>
+    <td><%= column[2] %></td>
+    <td><%= column[3] %></td>
+    <td><%= column[4] %></td>
+    <td><%= column[5] %></td>
+    <td><%= column[6] %></td>
+  </tr>
+  <% i = i + 1 %>
   <% end %>
+
 </table>
 
-<br />
-
-<%= link_to 'New Model', new_model_path %>
+</div>

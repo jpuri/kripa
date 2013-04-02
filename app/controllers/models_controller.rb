@@ -2,10 +2,46 @@ class ModelsController < ApplicationController
   # GET /models
   # GET /models.xml
   def index
-    #@models = Model.all
-
-    @models = Model.joins(:parts).where(:models => {:id => 1}, :parts => {:id => 1})
     
+    @models_select = Model.all
+    @parts = Part.all
+    @customers = Customer.all
+    @currencies = Currency.all
+    
+    condition = 'true'
+      
+    if(params[:model])
+      @model_id = params[:model][:id]
+      if(@model_id.length > 0)
+        condition = "m.id = #{@model_id}"
+      end
+    end
+    
+    if(params[:part])
+      @part_id = params[:part][:id]
+      if(@part_id.length > 0)
+        condition += " and p.id = #{@part_id}"
+      end
+    end
+    
+    if(params[:customer])
+      @customer_id = params[:customer][:id]
+      if(@customer_id.length > 0)
+        condition += " and c.id = #{@customer_id}"
+      end
+    end
+    
+    if(params[:currency])
+      @currency_id = params[:currency][:id]
+      if(@currency_id.length > 0)
+        condition += " and cur.id = #{@currency_id}"
+      end
+    end
+    
+    @result = ActiveRecord::Base.connection.execute("SELECT m.number, m.name, p.number, p.name, p.weight, c.name, concat(cur.symbol, pp.price) from models m, model_parts mp, 
+      parts p, part_prices pp, customers c, currencies cur where m.id = mp.model_id and p.id = mp.part_id and p.id = pp.part_id and pp.customer_id = c.id 
+      and pp.currency_id = cur.id and " + condition)
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @models }
