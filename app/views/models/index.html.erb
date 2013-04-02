@@ -40,13 +40,13 @@
   <% for column in @result %>
   <tr>
     <td><%= i %></td>
-    <td><%= column[0] %></td>
-    <td><%= column[1] %></td>
-    <td><%= column[2] %></td>
-    <td><%= column[3] %></td>
-    <td><%= column[4] %></td>
-    <td><%= column[5] %></td>
-    <td><%= column[6] %></td>
+    <td><%= column["model_number"] %></td>
+    <td><%= column["model_name"] %></td>
+    <td><%= column["part_number"] %></td>
+    <td><%= column["part_name"] %></td>
+    <td><%= column["weight"] %></td>
+    <td><%= column["name"] %></td>
+    <td><%= column["price"] %></td>
   </tr>
   <% i = i + 1 %>
   <% end %>

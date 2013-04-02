@@ -38,9 +38,15 @@ class ModelsController < ApplicationController
       end
     end
     
-    @result = ActiveRecord::Base.connection.execute("SELECT m.number, m.name, p.number, p.name, p.weight, c.name, concat(cur.symbol, pp.price) from models m, model_parts mp, 
+    @result = ActiveRecord::Base.connection.execute("SELECT m.number as model_number, m.name as model_name, p.number as part_number, p.name as part_name, 
+      p.weight, c.name, concat(cur.symbol, pp.price) as price from models m, model_parts mp, 
       parts p, part_prices pp, customers c, currencies cur where m.id = mp.model_id and p.id = mp.part_id and p.id = pp.part_id and pp.customer_id = c.id 
       and pp.currency_id = cur.id and " + condition)
+      
+      puts '=========================================='
+      for column in @result
+        puts column
+      end
 
     respond_to do |format|
       format.html # index.html.erb

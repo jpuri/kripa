@@ -69,6 +69,13 @@ ActiveRecord::Schema.define(:version => 20130329112210) do
     t.string   "number"
   end
 
+  create_table "part_models", :force => true do |t|
+    t.string   "model_name"
+    t.integer  "part_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "part_prices", :force => true do |t|
     t.integer  "currency_id"
     t.float    "price"
