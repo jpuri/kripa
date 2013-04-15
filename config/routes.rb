@@ -1,5 +1,7 @@
 Kripa::Application.routes.draw do
 
+  resources :makes
+
   get "sessions/new"
 
   get "users/new"

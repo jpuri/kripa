@@ -3,9 +3,14 @@
 <%= form_tag({:controller=>"models", :action => "index"}, :method => "get") do %>
 
 <div class="top_pad_20">
-  <%= label_tag(:model, "Model", :class => 'medium_lbl_grey') %>
+  <%= label_tag(:make, "Make", :class => 'medium_lbl_grey') %>
+  <%= collection_select(:make, :id,  @makes, :id, :name, {:prompt => 'Select Make', :selected => @make_id}, :class => 'width_large')%>
+</div>
+
+<div class="top_pad_20">
+  <%= label_tag(:model, "Model #", :class => 'medium_lbl_grey') %>
   <%= collection_select(:model, :id,  @models_select, :id, :number, {:prompt => 'Select Model', :selected => @model_id}, :class => 'width_large')%>
-  <%= label_tag(:part, "Part", :class => 'medium_lbl_grey') %>
+  <%= label_tag(:part, "Part #", :class => 'medium_lbl_grey') %>
   <%= collection_select(:part, :id,  @parts, :id, :number, {:prompt => 'Select Part', :selected => @part_id}, :class => 'width_large')%>
 </div>
 
@@ -26,10 +31,10 @@
 <table class="borderedTable">
   <tr>
     <th>S. No.</th>
+    <th>Make</th>
     <th>Model #</th>
-    <th>Model Name</th>
     <th>Part #</th>
-    <th>Part Name</th>
+    <th>Part Description</th>
     <th>Weight(Kg)</th>
     <th>Customer</th>
     <th>Price</th>
@@ -40,10 +45,10 @@
   <% for column in @result %>
   <tr>
     <td><%= i %></td>
+    <td><%= column["make_name"] %></td>
     <td><%= column["model_number"] %></td>
-    <td><%= column["model_name"] %></td>
     <td><%= column["part_number"] %></td>
-    <td><%= column["part_name"] %></td>
+    <td><%= column["part_description"] %></td>
     <td><%= column["weight"] %></td>
     <td><%= column["name"] %></td>
     <td><%= column["price"] %></td>

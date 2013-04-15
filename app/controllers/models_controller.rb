@@ -3,6 +3,7 @@ class ModelsController < ApplicationController
   # GET /models.xml
   def index
     
+    @makes = Make.all
     @models_select = Model.all
     @parts = Part.all
     @customers = Customer.all
@@ -10,6 +11,13 @@ class ModelsController < ApplicationController
     
     condition = 'true'
       
+    if(params[:make])
+      @make_id = params[:make][:id]
+      if(@make_id.length > 0)
+        condition = "mk.id = #{@make_id}"
+      end
+    end
+    
     if(params[:model])
       @model_id = params[:model][:id]
       if(@model_id.length > 0)
@@ -38,9 +46,9 @@ class ModelsController < ApplicationController
       end
     end
     
-    @result = ActiveRecord::Base.connection.execute("SELECT m.number as model_number, m.name as model_name, p.number as part_number, p.name as part_name, 
-      p.weight, c.name, concat(cur.symbol, pp.price) as price from models m, model_parts mp, 
-      parts p, part_prices pp, customers c, currencies cur where m.id = mp.model_id and p.id = mp.part_id and p.id = pp.part_id and pp.customer_id = c.id 
+    @result = ActiveRecord::Base.connection.execute("SELECT mk.name as make_name, m.number as model_number, p.number as part_number, p.description as part_description, 
+      p.weight, c.name, concat(cur.symbol, pp.price) as price from makes mk, models m, model_parts mp, 
+      parts p, part_prices pp, customers c, currencies cur where mk.id = m.make_id and m.id = mp.model_id and p.id = mp.part_id and p.id = pp.part_id and pp.customer_id = c.id 
       and pp.currency_id = cur.id and " + condition)
       
       puts '=========================================='

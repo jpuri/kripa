@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130329112210) do
+ActiveRecord::Schema.define(:version => 20130413183124) do
 
   create_table "bill_parts", :force => true do |t|
     t.integer  "bill_id"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(:version => 20130329112210) do
     t.string   "web"
   end
 
+  create_table "makes", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "model_parts", :force => true do |t|
     t.integer  "model_id"
     t.integer  "part_id"
@@ -63,10 +70,11 @@ ActiveRecord::Schema.define(:version => 20130329112210) do
   end
 
   create_table "models", :force => true do |t|
-    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "number"
+    t.string   "description"
+    t.integer  "make_id"
   end
 
   create_table "part_models", :force => true do |t|
@@ -86,7 +94,6 @@ ActiveRecord::Schema.define(:version => 20130329112210) do
   end
 
   create_table "parts", :force => true do |t|
-    t.string   "name"
     t.float    "weight"
     t.datetime "created_at"
     t.datetime "updated_at"

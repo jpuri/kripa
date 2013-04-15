@@ -3,5 +3,5 @@ class Part < ActiveRecord::Base
   has_many :part_prices
   has_many :model_parts
   has_many :models, :through => :model_parts
-  validates :number, :name, :presence => true  
+  validates :number, :presence => true  
 end
