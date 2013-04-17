@@ -30,8 +30,6 @@ class AddPartPrices < ActiveRecord::Migration
     PartPrice.new(:currency_id =>   2 , :part_id =>   26  , :price =>   19  , :customer_id =>   1 ).save()
     PartPrice.new(:currency_id =>   2 , :part_id =>   25  , :price =>   11  , :customer_id =>   1 ).save()
     PartPrice.new(:currency_id =>   2 , :part_id =>   24  , :price =>   90  , :customer_id =>   1 ).save()
-    PartPrice.new(:currency_id =>   2 , :part_id =>   25  , :price =>   11  , :customer_id =>   1 ).save()
-    PartPrice.new(:currency_id =>   2 , :part_id =>   24  , :price =>   90  , :customer_id =>   1 ).save()
     PartPrice.new(:currency_id =>   2 , :part_id =>   6 , :price =>   137.56  , :customer_id =>   2 ).save()
     PartPrice.new(:currency_id =>   2 , :part_id =>   7 , :price =>   79  , :customer_id =>   2 ).save()
     PartPrice.new(:currency_id =>   2 , :part_id =>   8 , :price =>   79  , :customer_id =>   2 ).save()
@@ -59,8 +57,6 @@ class AddPartPrices < ActiveRecord::Migration
     PartPrice.new(:currency_id =>   2 , :part_id =>   31  , :price =>   22  , :customer_id =>   2 ).save()
     PartPrice.new(:currency_id =>   2 , :part_id =>   30  , :price =>   18  , :customer_id =>   2 ).save()
     PartPrice.new(:currency_id =>   2 , :part_id =>   26  , :price =>   19  , :customer_id =>   2 ).save()
-    PartPrice.new(:currency_id =>   2 , :part_id =>   25  , :price =>   11  , :customer_id =>   2 ).save()
-    PartPrice.new(:currency_id =>   2 , :part_id =>   24  , :price =>   90  , :customer_id =>   2 ).save()
     PartPrice.new(:currency_id =>   2 , :part_id =>   25  , :price =>   11  , :customer_id =>   2 ).save()
     PartPrice.new(:currency_id =>   2 , :part_id =>   24  , :price =>   90  , :customer_id =>   2 ).save()
   end
