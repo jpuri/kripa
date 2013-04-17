@@ -3,11 +3,11 @@ class ModelsController < ApplicationController
   # GET /models.xml
   def index
     
-    @makes = Make.all
-    @models_select = Model.all
-    @parts = Part.all
-    @customers = Customer.all
-    @currencies = Currency.all
+    @makes = Make.all(:order => "name")
+    @models_select = Model.all(:order => "number")
+    @parts = Part.order("number")
+    @customers = Customer.all(:order => "name")
+    @currencies = Currency.all(:order => "name")
     
     condition = 'true'
       
