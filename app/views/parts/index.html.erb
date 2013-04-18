@@ -4,7 +4,7 @@
   <tr>
     <th>S. No.</th>
     <th>Part Number</th>
-    <th>Partname</th>
+    <th>Description</th>
     <th>Weight(Kg)</th>
   </tr>
 
@@ -14,7 +14,7 @@
   <tr onclick="openPage('parts', <%= part.id %>)">
     <td><%= i %></td>
     <td><%= part.number %></td>
-    <td><%= part.name %></td>
+    <td><%= part.description %></td>
     <td><%= part.weight %></td>
   </tr>
   <% i = i + 1 %>

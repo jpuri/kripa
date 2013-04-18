@@ -1,18 +1,14 @@
 <%= form_for(@part) do |f| %>
   <div class="field">
-    <label>Part Number</label><br />
+    <label><b>Part Number</b></label><br/>
     <%= f.text_field :number %>
   </div>
   <div class="field">
-    <label>Name</label><br />
-    <%= f.text_field :name %>
+    <label><b>Description</b></label><br/>
+    <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description , :class => 'small_text_area'%>
-  </div>
-  <div class="field">
-    <%= f.label :weight %>(Kg)<br />
+    <b><%= f.label :weight %>(Kg)<br/>
     <%= f.text_field :weight %>
   </div>
   <div class="actions">
