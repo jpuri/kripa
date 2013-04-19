@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130413183124) do
+ActiveRecord::Schema.define(:version => 20130419112104) do
 
   create_table "bill_parts", :force => true do |t|
     t.integer  "bill_id"
@@ -32,6 +32,11 @@ ActiveRecord::Schema.define(:version => 20130413183124) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "total_weight"
+    t.date     "due_date"
+    t.string   "order_number"
+    t.integer  "box_count"
+    t.string   "flight_number"
+    t.float    "previous_overdue"
   end
 
   create_table "currencies", :force => true do |t|

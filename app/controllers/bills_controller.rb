@@ -29,6 +29,8 @@ class BillsController < ApplicationController
 	  @parts = Part.find(:all, :order => 'number')
 	  @customers = Customer.find(:all, :order => 'name')
     @bill = Bill.new
+    @bill.bill_date = Date.today
+    @bill.due_date = @bill.bill_date + 30
     @message = params[:message]
 
     respond_to do |format|
@@ -156,6 +158,7 @@ end
   
   # GET /bills/getPartDetails
   def getPartDetails
+    puts ' into get part details'
     @part = Part.find(params[:part_id])
     @part_price = PartPrice.where("part_id = ? and customer_id = ? and currency_id = ?", params[:part_id], params[:customer_id], params[:currency_id]).first
     @currency = Currency.find(params[:currency_id])
@@ -163,11 +166,11 @@ end
       @part_price = PartPrice.where("part_id = ? and customer_id = -1 and currency_id = ?", params[:part_id], params[:currency_id]).first
     end
     if(!@part_price)
-      render :json => {:status => 'failure', :message=>'No price added for ' + @part.name + ' in ' + @currency.name + '.'}
+      render :json => {:status => 'failure', :message=>'No price added for ' + @part.description + ' in ' + @currency.name + '.'}
     elsif(!@part.weight)
-      render :json => {:status => 'failure', :message=>'No value of weight added for ' + @part.name + '.'}
+      render :json => {:status => 'failure', :message=>'No value of weight added for ' + @part.description + '.'}
     else
-      render :json => {:status => 'success', :data=>{:part_name => @part.name, :part_weight => @part.weight, :part_price => @part_price.price}}
+      render :json => {:status => 'success', :data=>{:part_description => @part.description, :part_weight => @part.weight, :part_price => @part_price.price}}
     end
   end
 end

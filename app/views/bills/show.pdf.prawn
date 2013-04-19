@@ -7,7 +7,7 @@ prawn_document(:filename=>'Hello.pdf') do |pdf|
   i = 1 
   data = Array.new
     for bill_part in @bill.bill_parts
-      data.insert(0, [i, bill_part.part.name, String(bill_part.quantity), String(bill_part.price/bill_part.quantity), String(bill_part.price)])
+      data.insert(0, [i, bill_part.part.description, String(bill_part.quantity), String(bill_part.price/bill_part.quantity), String(bill_part.price)])
       i = i + 1
     end
   t = pdf.make_table(data.reverse)

@@ -4,40 +4,55 @@
 
 <h1>Generate Bill</h1>
 
+<div>
+  <div style="float:left; width: 450px;">	
   <div class="top_pad_20">
     <%= f.label :bill_date, :class => 'medium_lbl_grey'%>
-    <%= f.date_select :bill_date %>
+    <%= f.date_select :bill_date, :value => @bill.bill_date %>
   </div>
 
   <div class="top_pad_20">
     <%= f.label :due_date, :class => 'medium_lbl_grey'%>
+    <%= f.date_select :due_date, :value => @bill.due_date %>
   </div>
 
   <div class="top_pad_20">
-	<%= label_tag(:bill, "Customer", :class => 'medium_lbl_grey') %>
-	<%= collection_select(:bill, :customer_id, @customers, :id, :name, {:prompt => 'Select Customer'}, :class => 'width_large')%>
+	<%= label_tag(:bill, "Buyer", :class => 'medium_lbl_grey') %>
+	<%= collection_select(:bill, :customer_id, @customers, :id, :name, {:prompt => 'Select Buyer'}, :class => 'width_large')%>
   </div>
 
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Buyer Order #", :class => 'medium_lbl_grey') %>
+	<%= f.text_field :order_number, :class => 'width_large' %>
+  </div>
+  </div>
+  <div style="float:left; width: 450px;">	
   <div class="top_pad_20">
 	<%= label_tag(:bill, "Currency", :class => 'medium_lbl_grey') %>
-	<%= collection_select(:bill, :currency_id, @currencies, :id, :name, {:prompt => 'Select Currency'}, :class => 'width_medium')%>
+	<%= collection_select(:bill, :currency_id, @currencies, :id, :name, {:prompt => 'Select Currency'}, :class => 'width_large')%>
   </div>
   
   <div class="top_pad_20">
 	<%= label_tag(:bill, "Box Count", :class => 'medium_lbl_grey') %>
+	<%= f.text_field :box_count, :class => 'width_large' %>
   </div>
 
   <div class="top_pad_20">
-	<%= label_tag(:bill, "Air Lift #", :class => 'medium_lbl_grey') %>
+	<%= label_tag(:bill, "Vessel/Flight #", :class => 'medium_lbl_grey') %>
+	<%= f.text_field :flight_number, :class => 'width_large' %>
   </div>
 
   <div class="top_pad_20">
 	<%= label_tag(:bill, "Amount Overdue", :class => 'medium_lbl_grey') %>
+	<%= f.text_field :previous_overdue, :class => 'width_large' %>
   </div>
+  </div>
+<div style="clear:both;"></div>
+</div>
 
-  <div class="top_pad_20">
+  <div class="top_pad_40">
 	<%= label_tag(:bill, "Part Number", :class => 'medium_lbl_grey') %>
-	<%= label_tag(:bill, "Name", :class => 'medium_lbl_grey') %>
+	<%= label_tag(:bill, "Description", :class => 'medium_lbl_grey') %>
 	<%= label_tag(:bill, "Price", :class => 'medium_lbl_grey') %>
 	<%= label_tag(:bill, "Weight", :class => 'medium_lbl_grey') %>
 	<%= label_tag(:bill, "Quantity", :class => 'medium_lbl_grey') %>
@@ -46,7 +61,7 @@
 
   <div>
 	<%= collection_select(:bill_part, :id, @parts, :id, :number, {:prompt => 'Select Part'}, :class => 'width_medium')%>
-	<%= text_field_tag(:part_name, nil, :class => 'width_medium_grey', :readonly => true) %>
+	<%= text_field_tag(:part_description, nil, :class => 'width_medium_grey', :readonly => true) %>
 	<%= text_field_tag(:part_price, nil, :class => 'width_medium_grey', :readonly => true) %>
 	<%= text_field_tag(:part_weight, nil, :class => 'width_medium_grey', :readonly => true) %>
 	<%= text_field_tag(:part_quantity, nil, :class => 'width_medium', :value=>1) %>
@@ -58,7 +73,7 @@
   <div class="top_pad_40">
     <div>
 	  <%= label_tag(:bill, "Part Number", :class => 'medium_lbl_grey') %>
-	  <%= label_tag(:bill, "Part Name", :class => 'medium_lbl_grey') %>
+	  <%= label_tag(:bill, "Part Description", :class => 'medium_lbl_grey') %>
 	  <%= label_tag(:bill, "Unit Weight", :class => 'medium_lbl_grey') %>
 	  <%= label_tag(:bill, "Unit Price", :class => 'medium_lbl_grey') %>
 	  <%= label_tag(:bill, "Quantity", :class => 'medium_lbl_grey') %>

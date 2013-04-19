@@ -2,24 +2,52 @@
 
 <h1>View Bill</h1>
 
-<p>
-  <%= label_tag(:bill, "Bill Date", :class => 'medium_lbl_grey') %><br/>
-  <%= label_tag(:bill, @bill.bill_date, :class => 'medium_lbl') %>
-</p>
+<div style="float:left; width: 450px;">	
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Bill date", :class => 'medium_lbl_grey') %>
+  	<%= label_tag(:bill, @bill.bill_date, :class => 'medium_lbl') %>
+  </div>
 
-<p>
-  <%= label_tag(:bill, "Customer", :class => 'medium_lbl_grey') %><br/>
-  <%= label_tag(:bill, @bill.customer.name, :class => 'medium_lbl') %>
-</p>
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Due Date", :class => 'medium_lbl_grey') %>
+  	<%= label_tag(:bill, @bill.due_date, :class => 'medium_lbl') %>
+  </div>
 
-<p>
-  <%= label_tag(:bill, "Currency", :class => 'medium_lbl_grey') %><br/>
-  <%= label_tag(:bill, @bill.currency.name, :class => 'medium_lbl') %>
-</p>
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Buyer", :class => 'medium_lbl_grey') %>
+  	<%= label_tag(:bill, @bill.customer.name, :class => 'medium_lbl') %>
+  </div>
 
-<div>
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Buyer Order #", :class => 'medium_lbl_grey') %>
+  	<%= label_tag(:bill, @bill.order_number, :class => 'medium_lbl') %>
+  </div>
+</div>
+<div style="float:left; width: 450px;">	
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Currency", :class => 'medium_lbl_grey') %>
+  	<%= label_tag(:bill, @bill.currency.name, :class => 'medium_lbl') %>
+  </div>
+  
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Box Count", :class => 'medium_lbl_grey') %>
+  	<%= label_tag(:bill, @bill.box_count, :class => 'medium_lbl') %>
+  </div>
+
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Vessel/Flight #", :class => 'medium_lbl_grey') %>
+  	<%= label_tag(:bill, @bill.flight_number, :class => 'medium_lbl') %>
+  </div>
+
+  <div class="top_pad_20">
+	<%= label_tag(:bill, "Amount Overdue", :class => 'medium_lbl_grey') %>
+  	<%= label_tag(:bill, @bill.currency.symbol + String(@bill.previous_overdue), :class => 'medium_lbl') %>
+  </div>
+</div>
+<div style="clear:both;"></div>
+<div class="top_pad_20">
   <%= label_tag(:bill, "Part Number", :class => 'medium_lbl_grey') %>
-  <%= label_tag(:bill, "Part Name", :class => 'medium_lbl_grey') %>
+  <%= label_tag(:bill, "Part Description", :class => 'medium_lbl_grey') %>
   <%= label_tag(:bill, "Unit Weight", :class => 'medium_lbl_grey') %>
   <%= label_tag(:bill, "Unit Price", :class => 'medium_lbl_grey') %>
   <%= label_tag(:bill, "Quantity", :class => 'medium_lbl_grey') %>
@@ -32,7 +60,7 @@
 	<% for bill_part in @bill.bill_parts %>
 	  <div>
 	    <%= label_tag(:bill, bill_part.part.number, :class => 'medium_lbl') %>
-	    <%= label_tag(:bill, bill_part.part.name, :class => 'medium_lbl') %>
+	    <%= label_tag(:bill, bill_part.part.description, :class => 'medium_lbl') %>
 	    <%= label_tag(:bill, bill_part.weight/bill_part.quantity, :class => 'medium_lbl') %>
 	    <%= label_tag(:bill, bill_part.price/bill_part.quantity, :class => 'medium_lbl') %>
 	    <%= label_tag(:bill, bill_part.quantity, :class => 'medium_lbl') %>

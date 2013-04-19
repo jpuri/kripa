@@ -1,7 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
-var server_url = 'http://obscure-atoll-7710.herokuapp.com/'
-//var server_url = 'http://localhost:3000/'
+//var server_url = 'http://obscure-atoll-7710.herokuapp.com/'
+var server_url = 'http://localhost:3000/'
 
 function addPartToBill(){
   showSpinner()
@@ -48,7 +48,7 @@ function addPartsWeightPrice(){
 }
 
 function resetPartValues(){
-  $('#part_name').val('')
+  $('#part_description').val('')
   $('#part_price').val('')
   $('#part_weight').val('')
   $('#part_quantity').val('1')
@@ -98,7 +98,7 @@ function getPartDetails(){
       success : function(response){
       	if(response.status === 'success'){
       	  var data = response.data
-          $('#part_name').val(data.part_name)
+          $('#part_description').val(data.part_description)
           $('#part_price').val(data.part_price)
           $('#part_weight').val(data.part_weight)
         }else{
