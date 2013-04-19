@@ -123,7 +123,7 @@ class ModelsController < ApplicationController
     if(params[:model])
       @model_id = params[:model][:id]
       if(@model_id.length > 0)
-        condition = "m.id = #{@model_id}"
+        condition += " and m.id = #{@model_id}"
       end
     end
     
