@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h1>View Make</h1>
+
 <p>
   <b>Name:</b>
   <%= @make.name %>
@@ -10,6 +12,27 @@
   <%= @make.description %>
 </p>
 
+<p>
+  <b>Models:</b>
+  <table class="borderedTable">
+  <tr>
+    <th>S.No.</th>
+    <th>Model Number</th>
+    <th>Model Description</th>
+  </tr>
+  <% i = 1 %>
+  <% for model in @make.models %>
+    <tr>
+    <td><%= i %></td>
+    <td><%= model.number %></td>
+    <td><%= model.description %></td>
+    <% i = i + 1 %>
+    </tr>
+  <% end %>
+  </table>
+</p>
 
 <%= link_to 'Edit', edit_make_path(@make) %> |
+<%= link_to 'Add Model', :controller => "makes", :action => "addModel", :make_id => @make.id %> | 
 <%= link_to 'Back', makes_path %>
+<%= button_to "Delete", part_path(@make.id), :method=>:delete, :confirm=>"Are you sure?" %>

@@ -80,4 +80,29 @@ class MakesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def addModel
+    @make = Make.find(params[:make_id])
+    @models = Model.all(:order => "number")
+
+    respond_to do |format|
+      format.html
+      format.xml
+    end
+  end
+
+ def saveModel
+   
+    @make = Make.find(params[:make_id])
+    @model = Model.find(params[:model][:id])
+
+    @model.make = @make
+    
+    if @model.save 
+      respond_to do |format|
+        format.html { redirect_to(@make, :notice => 'Model successfully added to Make.') }
+        format.xml
+      end
+    end
+  end
 end

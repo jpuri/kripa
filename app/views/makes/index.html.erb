@@ -1,21 +1,19 @@
-<h1>Listing makes</h1>
+<h1>List Makes</h1>
 
-<table>
+<table class="borderedTable">
   <tr>
+    <th>S.No.</th>
     <th>Name</th>
     <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
+<% i = 1 %>
 <% @makes.each do |make| %>
-  <tr>
+  <tr onclick="openPage('makes', <%= make.id %>)">
+    <td><%= i %></td>
     <td><%= make.name %></td>
     <td><%= make.description %></td>
-    <td><%= link_to 'Show', make %></td>
-    <td><%= link_to 'Edit', edit_make_path(make) %></td>
-    <td><%= link_to 'Destroy', make, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% i = i + 1 %>
   </tr>
 <% end %>
 </table>

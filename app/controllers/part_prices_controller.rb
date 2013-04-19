@@ -69,11 +69,12 @@ class PartPricesController < ApplicationController
 
   # DELETE /part_prices/1
   def destroy
-    @model_price = PartPrice.find(params[:id])
-    @model_price.destroy
-
+    @part_price = PartPrice.find(params[:id])
+    @part_price.destroy
+    @part = @part_price.part
+    
     respond_to do |format|
-      format.html { redirect_to(part_prices_url) }
+      format.html { redirect_to(part_url(@part)) }
     end
   end
 end

@@ -1,7 +1,5 @@
 Kripa::Application.routes.draw do
 
-  resources :makes
-
   get "sessions/new"
 
   get "users/new"
@@ -14,6 +12,8 @@ Kripa::Application.routes.draw do
   get 'bills/getWeigthPrice'
   get 'models/addModelPart'
   get 'models/saveModelPart'
+  get 'makes/addModel'
+  get 'makes/saveModel'
 
   resources :bill_parts
   resources :customers
@@ -24,7 +24,7 @@ Kripa::Application.routes.draw do
   resources :models
   resources :sessions
   resources :users
-
+  resources :makes
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

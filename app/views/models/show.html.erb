@@ -18,14 +18,14 @@
   <tr>
     <th>S.No.</th>
     <th>Part Number</th>
-    <th>Part Name</th>
+    <th>Part Description</th>
   </tr>
   <% i = 1 %>
   <% for part in @model.parts %>
     <tr>
     <td><%= i %></td>
     <td><%= part.number %></td>
-    <td><%= part.name %></td>
+    <td><%= part.description %></td>
     <% i = i + 1 %>
     </tr>
   <% end %>

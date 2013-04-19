@@ -41,8 +41,9 @@
 
 <%= link_to 'Add Price', :controller => "part_prices", :action => "new", :part_id => @part.id %> | 
 <%= link_to 'Edit', edit_part_path(@part) %> |
-<%= link_to 'Delete', part_path(@part), :method => "DELETE",  %> | 
 <%= link_to 'Back', parts_path %>
+<%= button_to "Delete", part_path(@part.id), :method=>:delete, :confirm=>"Are you sure?" %>
+
 
 
 

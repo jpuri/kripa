@@ -7,8 +7,8 @@
 </div>
 
 <div class="field">
-  <%= label_tag(:model_part, "Part") %><br/>
-  <%= collection_select(:model_part, :part_id, @parts, :id, :name, {:prompt => 'Select Part'}, :class => 'width_medium')%>
+  <%= label_tag(:model, "Model #", :class => 'medium_lbl_grey') %>
+  <%= collection_select(:model, :model_id,  @models, :id, :number, {:prompt => 'Select Model', :selected => @model_id}, :class => 'width_large')%>
 </div>
 
 <%= submit_tag "Add Part", :class => "small_button" %>
