@@ -12,6 +12,7 @@ Kripa::Application.routes.draw do
   get 'bills/getWeigthPrice'
   get 'models/addModelPart'
   get 'models/saveModelPart'
+  get 'models/search'
   get 'makes/addModel'
   get 'makes/saveModel'
 

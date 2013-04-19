@@ -1,11 +1,11 @@
 <%= form_for(@model) do |f| %>
   <div class="field">
-    <label>Number</label><br />
+    <b><label>Number</label></b><br />
     <%= f.text_field :number %>
   </div>
   <div class="field">
-    <label>Name</label><br />
-    <%= f.text_field :name %>
+    <b><label>Description</label></b><br />
+    <%= f.text_field :description %>
   </div>
   <div class="actions">
     <%= f.submit %>
