@@ -1,0 +1,33 @@
+<form id="updatePartForm"  name="updatePartForm">
+  <div class="field">
+    <label><b>Part Number</b></label><br/>
+    <input type="text" value="<%= @part.number%>" id="part_number" name="part[number]">
+  </div>
+  <div class="field">
+    <label><b>Description</b></label><br/>
+    <input type="text" value="<%= @part.description%>" id="part_description" name="part[description]">
+  </div>
+  <div class="field">
+    <label><b>Weight(Kg)</b></label><br/>
+    <input type="test" value="<%= @part.weight%>" id="part_weight" name="part[weight]">
+  </div>
+  <div class="field">
+    <label><b>Models</b></label><br/>
+    <select multiple id="model_ids" name="model_ids[]">
+      <option>Select Models</option>
+      <% @models.each do |model|%>
+      	<% if @part.model_parts.collect { |modelPart| modelPart.model }.include?(model)%>
+    	  <option selected value="<%= model.id%>"><%= model.number%></option>
+        <% else%>
+    	  <option value="<%= model.id%>"><%= model.number%></option>
+        <% end%>
+      <% end%>
+    </select>
+	<!--<%= select_tag :model_ids, options_for_select(Model.all.collect {|model| [model.number, model.id]}),:multiple => true, :prompt => 'Select Models' %>-->
+  </div>
+  <div class="actions">
+    <a onclick="updatePart(<%= @part.id%>)">Save</a>
+	<img id="spinner_save" style="display:none;" src="/images/spinner.gif"/>
+  </div>
+  <input type="hidden" value="<%= @part.id%>" id="id" name="id">
+</form>

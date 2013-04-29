@@ -1,13 +1,10 @@
-<h1>Search</h1>
+<h1>Price List</h1>
 
 <%= form_tag({:controller=>"models", :action => "search"}, :method => "get") do %>
 
 <div class="top_pad_20">
   <%= label_tag(:make, "Make", :class => 'medium_lbl_grey') %>
   <%= collection_select(:make, :id,  @makes, :id, :name, {:prompt => 'Select Make', :selected => @make_id}, :class => 'width_large')%>
-</div>
-
-<div class="top_pad_20">
   <%= label_tag(:model, "Model #", :class => 'medium_lbl_grey') %>
   <%= collection_select(:model, :id,  @models_select, :id, :number, {:prompt => 'Select Model', :selected => @model_id}, :class => 'width_large')%>
   <%= label_tag(:part, "Part #", :class => 'medium_lbl_grey') %>
@@ -19,10 +16,9 @@
   <%= collection_select(:customer, :id,  @customers, :id, :name, {:prompt => 'Select Customer', :selected => @customer_id}, :class => 'width_large')%>
   <%= label_tag(:currency, "Currency", :class => 'medium_lbl_grey') %>
   <%= collection_select(:currency, :id,  @currencies, :id, :name, {:prompt => 'Select Currency', :selected => @currency_id}, :class => 'width_large')%>
-</div>
 
-<div class="div_button_bottom">
   <%= submit_tag "Search", :class => "small_button" %>
+  <%= submit_tag "Reset", :class => "small_button" %>
 </div>
 
 <% end %>

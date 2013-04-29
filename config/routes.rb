@@ -7,6 +7,12 @@ Kripa::Application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
 
   post "welcome/index"
+  get 'parts/ajaxIndex'
+  get 'parts/ajaxNew'
+  get 'parts/ajaxEdit'
+  get 'parts/ajaxUpdate'
+  get 'parts/ajaxCreate'
+  get 'parts/ajaxDelete'
   get 'bills/getPartDetails'
   get 'bills/calculatePartDetails'
   get 'bills/getWeigthPrice'
@@ -83,5 +89,5 @@ Kripa::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
-  root :to => "models#index"
+  root :to => "partPrices#index"
 end

@@ -1,70 +1,87 @@
 class PartsController < ApplicationController
-  # GET /parts
+  
   def index
-    @parts = Part.all
-
+    @parts = Part.all(:order => "number")
+    @total_parts = Part.count    
+    @page = params[:page]?params[:page]:1 
     respond_to do |format|
       format.html # index.html.erb
     end
   end
 
-  # GET /parts/1
-  def show
-    @part = Part.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
+  def ajaxIndex
+    @parts = Part.all(:order => "number")
+    @total_parts = Part.count    
+    @page = params[:page]?params[:page]:1 
+    render :partial => 'result', :locals => { :parts => @parts, :total_parts => @total_parts, :page => @page}
   end
 
-  # GET /parts/new
-  def new
+  def ajaxEdit
+    @part = Part.find(params[:part_id])
+    @models = Model.all(:order => "number")
+    render :partial => 'edit', :locals => { :part => @part, :models => @models}    
+  end
+
+  def ajaxNew
     @part = Part.new
+    @models = Model.all(:order => "number")
+    render :partial => 'new', :locals => { :part => @part, :models => @models}    
+  end
 
-    respond_to do |format|
-      format.html # new.html.erb
+  def ajaxUpdate
+    @part = Part.find(params[:id])
+    @part.update_attributes(params[:part])
+
+    ModelPart.where(:part_id => @part.id).delete_all
+
+    if(params[:model_ids])
+    @model_ids = params[:model_ids]
+    @model_ids.each do |model_id|
+      @modelPart = ModelPart.new
+      @model = Model.find(model_id)
+      @modelPart.part = @part
+      @modelPart.model = @model
+      @modelPart.save
+    end    
+    end
+
+    if @part.update_attributes(params[:part])
+      render :json => {:status => 'SUCCESS', :part => @part, :modelNumbers => @part.model_parts.collect { |modelPart| modelPart.model.number }.join(' ')}
+    else
+      render :json => {:status => 'FAILURE'}
     end
   end
 
-  # GET /parts/1/edit
-  def edit
-    @part = Part.find(params[:id])
-  end
-
-  # POST /parts
-  def create
+  def ajaxCreate
     @part = Part.new(params[:part])
 
-    respond_to do |format|
-      if @part.save
-        format.html { redirect_to(@part, :notice => 'Part was successfully created.') }
-      else
-        format.html { render :action => "new" }
-      end
+    if(params[:model_ids])
+    @model_ids = params[:model_ids]
+    @model_ids.each do |model_id|
+      @modelPart = ModelPart.new
+      @model = Model.find(model_id)
+      @modelPart.part = @part
+      @modelPart.model = @model
+      @modelPart.save
+    end    
+    end
+
+    if @part.save
+      render :json => {:status => 'SUCCESS'}
+    else
+      render :json => {:status => 'FAILURE'}
     end
   end
 
-  # PUT /parts/1
-  def update
-    @part = Part.find(params[:id])
-
-    respond_to do |format|
-      if @part.update_attributes(params[:part])
-        format.html { redirect_to(@part, :notice => 'Part was successfully updated.') }
-      else
-        format.html { render :action => "edit" }
-      end
-    end
-  end
-
-  # DELETE /parts/1
-  def destroy
-    @part = Part.find(params[:id])
-    @part.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(parts_url) }
+  def ajaxDelete
+    @part = Part.find(params[:part_id])
+    if @part.delete
+      render :json => {:status => 'SUCCESS'}
+    else
+      render :json => {:status => 'FAILURE'}
     end
   end
 
 end
+
+

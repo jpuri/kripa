@@ -9,14 +9,9 @@
 <body>
   <div>
   	<% if current_user %>
-    <div style="position:absolute;left:0px;bottom:0px;top:0px;width:150px;background-color: #D8D8D8;">
-    	<div> 
-	      <!--<%= link_to 'Generate Bill', :controller => "bills", :action => "new"%><br/></br/>-->
-	      <%= link_to 'Search', :controller => "models", :action => "search"%><br/>
-	      <!--<%= link_to 'Bills', :controller => "bills", :action => "index"%><br/>-->
-	      <!--<%= link_to 'Models', :controller => "models", :action => "index"%><br/>
-	      <%= link_to 'Parts', :controller => "parts", :action => "index"%><br/>
-	      <%= link_to 'Customers', :controller => "customers", :action => "index"%>-->
+    <div style="position:absolute;left:0px;bottom:0px;top:0px;width:150px;background-color: #60AFFE;">
+    	<div style="width:150px"> 
+	      <div class="menu"><%= link_to 'Prices', :controller => "part_prices", :action => "index"%></div>
 	    </div>
     	<div style="margin-top: 5%;"> 
 	      <%= link_to 'Makes', :controller => "makes", :action => "index"%><br/>
@@ -30,13 +25,15 @@
     	<div style="margin-top: 5%;"> 
 	      <%= link_to 'Customers', :controller => "customers", :action => "index"%><br/>
 	    </div>
+    	<div style="margin-top: 5%;"> 
+	      <%= link_to 'Log Out', :controller => "sessions", :action => "destroy"%>
+		</div>
 	</div>
 	<div style="margin-left: 10%">
+		<div id="success_msg" class="success"></div>
+		<div id="failure_msg" class="failure"></div>
       <%= yield %>
     </div>
-    <div style="position:absolute;right:0px;bottom:0px;top:0px;width:150px;background-color: #D8D8D8;"> 
-      <%= link_to 'Log Out', :controller => "sessions", :action => "destroy"%>
-	</div>
     <% else %>
       <%= render :template => "sessions/new"%>
     <% end %>

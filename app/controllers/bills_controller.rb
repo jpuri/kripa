@@ -149,11 +149,12 @@ end
     if(discount)
       price *= (100 - Float(discount))/100
     end
-    #ternary operator to be put here
-    weight = @part.weight * Float(quantity)
-  
+    bill_total_price = params[:bill_total_price]
+    
+    price += Float(bill_total_price)
+    bill_total_weight = Float(params[:bill_total_weight]) + (@part.weight * Float(quantity))
 	
-    render :json => {:price => price, :weight => weight}
+    render :json => {:bill_total_price => price, :bill_total_weight => bill_total_weight}
   end
   
   # GET /bills/getPartDetails

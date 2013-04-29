@@ -1,0 +1,32 @@
+<% i = 20*(Integer(@page)-1)+1%>
+
+<table class="borderedTable">
+  <tr>
+    <th>S. No.</th>
+    <th>Part Number</th>
+    <th>Description</th>
+    <th>Weight(Kg)</th>
+    <th>Models</th>
+    <th>Action</th>
+  </tr>
+<% @parts.each do |part| %>
+  <tr id="<%= 'part_' + String(part.id) %>" name="<%= 'part_' + String(part.id) %>">
+    <td><%= i %></td>
+    <td><div id="part_number_<%=part.id%>"><%= part.number %></div></td>
+    <td><div id="part_description_<%=part.id%>"><%= part.description %></div></td>
+    <td><div id="part_weight_<%=part.id%>"><%= part.weight %></div></td>
+	<td><div id="part_models_<%=part.id%>">
+		<% part.models.each do |model| %>
+		  <%= model.number + ' ' %>
+		<% end %>
+	</div></td>
+    <td>
+    	<a id="edit_<%= part.id %>" onclick="editPart(<%= part.id %>)">Edit</a>
+		<img id="spinner_edit_<%= part.id %>" style="display:none;" src="/images/spinner.gif"/>
+    	<img src="/images/delete.jpg" class="remove_image" onclick="deletePart(<%= part.id %>, <%= part.number %>)"></img>
+		<img id="spinner_delete_<%= part.id %>" style="display:none;" src="/images/spinner.gif"/>
+    </td>
+  </tr>
+  <% i = i + 1 %>
+<% end %>
+</table>
