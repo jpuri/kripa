@@ -1,24 +1,21 @@
-<h1>Parts</h1>
+<div style="width: 60%; padding-top: 1%; width: 100%">
+  <span class="heading" style="float: left">Parts</span>
+  <span  style="float: right"><a onclick="newPart()" class="button_link">New Part</a>
+  <img id="spinner_new" style="display:none;" src="/images/spinner.gif"/></span>
+</div>
 <!--<% start_count = 20*(Integer(@page)-1)+1%>
 <% end_count = ((@parts.length<20)?@parts.length: 20)-1%>
 Records <%= String(start_count)%> to <%=String(start_count+end_count)%> of <%= @total_parts %>
 -->
-<div id="part_result" name="part_result">
-<%= render 'result' %>
+<div id="part_result" name="part_result" style="padding-top: 5%; width: 100%">
+  <%= render 'result' %>
 </div>
-
-
-<br />
+</div>
 <div name="popupdiv" id="popupdiv" class="popup"></div>
-<div class="digg_pagination">
-<a onclick="newPart()">New Part</a>
-<img id="spinner_new" style="display:none;" src="/images/spinner.gif"/>
-</div>
 <script type="text/javascript">
-	$("#popupdiv").dialog({
-		autoOpen : false,
-		width : 350,
-		modal : true
-	});
-	
+  $("#popupdiv").dialog({
+    autoOpen : false,
+	width : 350,
+	modal : true
+  });
 </script>

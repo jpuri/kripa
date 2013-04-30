@@ -9,27 +9,28 @@
 <body>
   <div>
   	<% if current_user %>
-    <div style="position:absolute;left:0px;bottom:0px;top:0px;width:150px;background-color: #60AFFE;">
-    	<div style="width:150px"> 
-	      <div class="menu"><%= link_to 'Prices', :controller => "part_prices", :action => "index"%></div>
+    <div style="font-family:Verdana;
+    position:absolute;left:0px;bottom:0px;top:0px;width:150px;background-color: #60AFFE;">
+    	<div class="menu_div"> 
+	      <%= link_to 'Prices', :controller => "part_prices", :action => "index", :id=> "test"%>
 	    </div>
-    	<div style="margin-top: 5%;"> 
+    	<div style="margin-top: 5%;" class="menu_div"> 
 	      <%= link_to 'Makes', :controller => "makes", :action => "index"%><br/>
 	    </div>
-    	<div style="margin-top: 5%;"> 
+    	<div style="margin-top: 5%;" class="menu_div"> 
 	      <%= link_to 'Models', :controller => "models", :action => "index"%><br/>
 	    </div>
-    	<div style="margin-top: 5%;"> 
+    	<div style="margin-top: 5%;" class="menu_div"> 
 	      <%= link_to 'Parts', :controller => "parts", :action => "index"%><br/>
 	    </div>
-    	<div style="margin-top: 5%;"> 
+    	<div style="margin-top: 5%;" class="menu_div"> 
 	      <%= link_to 'Customers', :controller => "customers", :action => "index"%><br/>
 	    </div>
-    	<div style="margin-top: 5%;"> 
+    	<div style="margin-top: 5%;" class="menu_div"> 
 	      <%= link_to 'Log Out', :controller => "sessions", :action => "destroy"%>
 		</div>
 	</div>
-	<div style="margin-left: 10%">
+	<div style="margin-left: 25%; margin-right: 25%; font-family:Verdana">
 		<div id="success_msg" class="success"></div>
 		<div id="failure_msg" class="failure"></div>
       <%= yield %>

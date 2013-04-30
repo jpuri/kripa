@@ -26,7 +26,7 @@
 	<!--<%= select_tag :model_ids, options_for_select(Model.all.collect {|model| [model.number, model.id]}),:multiple => true, :prompt => 'Select Models' %>-->
   </div>
   <div class="actions">
-    <a onclick="createPart()">Save</a>
+    <a onclick="createPart()" class="button_link">Save</a>
 	<img id="spinner_save" style="display:none;" src="/images/spinner.gif"/>
   </div>
   <input type="hidden" value="<%= @part.id%>" id="id" name="id">

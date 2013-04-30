@@ -1,16 +1,20 @@
 <% i = 20*(Integer(@page)-1)+1%>
 
-<table class="borderedTable">
-  <tr>
-    <th>S. No.</th>
-    <th>Part Number</th>
-    <th>Description</th>
-    <th>Weight(Kg)</th>
-    <th>Models</th>
-    <th>Action</th>
+<table class="borderedTable" style="width=100%">
+  <tr width="100%">
+    <th width="3%">S. No.</th>
+    <th width="5%">Number</th>
+    <th width="15%">Description</th>
+    <th width="3%">Weight(Kg)</th>
+    <th width="15%">Models</th>
+    <th width="5%">Action</th>
   </tr>
 <% @parts.each do |part| %>
-  <tr id="<%= 'part_' + String(part.id) %>" name="<%= 'part_' + String(part.id) %>">
+	<% if i%2 == 0 %>
+  		<tr id="<%= 'part_' + String(part.id) %>" name="<%= 'part_' + String(part.id) %>" style="background-color: #C6E2FF">
+  	<% else %>
+  		<tr id="<%= 'part_' + String(part.id) %>" name="<%= 'part_' + String(part.id) %>" style="background-color: #EFFBFE">
+  	<% end %>
     <td><%= i %></td>
     <td><div id="part_number_<%=part.id%>"><%= part.number %></div></td>
     <td><div id="part_description_<%=part.id%>"><%= part.description %></div></td>
@@ -21,10 +25,14 @@
 		<% end %>
 	</div></td>
     <td>
-    	<a id="edit_<%= part.id %>" onclick="editPart(<%= part.id %>)">Edit</a>
-		<img id="spinner_edit_<%= part.id %>" style="display:none;" src="/images/spinner.gif"/>
+    	<span style="margin-left: 20%;">
+    	<img src="/images/edit.jpg" id="edit_<%= part.id %>" class="edit_image" onclick="editPart(<%= part.id %>)"></img>
+		</span>
+		<img id="spinner_edit_<%= part.id %>" style="display:none;width: 15px; height: 15px" src="/images/spinner.gif"/>
+		<span style="margin-left: 20%;">
     	<img src="/images/delete.jpg" class="remove_image" onclick="deletePart(<%= part.id %>, <%= part.number %>)"></img>
 		<img id="spinner_delete_<%= part.id %>" style="display:none;" src="/images/spinner.gif"/>
+		</span>
     </td>
   </tr>
   <% i = i + 1 %>
