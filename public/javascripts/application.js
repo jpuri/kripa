@@ -222,7 +222,7 @@ function updatePart(part_id){
       	else if(response.status == 'FAILURE'){
   			$("#failure_msg").html("Error while updating part.")
   		}
-		$("#popupdiv-update").dialog("close")
+		$("#popupdiv_update").dialog("close")
       }
       //failure to be done
 	})
@@ -243,7 +243,7 @@ function createPart(){
       	else if(response.status == 'FAILURE'){
   			$("#failure_msg").html("Error while creating part.")
   		}
-		$("#popupdiv-create").dialog("close")
+		$("#popupdiv_create").dialog("close")
       }
       //failure to be done
 	})
