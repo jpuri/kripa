@@ -11,11 +11,13 @@ Records <%= String(start_count)%> to <%=String(start_count+end_count)%> of <%= @
   <%= render 'result' %>
 </div>
 </div>
-<div name="popupdiv" id="popupdiv" class="popup"></div>
+<div name="popupdiv_create" id="popupdiv_create" class="popup" title="<font color='#60AFFE'>Create New Part</font>"></div>
+<div name="popupdiv_update" id="popupdiv_update" class="popup" title="<font color='#60AFFE'>Update Part</font>"></div>
 <script type="text/javascript">
-  $("#popupdiv").dialog({
+  $(".popup").dialog({
     autoOpen : false,
 	width : 350,
+	height : 350,
 	modal : true
   });
 </script>

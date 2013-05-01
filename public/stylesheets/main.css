@@ -53,7 +53,7 @@
   background-color: #D8D8D8; 
   width: 65px;
 }
-.remove_image {
+.delete_image {
     height: 10px;
     width: 15px;
 }
@@ -66,7 +66,7 @@
     height: 17px;
     width: 17px;
 }
-.remove_image:hover{
+.delete_image:hover{
     cursor: pointer;
     height: 12px;
     width: 17px;
@@ -101,7 +101,7 @@
 }
 
 table.borderedTable { border-collapse:collapse;border-top:1px solid black;padding:4px; border-right:1px solid black; border-left:1px solid black; border-color: #60AFFE}
-table.borderedTable td{ border-bottom:1px solid #60AFFE;padding:4px; border-right:1px solid #60AFFE; border-left:1px solid #60AFFE; color:#3232CC}
+table.borderedTable td{ border-bottom:1px solid #60AFFE;padding:4px; border-right:1px solid #60AFFE; border-left:1px solid #60AFFE; color:#35586C}
 table.borderedTable th { padding:4px;background-color: #60AFFE; color:#EFFBFE}
 h1, span.heading {
 	margin: 0;
@@ -109,7 +109,13 @@ h1, span.heading {
 	font-weight: 200;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size:20pt;
-	color: #1C86EE;
+	color: #60AFFE;
+}
+label {
+	font-weight: 200;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:10pt;
+	color: #60AFFE;
 }
 .button_link {
     text-decoration: none;
@@ -134,7 +140,8 @@ h1, span.heading {
 	font-size:10pt;
 	font-weight: 250;
 	width: 150px;
-	color: #3232CC; 
+	color: #35586C;
+	margin-left: 15%;
 }
 .menu_div:hover{
 	width: 150px;

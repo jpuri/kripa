@@ -39,7 +39,6 @@ function addPartsWeightPrice(){
 		bill_total_price: $('#bill_total_price').val(),
 		bill_total_weight: $('#bill_total_weight').val()},
     success : function(data){
-    	alert(data.bill_total_price);
 	  $('#totalweight').text(data.bill_total_weight)
 	  $('#bill_total_weight').val(data.bill_total_weight)
 	  $('#totalprice').text(data.bill_total_price)
@@ -156,8 +155,8 @@ function editPart(part_id){
 	  	part_id: part_id
 	  },
       success : function(html){
-		showPopUp(html)
 		$("#spinner_edit_"+part_id).hide()
+		showPopUp("popupdiv_update", html)
       }
 	})
 }
@@ -170,15 +169,15 @@ function newPart(){
 	  data : {
 	  },
       success : function(html){
-		showPopUp(html)
 		$("#spinner_new").hide()
+		showPopUp("popupdiv_create", html)
       }
 	})
 }
 
-function showPopUp(html){
-  $("#popupdiv").html(html);
-  $("#popupdiv").dialog("open");
+function showPopUp(popupdiv, html){
+  $("#" + popupdiv).html(html);
+  $("#" + popupdiv).dialog("open");
 }
 
 function deletePart(part_id, part_no) {
@@ -223,7 +222,7 @@ function updatePart(part_id){
       	else if(response.status == 'FAILURE'){
   			$("#failure_msg").html("Error while updating part.")
   		}
-		$("#popupdiv").dialog("close")
+		$("#popupdiv-update").dialog("close")
       }
       //failure to be done
 	})
@@ -244,7 +243,7 @@ function createPart(){
       	else if(response.status == 'FAILURE'){
   			$("#failure_msg").html("Error while creating part.")
   		}
-		$("#popupdiv").dialog("close")
+		$("#popupdiv-create").dialog("close")
       }
       //failure to be done
 	})
@@ -265,4 +264,8 @@ function searchParts(){
 function cleanMessages(){
 	$("#success_msg").html('')
 	$("#failure_msg").html('')
+}
+
+function closeDialog(divId){
+		$("#" + divId).dialog("close")
 }
