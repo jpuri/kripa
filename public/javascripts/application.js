@@ -1,7 +1,106 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
-var server_url = 'http://obscure-atoll-7710.herokuapp.com/'
-//var server_url = 'http://localhost:3000/'
+var Base = {
+	server_url = 'http://obscure-atoll-7710.herokuapp.com/'
+  	//server_url : 'http://localhost:3000/',
+
+  	searchEntity : function(resultDiv) {
+		entity = this.entity
+		server_url = this.server_url
+    	$.ajax({
+      		url : server_url + entity + "/ajaxIndex",
+      		success : function(html){
+				Base.showDataInDiv(resultDiv, html)
+      		}
+		})
+	},
+
+	newEntity : function(){
+		entity = this.entity
+		server_url = this.server_url
+		Base.showSpinner("spinner_new")
+	    $.ajax({
+	      url : server_url + entity + "/ajaxNew",
+	      success : function(html){
+			Base.hideSpinner("spinner_new")
+			Base.showDialog("dialog_create", html)
+	      }
+		})
+	},
+	
+	createEntity : function(resultDiv){
+		entity = this.entity
+		server_url = this.server_url
+		cleanMessages()
+		showSpinner('spinner_create')
+	    $.ajax({
+	      url : server_url + entity + "/ajaxCreate",
+		  data : $("#createForm").serialize(),
+	      success : function(response){
+	      	if(response.status == 'SUCCESS'){
+	      		Base.searchEntity(resultDiv)
+	  			Base.setSuccessMessage("Successfully created.")
+	  		}
+	      	else if(response.status == 'FAILURE'){
+	  			Base.setFailureMessage("Error while creating.")
+	  		}
+			Base.closeDialog('dialog_create')
+	      }
+	      //failure to be done
+		})
+	},
+	
+	editEntity : function(id){
+		entity = this.entity
+		server_url = this.server_url
+		$("#spinner_edit_" + id).show()
+	    $.ajax({
+	      url : server_url + entity + "/ajaxEdit",
+		  data : {
+		  	id: id
+		  },
+	      success : function(html){
+			$("#spinner_edit_"+id).hide()
+			showPopUp("dialog_update", html)
+	      }
+		})
+	},
+	
+	setSuccessMessage : function(msg){
+		$("#success_msg").html(msg)
+	},
+	
+	setFailureMessage : function(msg){
+		$("#failure_msg").html(msg)
+	},
+	
+	closeDialog : function(divId){
+		$('#' + divId).dialog("close")
+	},
+	
+	showDialog : function(div, html){
+	  Base.showDataInDiv(div, html);
+	  $("#"+div).dialog("open");
+	},
+	
+	showDataInDiv : function(div, data){
+	  $("#"+div).html(data);
+	},
+	
+	showSpinner : function(div){
+		$('#' + div).show()	
+	},
+
+	hideSpinner : function(div){
+		$('#' + div).hide()	
+	}
+}
+
+function Model(entity){
+	this.entity = entity
+}
+Model.prototype = Base
+Part = new Model('parts')
+
+var server_url = Base.server_url
 
 function addPartToBill(){
   showSpinner()
@@ -146,35 +245,6 @@ function setExportFlag(){
     return true
 }
 
-function editPart(part_id){
-	$("#spinner_edit_"+part_id).show()
-    $.ajax({
-      url : server_url + "parts/ajaxEdit",
-      type : "get",
-	  data : {
-	  	part_id: part_id
-	  },
-      success : function(html){
-		$("#spinner_edit_"+part_id).hide()
-		showPopUp("popupdiv_update", html)
-      }
-	})
-}
-
-function newPart(){
-	$("#spinner_new").show()
-    $.ajax({
-      url : server_url + "parts/ajaxNew",
-      type : "get",
-	  data : {
-	  },
-      success : function(html){
-		$("#spinner_new").hide()
-		showPopUp("popupdiv_create", html)
-      }
-	})
-}
-
 function showPopUp(popupdiv, html){
   $("#" + popupdiv).html(html);
   $("#" + popupdiv).dialog("open");
@@ -222,42 +292,9 @@ function updatePart(part_id){
       	else if(response.status == 'FAILURE'){
   			$("#failure_msg").html("Error while updating part.")
   		}
-		$("#popupdiv_update").dialog("close")
+		$("#dialog_update").dialog("close")
       }
       //failure to be done
-	})
-}
-
-function createPart(){
-	cleanMessages()
-	$("#spinner_save").show()
-    $.ajax({
-      url : server_url + "parts/ajaxCreate",
-      type : "get",
-	  data : $("#createPartForm").serialize(),
-      success : function(response){
-      	if(response.status == 'SUCCESS'){
-      		searchParts()
-  			$("#success_msg").html("Part successfully created.")
-  		}
-      	else if(response.status == 'FAILURE'){
-  			$("#failure_msg").html("Error while creating part.")
-  		}
-		$("#popupdiv_create").dialog("close")
-      }
-      //failure to be done
-	})
-}
-
-function searchParts(){
-    $.ajax({
-      url : server_url + "parts/ajaxIndex",
-      type : "get",
-	  data : {
-	  },
-      success : function(html){
-		$('#part_result').html(html)
-      }
 	})
 }
 

@@ -17,7 +17,7 @@ class PartsController < ApplicationController
   end
 
   def ajaxEdit
-    @part = Part.find(params[:part_id])
+    @part = Part.find(params[:id])
     @models = Model.all(:order => "number")
     render :partial => 'edit', :locals => { :part => @part, :models => @models}    
   end
@@ -53,6 +53,7 @@ class PartsController < ApplicationController
   end
 
   def ajaxCreate
+    puts '================================'
     @part = Part.new(params[:part])
 
     if(params[:model_ids])
@@ -67,7 +68,7 @@ class PartsController < ApplicationController
     end
 
     if @part.save
-      render :json => {:status => 'SUCCESS'}
+     render :json => {:status => 'SUCCESS'}
     else
       render :json => {:status => 'FAILURE'}
     end
