@@ -30,7 +30,7 @@
 		</span>
 		<img id="spinner_edit_<%= part.id %>" style="display:none;width: 15px; height: 15px" src="/images/spinner.gif"/>
 		<span style="margin-left: 20%;">
-    	<img src="/images/delete.jpg" id="delete_<%= part.id %>" class="delete_image" onclick="deletePart(<%= part.id %>, <%= part.number %>)"></img>
+    	<img src="/images/delete.jpg" id="delete_<%= part.id %>" class="delete_image" onclick="Part.deleteEntity(<%= part.id %>)"></img>
 		<img id="spinner_delete_<%= part.id %>" style="display:none;" src="/images/spinner.gif"/>
 		</span>
     </td>

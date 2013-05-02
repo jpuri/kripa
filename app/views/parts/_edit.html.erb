@@ -1,5 +1,5 @@
 <div align="center">
-<form id="updatePartForm"  name="updatePartForm">
+<form id="updateForm"  name="updateForm">
   <div style="width:75%; padding-top: 20px" align="center">
     <div style="float:left;"><label><b>Part Number</b></label></div>
     <div style="float:right;"><input type="text" value="<%= @part.number%>" id="part_number" name="part[number]"></div>
@@ -25,8 +25,8 @@
     </select></div>
   </div>
   <div style="padding-top: 100px; ">
-    <div style="padding-left: 120px;"><a onclick="updatePart(<%= @part.id%>)" class="button_link"><font color="#EFFBFE">Save</a>
-	<img id="spinner_save" style="display:none;" src="/images/spinner.gif"/>
+    <div style="padding-left: 120px;"><a onclick="Part.updateEntity(<%= @part.id%>)" class="button_link"><font color="#EFFBFE">Save</a>
+	<img id="spinner_update" style="display:none;" src="/images/spinner.gif"/>
     <a onclick="closeDialog('popupdiv_update');" class="button_link"><font color="#EFFBFE">Cancel</a></div>
   </div>
   <input type="hidden" value="<%= @part.id%>" id="id" name="id">

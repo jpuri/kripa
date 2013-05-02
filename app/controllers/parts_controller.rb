@@ -53,7 +53,6 @@ class PartsController < ApplicationController
   end
 
   def ajaxCreate
-    puts '================================'
     @part = Part.new(params[:part])
 
     if(params[:model_ids])
@@ -75,7 +74,7 @@ class PartsController < ApplicationController
   end
 
   def ajaxDelete
-    @part = Part.find(params[:part_id])
+    @part = Part.find(params[:id])
     if @part.delete
       render :json => {:status => 'SUCCESS'}
     else

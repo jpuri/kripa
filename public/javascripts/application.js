@@ -37,10 +37,10 @@ var Base = {
 	      success : function(response){
 	      	if(response.status == 'SUCCESS'){
 	      		Base.searchEntity(resultDiv)
-	  			Base.setSuccessMessage("Successfully created.")
+	  			Base.showSuccessMessage("Successfully created.")
 	  		}
 	      	else if(response.status == 'FAILURE'){
-	  			Base.setFailureMessage("Error while creating.")
+	  			Base.showFailureMessage("Error while creating.")
 	  		}
 			Base.closeDialog('dialog_create')
 	      }
@@ -51,24 +51,72 @@ var Base = {
 	editEntity : function(id){
 		entity = this.entity
 		server_url = this.server_url
-		$("#spinner_edit_" + id).show()
+		showSpinner('spinner_edit_' + id)
 	    $.ajax({
 	      url : server_url + entity + "/ajaxEdit",
 		  data : {
 		  	id: id
 		  },
 	      success : function(html){
-			$("#spinner_edit_"+id).hide()
-			showPopUp("dialog_update", html)
+			Base.hideSpinner('spinner_edit_' + id)
+			Base.showDialog("dialog_update", html)
 	      }
 		})
 	},
 	
-	setSuccessMessage : function(msg){
+	deleteEntity : function(id) {
+		entity = this.entity
+		server_url = this.server_url
+		if(confirm('Are you sure you want to delete ?')){
+			Base.clearMessages()
+		    Base.showSpinner('spinner_delete_' + id)
+		    $.ajax({
+		    	url : server_url + entity + "/ajaxDelete",
+				data : {
+					id: id
+				},
+			    success : function(response){
+			    	if(response.status == 'SUCCESS'){
+			      		$("#part_"+id).remove()
+			  			Base.showSuccessMessage("Successfully deleted.")
+			  		}
+			      	else if(response.status == 'FAILURE'){
+			  			Base.showFailureMessage("Error while deleting.")
+			  		}
+			    }
+			})
+		  }
+		  return false;
+	},
+	
+	updateEntity : function (id){
+		entity = this.entity
+		server_url = this.server_url
+		this.clearMessages()
+		this.showSpinner('spinner_update')
+		postUpdate = this.postUpdate
+	    $.ajax({
+	      url : server_url + entity + "/ajaxUpdate",
+		  data : $("#updateForm").serialize(),
+	      success : function(response){
+	      	if(response.status == 'SUCCESS'){
+	  			postUpdate(response, id)
+				Base.showSuccessMessage("Part successfully updated.")
+	  		}
+	      	else if(response.status == 'FAILURE'){
+	  			Base.showFailureMessage("Error while updating.")
+	  		}
+			Base.closeDialog('dialog_update')
+	      }
+	      //failure to be done
+		})
+	},
+
+	showSuccessMessage : function(msg){
 		$("#success_msg").html(msg)
 	},
 	
-	setFailureMessage : function(msg){
+	showFailureMessage : function(msg){
 		$("#failure_msg").html(msg)
 	},
 	
@@ -91,137 +139,22 @@ var Base = {
 
 	hideSpinner : function(div){
 		$('#' + div).hide()	
+	},
+	
+	clearMessages : function(){
+		$("#success_msg").html('')
+		$("#failure_msg").html('')
 	}
-}
-
-function Model(entity){
-	this.entity = entity
-}
-Model.prototype = Base
-Part = new Model('parts')
-
-var server_url = Base.server_url
-
-function addPartToBill(){
-  showSpinner()
-  calculatePartDetails()
-  addPartsWeightPrice()
-  resetPartValues()
-  hideSpinner()
-  return false;
-}
-
-function calculatePartDetails(){
-    $.ajax({
-      url : server_url + "bills/calculatePartDetails",
-      type : "get",
-	  data : {part_id: $('#bill_part_id').val(),
-		customer_id: $('#bill_customer_id').val(),
-		currency_id: $('#bill_currency_id').val(),
-		quantity: $('#part_quantity').val(),
-		discount: $('#part_discount').val()},
-      success : function(html){
-		$('#addedPart').append(html)
-    }
-  })
-}
-
-function addPartsWeightPrice(){  
-  $.ajax({
-    url : server_url + "bills/getWeigthPrice",
-    type : "get",
-	data : {part_id: $('#bill_part_id').val(),
-		customer_id: $('#bill_customer_id').val(),
-		currency_id: $('#bill_currency_id').val(),
-		quantity: $('#part_quantity').val(),
-		discount: $('#part_discount').val(),
-		bill_total_price: $('#bill_total_price').val(),
-		bill_total_weight: $('#bill_total_weight').val()},
-    success : function(data){
-	  $('#totalweight').text(data.bill_total_weight)
-	  $('#bill_total_weight').val(data.bill_total_weight)
-	  $('#totalprice').text(data.bill_total_price)
-	  $('#bill_total_price').val(data.bill_total_price)
-    }
-  })
-}
-
-function resetPartValues(){
-  $('#part_description').val('')
-  $('#part_price').val('')
-  $('#part_weight').val('')
-  $('#part_quantity').val('1')
-  $('#part_discount').val('0')
 }
 
 $(document).ready(function() {
-  $('#bill_part_id').change(function(){
-    getPartDetails()
-  })
-  $('#bill_currency_id').change(function(){
-    getPartDetails()
-  })
-  $('#bill_customer_id').change(function(){
-    getPartDetails()
-  })
-  $('.remove_image').live("click", function(){
-    $(this).parent().remove()
-  })
+	  $(".popup").dialog({
+	    autoOpen : false,
+		width : 350,
+		height : 350,
+		modal : true
+	});
 });
-
-function validate(){
-	var returnValue = true
-	if($('#bill_part_id').val().length <= 0){
-	  returnValue = false
-	}
-	if($('#bill_currency_id').val().length <= 0){
-	  returnValue = false
-	}
-	if($('#bill_customer_id').val().length <= 0){
-	  returnValue = false
-	}
-	return returnValue
-}
-
-function getPartDetails(){
-  if(validate()){
-    showSpinner()
-    resetPartValues()
-    $('#message').html('')
-    $.ajax({
-      url : server_url + "bills/getPartDetails",
-      type : "get",
-	  data : {part_id: $('#bill_part_id').val(),
-		customer_id: $('#bill_customer_id').val(),
-		currency_id: $('#bill_currency_id').val()},
-      success : function(response){
-      	if(response.status === 'success'){
-      	  var data = response.data
-          $('#part_description').val(data.part_description)
-          $('#part_price').val(data.part_price)
-          $('#part_weight').val(data.part_weight)
-        }else{
-		  $('#message').append('<font color="red">' + response.message + '</font>')
-        }
-        hideSpinner()
-      }
-    })
-  }
-  return false
-}
-
-function clearGenerateBillPage(){
-  if(confirm('Are you sure you want to clear page ?')){
-  	window.location = '/bills/new'
-  }
-  return false;
-}
-
-function removeUpdate(weight, price){
-  $('#totalweight').text(parseFloat($('#totalweight').text()) - parseFloat(weight))
-  $('#totalprice').text(parseFloat($('#totalprice').text()) - parseFloat(price))
-  return false;
-}
 
 function openPage(entity, id, action){
 	var path = '/' + entity
@@ -232,77 +165,4 @@ function openPage(entity, id, action){
 	window.location = path
 }
 
-function showSpinner() {
-    $("#spinner").show()
-}
 
-function hideSpinner() {
-    $("#spinner").hide()
-}
-
-function setExportFlag(){
-    $("#export_flag").val("true")
-    return true
-}
-
-function showPopUp(popupdiv, html){
-  $("#" + popupdiv).html(html);
-  $("#" + popupdiv).dialog("open");
-}
-
-function deletePart(part_id, part_no) {
-  if(confirm('Are you sure you want to delete Part ' + part_no + ' ?')){
-	cleanMessages()
-    $("#spinner_delete_"+part_id).show()
-    $.ajax({
-      url : server_url + "parts/ajaxDelete",
-      type : "get",
-	  data : {
-	  	part_id: part_id
-	  },
-      success : function(response){
-      	if(response.status == 'SUCCESS'){
-      		$("#part_"+part_id).remove()
-  			$("#success_msg").html("Part successfully deleted.")
-  		}
-      	else if(response.status == 'FAILURE'){
-  			$("#failure_msg").html("Error while deleting part.")
-  		}
-      }
-	})
-  }
-  return false;
-}
-
-function updatePart(part_id){
-	cleanMessages()
-	$("#spinner_save").show()
-    $.ajax({
-      url : server_url + "parts/ajaxUpdate",
-      type : "get",
-	  data : $("#updatePartForm").serialize(),
-      success : function(response){
-      	if(response.status == 'SUCCESS'){
-		$("#part_number_" + part_id).html(response.part.part.number);
-		$("#part_description_" + part_id).html(response.part.part.description);
-		$("#part_weight_" + part_id).html(response.part.part.weight);
-		$("#part_models_" + part_id).html(response.modelNumbers);
-  		$("#success_msg").html("Part successfully updated.")
-  		}
-      	else if(response.status == 'FAILURE'){
-  			$("#failure_msg").html("Error while updating part.")
-  		}
-		$("#dialog_update").dialog("close")
-      }
-      //failure to be done
-	})
-}
-
-function cleanMessages(){
-	$("#success_msg").html('')
-	$("#failure_msg").html('')
-}
-
-function closeDialog(divId){
-		$("#" + divId).dialog("close")
-}
