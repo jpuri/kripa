@@ -1,4 +1,4 @@
-server_url : 'http://obscure-atoll-7710.herokuapp.com/'
+server_url = 'http://obscure-atoll-7710.herokuapp.com/'
 //server_url : 'http://localhost:3000/'
 
 $(document).ready(function() {
