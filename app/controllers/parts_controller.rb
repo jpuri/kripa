@@ -2,18 +2,11 @@ class PartsController < ApplicationController
   
   def index
     @parts = Part.all(:order => "number")
-    @total_parts = Part.count    
-    @page = params[:page]?params[:page]:1 
-    respond_to do |format|
-      format.html # index.html.erb
-    end
   end
 
   def ajaxIndex
     @parts = Part.all(:order => "number")
-    @total_parts = Part.count    
-    @page = params[:page]?params[:page]:1 
-    render :partial => 'result', :locals => { :parts => @parts, :total_parts => @total_parts, :page => @page}
+    render :partial => 'result', :locals => { :parts => @parts}
   end
 
   def ajaxEdit
@@ -30,23 +23,23 @@ class PartsController < ApplicationController
 
   def ajaxUpdate
     @part = Part.find(params[:id])
-    @part.update_attributes(params[:part])
 
     ModelPart.where(:part_id => @part.id).delete_all
 
     if(params[:model_ids])
-    @model_ids = params[:model_ids]
-    @model_ids.each do |model_id|
-      @modelPart = ModelPart.new
-      @model = Model.find(model_id)
-      @modelPart.part = @part
-      @modelPart.model = @model
-      @modelPart.save
-    end    
+      @model_ids = params[:model_ids]
+      @model_ids.each do |model_id|
+        @modelPart = ModelPart.new
+        @model = Model.find(model_id)
+        @modelPart.part = @part
+        @modelPart.model = @model
+        @modelPart.save
+      end    
     end
 
     if @part.update_attributes(params[:part])
-      render :json => {:status => 'SUCCESS', :part => @part, :modelNumbers => @part.model_parts.collect { |modelPart| modelPart.model.number }.join(' ')}
+      render :json => {:status => 'SUCCESS', :displayValue => [@part.number, @part.description, @part.weight,
+        @part.model_parts.collect { |modelPart| modelPart.model.number }.join(', ')]}
     else
       render :json => {:status => 'FAILURE'}
     end
@@ -56,14 +49,14 @@ class PartsController < ApplicationController
     @part = Part.new(params[:part])
 
     if(params[:model_ids])
-    @model_ids = params[:model_ids]
-    @model_ids.each do |model_id|
-      @modelPart = ModelPart.new
-      @model = Model.find(model_id)
-      @modelPart.part = @part
-      @modelPart.model = @model
-      @modelPart.save
-    end    
+      @model_ids = params[:model_ids]
+      @model_ids.each do |model_id|
+        @modelPart = ModelPart.new
+        @model = Model.find(model_id)
+        @modelPart.part = @part
+        @modelPart.model = @model
+        @modelPart.save
+      end    
     end
 
     if @part.save
@@ -83,5 +76,3 @@ class PartsController < ApplicationController
   end
 
 end
-
-

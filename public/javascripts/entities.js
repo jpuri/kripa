@@ -1,12 +1,13 @@
-function Base(entity){
+function Base(entity, search){
 	this.entity = entity
+	this.search = search
 }
 
 Base.prototype = {
 
   	searchEntity : function(resultDiv) {
 		Base = this  		
-		entity = this.entity
+		entity = Base.entity
     	$.ajax({
       		url : server_url + entity + "/ajaxIndex",
       		success : function(html){
@@ -17,7 +18,7 @@ Base.prototype = {
 
 	newEntity : function(){
 		Base = this  		
-		entity = this.entity
+		entity = Base.entity
 		Base.showSpinner("spinner_new")
 	    $.ajax({
 	      url : server_url + entity + "/ajaxNew",
@@ -30,9 +31,9 @@ Base.prototype = {
 	
 	createEntity : function(resultDiv){
 		Base = this  		
-		entity = this.entity
-		cleanMessages()
-		showSpinner('spinner_create')
+		entity = Base.entity
+		Base.clearMessages()
+		Base.showSpinner('spinner_create')
 	    $.ajax({
 	      url : server_url + entity + "/ajaxCreate",
 		  data : $("#createForm").serialize(),
@@ -52,8 +53,8 @@ Base.prototype = {
 	
 	editEntity : function(id){
 		Base = this  		
-		entity = this.entity
-		showSpinner('spinner_edit_' + id)
+		entity = Base.entity
+		Base.showSpinner('spinner_edit_' + id)
 	    $.ajax({
 	      url : server_url + entity + "/ajaxEdit",
 		  data : {
@@ -68,7 +69,7 @@ Base.prototype = {
 	
 	deleteEntity : function(id) {
 		Base = this  		
-		entity = this.entity
+		entity = Base.entity
 		if(confirm('Are you sure you want to delete ?')){
 			Base.clearMessages()
 		    Base.showSpinner('spinner_delete_' + id)
@@ -93,16 +94,17 @@ Base.prototype = {
 	
 	updateEntity : function (id){
 		Base = this  		
-		entity = this.entity
-		this.clearMessages()
-		this.showSpinner('spinner_update')
-		postUpdate = this.postUpdate
+		entity = Base.entity
+		search = Base.search
+		Base.clearMessages()
+		Base.showSpinner('spinner_update')
 	    $.ajax({
 	      url : server_url + entity + "/ajaxUpdate",
 		  data : $("#updateForm").serialize(),
 	      success : function(response){
 	      	if(response.status == 'SUCCESS'){
-	  			postUpdate(response, id)
+	      		if(!search)
+	  				Base.updateDisplayValues(response.displayValue, id)
 				Base.showSuccessMessage("Part successfully updated.")
 	  		}
 	      	else if(response.status == 'FAILURE'){
@@ -112,6 +114,11 @@ Base.prototype = {
 	      }
 	      //failure to be done
 		})
+	},
+	
+	updateDisplayValues : function(displayValue, id){
+		for(i = 0; i < displayValue.length;i++)
+			$("#part_" + id + '_' + i).html(displayValue[i])
 	},
 
 	showSuccessMessage : function(msg){
@@ -149,12 +156,4 @@ Base.prototype = {
 	}
 }
 
-Part = new Base('parts')
-
-Part.postUpdate = function(response, id){
-	$("#part_number_" + id).html(response.part.part.number);
-	$("#part_description_" + id).html(response.part.part.description);
-	$("#part_weight_" + id).html(response.part.part.weight);
-	$("#part_models_" + id).html(response.modelNumbers);
-}
-
+Part = new Base('parts', false)

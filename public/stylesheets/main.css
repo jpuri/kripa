@@ -1,3 +1,112 @@
+.dialog_display_div{
+	padding-top: 30px; 
+	width:75%; 
+}
+table.borderedTable{ 
+	border-collapse:collapse;
+	border-top:1px solid black;
+	border-right:1px solid black; 
+	border-left:1px solid black; 
+	border-color: #60AFFE;
+	padding:4px; 
+}
+table.borderedTable th{ 
+	background-color: #60AFFE; 
+	padding:4px;
+	color:#EFFBFE;
+}
+table.borderedTable td{ 
+	border-bottom:1px solid #60AFFE;
+	border-right:1px solid #60AFFE; 
+	border-left:1px solid #60AFFE; 
+	color:#35586C;
+	padding:4px; 
+}
+.heading {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	font-weight: 200;
+	font-size:20pt;
+	color: #60AFFE;
+	float: left;
+}
+label{
+	font-weight: 200;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:10pt;
+	color: #60AFFE;
+}
+.button_link{
+    text-decoration: none;
+    border: 1px solid #60AFFE; 
+    padding: 0.5em 0.7em;
+    display: block;
+    float: left;
+    margin-right: 1px;
+	font-weight: 200;
+	color: #EFFBFE;
+	border-radius: 10px;
+	background-color: #60AFFE;
+}
+.button_link:hover{
+    cursor: pointer;
+    padding: 0.6em 0.8em;
+	font-weight: 250;
+	color: white;
+	border-radius: 10px;
+	background-color: #1E90FF;
+}
+.menu_div a{
+	text-decoration:none;
+	font-size:10pt;
+	font-weight: 250;
+	width: 150px;
+	color: #35586C;
+	margin-left: 15%;
+}
+.menu_div:hover{
+	width: 150px;
+	color: #3232CC; 
+	background-color: #3232CC;
+}
+.menu_div a:hover{
+	height:20px;
+	color: white; 
+}
+.success{
+	font-size:10pt;
+	font-style:italic;
+	color:green;
+}
+.failure{
+	font-size:10pt;
+	font-style:italic;
+	color:red;
+}
+.delete_image{
+    height: 10px;
+    width: 15px;
+}
+.edit_image{
+    height: 15px;
+    width: 15px;
+}
+.edit_image:hover{
+    cursor: pointer;
+    height: 17px;
+    width: 17px;
+}
+.delete_image:hover{
+    cursor: pointer;
+    height: 12px;
+    width: 17px;
+}
+
+/*
+a {
+	text-decoration:none;
+}
 .width_medium{
   width: 125px;
 }
@@ -53,24 +162,6 @@
   background-color: #D8D8D8; 
   width: 65px;
 }
-.delete_image {
-    height: 10px;
-    width: 15px;
-}
-.edit_image {
-    height: 15px;
-    width: 15px;
-}
-.edit_image:hover {
-    cursor: pointer;
-    height: 17px;
-    width: 17px;
-}
-.delete_image:hover{
-    cursor: pointer;
-    height: 12px;
-    width: 17px;
-}
 
 .small_text {
     height: 75px;
@@ -84,86 +175,4 @@
     height: 150px;
     width: 250px;
 }
-/*tr:hover {
-    background-color: #D8D8D8;
-    cursor: pointer;
-}*/
-
-.popup {
-	top:150;
-	border:solid 5px #d9d8d8;
-	background-color:white;
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 12px;
-	font-weight: normal;
-	text-align: left;
-	width: 80px;
-}
-
-table.borderedTable { border-collapse:collapse;border-top:1px solid black;padding:4px; border-right:1px solid black; border-left:1px solid black; border-color: #60AFFE}
-table.borderedTable td{ border-bottom:1px solid #60AFFE;padding:4px; border-right:1px solid #60AFFE; border-left:1px solid #60AFFE; color:#35586C}
-table.borderedTable th { padding:4px;background-color: #60AFFE; color:#EFFBFE}
-h1, span.heading {
-	margin: 0;
-	padding: 0;
-	font-weight: 200;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size:20pt;
-	color: #60AFFE;
-}
-label {
-	font-weight: 200;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size:10pt;
-	color: #60AFFE;
-}
-.button_link {
-    text-decoration: none;
-    border: 1px solid #60AFFE; 
-    padding: 0.5em 0.7em;
-    display: block;
-    float: left;
-    margin-right: 1px;
-	font-weight: 200;
-	color: #EFFBFE;
-	border-radius: 10px;
-	background-color: #60AFFE;
-}
-.button_link:hover {
-    padding: 0.6em 0.8em;
-	font-weight: 250;
-	color: white;
-	border-radius: 10px;
-	background-color: #1E90FF;
-}
-.menu_div a{
-	font-size:10pt;
-	font-weight: 250;
-	width: 150px;
-	color: #35586C;
-	margin-left: 15%;
-}
-.menu_div:hover{
-	width: 150px;
-	color: #3232CC; 
-	background-color: #3232CC;
-}
-.menu_div a:hover {
-	height:20px;
-	color: white; 
-}
-a {
-	text-decoration:none;
-}
-.success 
-{
-font-size:10pt;
-font-style:italic;
-color:green;
-}
-.failure 
-{
-font-size:10pt;
-font-style:italic;
-color:red;
-}
+*/
