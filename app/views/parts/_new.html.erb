@@ -1,33 +1,10 @@
 <div align="center">
-<form id="createForm"  name="createForm">
-  <div style="width:75%; padding-top: 20px" align="center">
-    <div style="float:left;"><label><b>Part Number</b></label></div>
-    <div style="float:right;"><input type="text" value="<%= @part.number%>" id="part_number" name="part[number]"></div>
-  </div>
-  <div style="width:75%; padding-top: 40px" align="center">
-    <div style="float:left;"><label><b>Description</b></label></div>
-    <div style="float:right;"><input type="text" value="<%= @part.description%>" id="part_description" name="part[description]"></div>
-  </div>
-  <div style="width:75%; padding-top: 40px" align="center">
-    <div style="float:left;"><label><b>Weight(Kg)</b></div>
-    <div style="float:right;"><input type="test" value="<%= @part.weight%>" id="part_weight" name="part[weight]"></div>
-  </div>
-  <div style="width:75%; padding-top: 40px" align="center">
-    <div style="float:left;"><label><b>Models</b></label></div>
-    <div style="float:right;"><select multiple id="model_ids" name="model_ids[]" style="width:150px">
-      <% @models.each do |model|%>
-      	<% if @part.model_parts.collect { |modelPart| modelPart.model }.include?(model)%>
-    	  <option selected value="<%= model.id%>"><%= model.number%></option>
-        <% else%>
-    	  <option value="<%= model.id%>"><%= model.number%></option>
-        <% end%>
-      <% end%>
-    </select></div>
-  </div>
-  <div style="padding-top: 100px; ">
-    <div style="padding-left: 120px;"><a onclick="Part.createEntity('part_result')" class="button_link"><font color="#EFFBFE">Save</a>
+<form id="createForm">
+  <%= render 'form' %>
+  <div style="padding-top: 100px;padding-left: 120px;">
+	<a onclick="Part.createEntity('part_result')" class="button_link"><font color="#EFFBFE">Save</a>
 	<img id="spinner_create" style="display:none;" src="/images/spinner.gif"/>
-    <a onclick="closeDialog('popupdiv_create');" class="button_link"><font color="#EFFBFE">Cancel</a></div>
+	<a onclick="Part.closeDialog('dialog_create');" class="button_link"><font color="#EFFBFE">Cancel</a>
   </div>
   <input type="hidden" value="<%= @part.id%>" id="id" name="id">
 </form>

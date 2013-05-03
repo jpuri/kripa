@@ -1,7 +1,5 @@
-<% i = 20*(Integer(@page)-1)+1%>
-
-<table class="borderedTable" style="width=100%">
-  <tr width="100%">
+<table class="borderedTable">
+  <tr>
     <th width="3%">S. No.</th>
     <th width="5%">Number</th>
     <th width="15%">Description</th>
@@ -9,32 +7,29 @@
     <th width="15%">Models</th>
     <th width="5%">Action</th>
   </tr>
+<% i = 1 %>
 <% @parts.each do |part| %>
 	<% if i%2 == 0 %>
-  		<tr id="<%= 'part_' + String(part.id) %>" name="<%= 'part_' + String(part.id) %>" style="background-color: #C6E2FF">
+  		<tr id="<%= 'part_' + String(part.id) %>" style="background-color: #C6E2FF">
   	<% else %>
-  		<tr id="<%= 'part_' + String(part.id) %>" name="<%= 'part_' + String(part.id) %>" style="background-color: #EFFBFE">
+  		<tr id="<%= 'part_' + String(part.id) %>" style="background-color: #EFFBFE">
   	<% end %>
-    <td><%= i %></td>
-    <td><div id="part_number_<%=part.id%>"><%= part.number %></div></td>
-    <td><div id="part_description_<%=part.id%>"><%= part.description %></div></td>
-    <td><div id="part_weight_<%=part.id%>"><%= part.weight %></div></td>
-	<td><div id="part_models_<%=part.id%>">
-		<% part.models.each do |model| %>
-		  <%= model.number + ' ' %>
-		<% end %>
-	</div></td>
-    <td>
-    	<span style="margin-left: 20%;">
-    	<img src="/images/edit.jpg" id="edit_<%= part.id %>" class="edit_image" onclick="Part.editEntity(<%= part.id %>)"></img>
-		</span>
-		<img id="spinner_edit_<%= part.id %>" style="display:none;width: 15px; height: 15px" src="/images/spinner.gif"/>
-		<span style="margin-left: 20%;">
-    	<img src="/images/delete.jpg" id="delete_<%= part.id %>" class="delete_image" onclick="Part.deleteEntity(<%= part.id %>)"></img>
-		<img id="spinner_delete_<%= part.id %>" style="display:none;" src="/images/spinner.gif"/>
-		</span>
-    </td>
-  </tr>
+		    <td><%= i %></td>
+		    <td><div id="part_<%=part.id%>_0"><%= part.number %></div></td>
+		    <td><div id="part_<%=part.id%>_1"><%= part.description %></div></td>
+		    <td><div id="part_<%=part.id%>_2"><%= part.weight %></div></td>
+			<td><div id="part_<%=part.id%>_3"><%= part.model_parts.collect { |modelPart| modelPart.model.number }.join(', ')%></div></td>
+		    <td>
+		    	<span style="margin-left: 20%;">
+		    		<img src="/images/edit.jpg" id="edit_<%= part.id %>" class="edit_image" onclick="Part.editEntity(<%= part.id %>)"/>
+				</span>
+				<img id="spinner_edit_<%= part.id %>" style="display:none" src="/images/spinner.gif"/>
+				<span style="margin-left: 20%;">
+		    		<img src="/images/delete.jpg" id="delete_<%= part.id %>" class="delete_image" onclick="Part.deleteEntity(<%= part.id %>)"></img>
+				<img id="spinner_delete_<%= part.id %>" style="display:none;" src="/images/spinner.gif"/>
+				</span>
+		    </td>
+	  	</tr>
   <% i = i + 1 %>
 <% end %>
 </table>
