@@ -5,17 +5,26 @@ function Base(entity, search){
 
 Base.prototype = {
 
-  	searchEntity : function(resultDiv) {
+//to be modified for search form 
+  	searchEntity : function() {
 		Base = this  		
 		entity = Base.entity
+		search = Base.search
+		if(search)
+			data = Base.getSearchParams()
+		else
+			data = {}
+		Base.showSpinner("spinner_search")
     	$.ajax({
-      		url : server_url + entity + "/ajaxIndex",
+      		url : server_url + entity + "/ajaxSearch",
+      		data : data,
       		success : function(html){
-				Base.showDataInDiv(resultDiv, html)
+				Base.showDataInDiv("results", html)
+				Base.hideSpinner("spinner_search")
       		}
 		})
 	},
-
+	
 	newEntity : function(){
 		Base = this  		
 		entity = Base.entity
@@ -51,28 +60,33 @@ Base.prototype = {
 		})
 	},
 	
-	editEntity : function(id){
+	editEntity : function(id, index){
 		Base = this  		
 		entity = Base.entity
-		Base.showSpinner('spinner_edit_' + id)
+		if(!index)
+			index = id
+		Base.showSpinner('spinner_edit_' + index)
 	    $.ajax({
 	      url : server_url + entity + "/ajaxEdit",
 		  data : {
 		  	id: id
 		  },
 	      success : function(html){
-			Base.hideSpinner('spinner_edit_' + id)
+			Base.hideSpinner('spinner_edit_' + index)
 			Base.showDialog("dialog_update", html)
 	      }
 		})
 	},
 	
-	deleteEntity : function(id) {
+	deleteEntity : function(id, index) {
 		Base = this  		
 		entity = Base.entity
+		search = Base.search
+		if(!index)
+			index = id
 		if(confirm('Are you sure you want to delete ?')){
 			Base.clearMessages()
-		    Base.showSpinner('spinner_delete_' + id)
+		    Base.showSpinner('spinner_delete_' + index)
 		    $.ajax({
 		    	url : server_url + entity + "/ajaxDelete",
 				data : {
@@ -80,7 +94,10 @@ Base.prototype = {
 				},
 			    success : function(response){
 			    	if(response.status == 'SUCCESS'){
-			      		$("#part_"+id).remove()
+			      		if(entity == 'prices')
+			  				Base.searchEntity()
+			  			else
+			      			$("#part_"+id).remove()
 			  			Base.showSuccessMessage("Successfully deleted.")
 			  		}
 			      	else if(response.status == 'FAILURE'){
@@ -105,6 +122,8 @@ Base.prototype = {
 	      	if(response.status == 'SUCCESS'){
 	      		if(!search)
 	  				Base.updateDisplayValues(response.displayValue, id)
+	  			else
+	  				Base.searchEntity()
 				Base.showSuccessMessage("Part successfully updated.")
 	  		}
 	      	else if(response.status == 'FAILURE'){
@@ -157,3 +176,23 @@ Base.prototype = {
 }
 
 Part = new Base('parts', false)
+Price = new Base('prices', true)
+//search parameter can be removed later
+
+Price.getSearchParams = function() {
+	return {
+		'make_id' : $('#make_id').val(),
+		'model_id' : $('#model_id').val(),
+		'part_id' : $('#part_id').val(),
+		'customer_id' : $('#customer_id').val(),
+		'currency_id' : $('#currency_id').val(),
+	}
+}
+
+Price.resetSearchFields = function() {
+	$('#make_id').val('')
+	$('#model_id').val('')
+	$('#part_id').val('')
+	$('#customer_id').val('')
+	$('#currency_id').val('')
+} 

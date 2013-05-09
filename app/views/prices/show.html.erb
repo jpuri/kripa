@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>View Price</h1>
+
+<p>
+  <b>Currency:</b>
+  <%= @part_price.currency.name %>
+</p>
+
+<p>
+  <b>Customer:</b>
+  <%= @part_price.customer.name %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @part_price.price %>
+</p>
+
+
+<%= link_to 'Edit', edit_part_price_path(@part_price) %> |
+<%= link_to 'Back', part_path(@part_price.part) %>
+<%= button_to "Delete", part_price_path(@part_price.id), :method=>:delete, :confirm=>"Are you sure?" %>

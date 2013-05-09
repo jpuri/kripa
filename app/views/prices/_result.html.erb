@@ -1,0 +1,42 @@
+<div style="padding-top: 3%">
+	<table class="borderedTable">
+	  <tr>
+	    <th width="7%">S. No.</th>
+	    <th width="10%">Make</th>
+	    <th width="10%">Model #</th>
+	    <th width="10%">Part #</th>
+	    <th width="20%">Part Description</th>
+	    <th width="3%">Weight(Kg)</th>
+	    <th width="25%">Customer</th>
+	    <th width="5%">Price</th>
+	    <th width="10%">Action</th>
+	  </tr>
+	
+	  <% i = 1 %>
+	
+	  <% for column in @result %>
+	  <tr>
+	    <td><%= i %></td>
+	    <td><%= column["make_name"] %></td>
+	    <td><%= column["model_number"] %></td>
+	    <td><%= column["part_number"] %></td>
+	    <td><%= column["part_description"] %></td>
+	    <td><%= column["weight"] %></td>
+	    <td><%= column["name"] %></td>
+	    <td><%= column["value"] %></td>
+	    <td>
+	    	<span style="margin-left: 20%;">
+	    		<img src="/images/edit.jpg" id="edit_<%= column["id"] %>" class="edit_image" onclick="Price.editEntity(<%= column["id"] %>, <%= i %>)"/>
+			</span>
+			<img id="spinner_edit_<%= i %>" style="display:none" src="/images/spinner.gif"/>
+			<span style="margin-left: 20%;">
+	    		<img src="/images/delete.jpg" id="delete_<%= column["id"] %>" class="delete_image" onclick="Price.deleteEntity(<%= column["id"] %>, <%= i %>)"></img>
+			<img id="spinner_delete_<%= i %>" style="display:none;" src="/images/spinner.gif"/>
+			</span>
+	    </td>
+	  </tr>
+	  <% i = i + 1 %>
+	  <% end %>
+	
+	</table>
+</div>

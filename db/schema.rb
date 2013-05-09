@@ -89,21 +89,21 @@ ActiveRecord::Schema.define(:version => 20130419112104) do
     t.datetime "updated_at"
   end
 
-  create_table "part_prices", :force => true do |t|
-    t.integer  "currency_id"
-    t.float    "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "customer_id"
-    t.integer  "part_id"
-  end
-
   create_table "parts", :force => true do |t|
     t.float    "weight"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description"
     t.string   "number"
+  end
+
+  create_table "prices", :force => true do |t|
+    t.integer  "currency_id"
+    t.float    "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "customer_id"
+    t.integer  "part_id"
   end
 
   create_table "users", :force => true do |t|

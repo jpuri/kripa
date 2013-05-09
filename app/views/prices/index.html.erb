@@ -1,0 +1,44 @@
+<div style="width: 900px">
+	<div>
+	  <span class="heading">Prices</span>
+	  <span style="float: right"><a onclick="Price.newEntity()" class="button_link">Add Price</a>
+	  <img id="spinner_new" style="display:none" src="/images/spinner.gif"/></span>
+	</div>
+	<div style="padding-top: 3%">
+	
+		<div style="padding-top: 2%" align="left">
+		  <div style="width: 210px;float: left;">
+		  	  <div style="float: left; width:60px"><%= label_tag(:make, "Make") %></div>
+		  	  <div style="float: right; width:150px"><%= collection_select(:make, :id,  @makes, :id, :name, {:prompt => 'Select Make', :selected => @make_id}, :style => 'width:150px; color: #60AFFE')%></div>
+		 </div>
+		 <div style="float: left;padding-left: 70px">
+	  		  <div style="float: left; width:60px"><%= label_tag(:model, "Model #", :class => 'medium_lbl_grey') %></div>
+			  <div style="float: right; width:150px"><%= collection_select(:model, :id,  @models, :id, :number, {:prompt => 'Select Model', :selected => @model_id},  :style => 'width:150px; color: #60AFFE')%></div>
+		 </div>
+		 <div style="float: left;padding-left: 50px">
+			  <div style="float: left; width:60px"><%= label_tag(:part, "Part #", :class => 'medium_lbl_grey') %></div>
+			  <div style="float: right; width:150px"><%= collection_select(:part, :id,  @parts, :id, :number, {:prompt => 'Select Part', :selected => @part_id},  :style => 'width:150px; color: #60AFFE')%></div>
+		</div>
+		</div>
+		<div style="padding-top: 40px" align="left">
+		  <div style="float: left;">
+			  <div style="float: left; width:60px"><%= label_tag(:customer, "Customer", :class => 'medium_lbl_grey') %></div>
+			  <div style="float: right; width:200px"><%= collection_select(:customer, :id,  @customers, :id, :name, {:prompt => 'Select Customer', :selected => @customer_id}, :style => 'width:200px; color: #60AFFE')%></div>
+			</div>
+		  <div style="float: left;padding-left: 20px">
+			  <div style="float: left; width:60px"><%= label_tag(:currency, "Currency", :class => 'medium_lbl_grey') %></div>
+			  <div style="float: right; width:150px"><%= collection_select(:currency, :id,  @currencies, :id, :name, {:prompt => 'Select Currency', :selected => @currency_id}, :style => 'width:150px; color: #60AFFE')%></div>
+		</div>
+		  <div style="float: left;padding-left: 130px">
+			  <div style="float: left;"><a onclick="Price.searchEntity()" class="button_link">Search</a>
+			  <img id="spinner_search" style="display:none" src="/images/spinner.gif"/></div>
+			  <div style="float: right;"><a onclick="Price.resetSearchFields()" class="button_link">Reset</a></div>
+			</div>
+		</div>
+	</div>
+	<div id="results" name="results" style="padding-top: 2%; width: 100%">
+	  <%= render 'result' %>
+	</div>
+	<div name="dialog_create" id="dialog_create" class="popup" title="<font color='#60AFFE'>Add Price</font>"></div>
+	<div name="dialog_update" id="dialog_update" class="popup" title="<font color='#60AFFE'>Edit Price</font>"></div>
+<div>

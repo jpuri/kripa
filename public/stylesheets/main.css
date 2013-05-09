@@ -13,20 +13,20 @@ table.borderedTable{
 table.borderedTable th{ 
 	background-color: #60AFFE; 
 	padding:4px;
-	color:#EFFBFE;
+	color:white;
 }
 table.borderedTable td{ 
 	border-bottom:1px solid #60AFFE;
 	border-right:1px solid #60AFFE; 
 	border-left:1px solid #60AFFE; 
-	color:#35586C;
+	color:black;
 	padding:4px; 
 }
 .heading {
 	font-family: Arial, Helvetica, sans-serif;
 	margin: 0;
 	padding: 0;
-	font-weight: 200;
+	font-weight: 300;
 	font-size:20pt;
 	color: #60AFFE;
 	float: left;
@@ -45,7 +45,7 @@ label{
     float: left;
     margin-right: 1px;
 	font-weight: 200;
-	color: #EFFBFE;
+	color: white;
 	border-radius: 10px;
 	background-color: #60AFFE;
 }
@@ -55,24 +55,24 @@ label{
 	font-weight: 250;
 	color: white;
 	border-radius: 10px;
-	background-color: #1E90FF;
 }
 .menu_div a{
 	text-decoration:none;
 	font-size:10pt;
 	font-weight: 250;
 	width: 150px;
-	color: #35586C;
+	color: white;
 	margin-left: 15%;
 }
 .menu_div:hover{
 	width: 150px;
-	color: #3232CC; 
-	background-color: #3232CC;
+	color: #60AFFE; 
+	background-color: #60AFFE;
 }
 .menu_div a:hover{
 	height:20px;
-	color: white; 
+	font-style: italic;
+	font-size: 14px; 
 }
 .success{
 	font-size:10pt;
@@ -104,6 +104,10 @@ label{
 }
 
 /*
+.width_large{
+  width: 150px;
+  color: blue;
+}
 a {
 	text-decoration:none;
 }
