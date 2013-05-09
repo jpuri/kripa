@@ -1,6 +1,7 @@
 class PricesController < ApplicationController
 
   def index
+    
     @makes = Make.all(:order => "name")
     @models = Model.all(:order => "number")
     @parts = Part.order("number")
@@ -10,11 +11,13 @@ class PricesController < ApplicationController
   end
 
   def ajaxSearch
+    
     @result = fetchSearchResults
     render :partial => 'result', :locals => { :result => @result}    
   end
 
   def fetchSearchResults
+    
       condition = 'true'
         
       if(params[:make_id])
@@ -52,15 +55,16 @@ class PricesController < ApplicationController
         end
       end
       
-      @result = ActiveRecord::Base.connection.execute("SELECT pp.id as id, mk.name as make_name, m.number as model_number, p.number as part_number, p.description as part_description, 
-        p.weight, c.name, concat(cur.symbol, pp.value) as value from makes mk, models m, model_parts mp, 
-        parts p, prices pp, customers c, currencies cur where mk.id = m.make_id and m.id = mp.model_id and p.id = mp.part_id and p.id = pp.part_id and pp.customer_id = c.id 
-        and pp.currency_id = cur.id and " + condition)
+      @result = ActiveRecord::Base.connection.execute("SELECT pp.id as id, mk.name as make_name, m.number as model_number, p.number as part_number,  
+        p.description as part_description, p.weight, c.name, concat(cur.symbol, pp.value) as value from makes mk, models m, model_parts mp, 
+        parts p, prices pp, customers c, currencies cur where mk.id = m.make_id and m.id = mp.model_id and p.id = mp.part_id and p.id = pp.part_id  
+        and pp.customer_id = c.id and pp.currency_id = cur.id and " + condition)
   
-      @result 
+      @result   
   end
 
   def ajaxNew
+    
     @price = Price.new
     @currencies = Currency.all(:order => "name")
     @customers = Customer.all(:order => "name")
@@ -69,6 +73,7 @@ class PricesController < ApplicationController
   end
 
   def ajaxCreate
+    
     @price = Price.new(params[:price])
 
     if @price.save
@@ -79,6 +84,7 @@ class PricesController < ApplicationController
   end
 
   def ajaxEdit
+    
     @price = Price.find(params[:id])
     @currencies = Currency.all(:order => "name")
     @customers = Customer.all(:order => "name")
@@ -87,6 +93,7 @@ class PricesController < ApplicationController
   end
 
   def ajaxUpdate
+    
     @price = Price.find(params[:id])
     if @price.update_attributes(params[:price])
       render :json => {:status => 'SUCCESS'}
@@ -96,6 +103,7 @@ class PricesController < ApplicationController
   end
 
   def ajaxDelete
+    
     @price = Price.find(params[:id])
     if @price.delete
       render :json => {:status => 'SUCCESS'}
