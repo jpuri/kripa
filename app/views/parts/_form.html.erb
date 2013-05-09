@@ -1,24 +1,26 @@
-  <div class="dialog_display_div" align="center">
+  <div style="width:75%;padding-top: 5%;" align="center">
     <div style="float:left;"><label><b>Part Number</b></label></div>
     <div style="float:right;"><input type="text" value="<%= @part.number%>" id="part_number" name="part[number]"></div>
   </div>
-  <div class="dialog_display_div" align="center">
+  <div style="width:75%;padding-top: 10%;" align="center">
     <div style="float:left;"><label><b>Description</b></label></div>
     <div style="float:right;"><input type="text" value="<%= @part.description%>" id="part_description" name="part[description]"></div>
   </div>
-  <div class="dialog_display_div" align="center">
+  <div style="width:75%;padding-top: 10%;" align="center">
     <div style="float:left;"><label><b>Weight(Kg)</b></div>
     <div style="float:right;"><input type="text" value="<%= @part.weight%>" id="part_weight" name="part[weight]"></div>
   </div>
-  <div class="dialog_display_div" align="center">
-    <div style="float:left;"><label><b>Models</b></label></div>
-    <div style="float:right;"><select multiple id="model_ids" name="model_ids[]" style="width:150px">
-      <% @models.each do |model|%>
-      	<% if @part.model_parts.collect { |modelPart| modelPart.model }.include?(model)%>
-    	  <option selected value="<%= model.id%>"><%= model.number%></option>
-        <% else%>
-    	  <option value="<%= model.id%>"><%= model.number%></option>
-        <% end%>
-      <% end%>
-    </select></div>
+  <div style="width:75%;padding-top: 10%;" align="center">
+  <div style="float:left;"><label><b>Models</b></label></div>
+    <div style="float:right; width: 62%">
+    	<select multiple id="model_ids" name="model_ids[]" style="width:100%, color: #60AFFE">
+      		<% @models.each do |model|%>
+		      	<% if @part.model_parts.collect { |modelPart| modelPart.model }.include?(model)%>
+		    	  <option selected value="<%= model.id%>"><%= model.number%></option>
+		        <% else%>
+		    	  <option value="<%= model.id%>"><%= model.number%></option>
+		        <% end%>
+		      <% end%>
+	    </select>
+    </div>
   </div>

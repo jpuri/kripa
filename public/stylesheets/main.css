@@ -1,6 +1,6 @@
-.dialog_display_div{
-	padding-top: 30px; 
-	width:75%; 
+select, input{
+	width:100%; 
+	color: #60AFFE
 }
 table.borderedTable{ 
 	border-collapse:collapse;
@@ -60,14 +60,9 @@ label{
 	text-decoration:none;
 	font-size:10pt;
 	font-weight: 250;
-	width: 150px;
+	width: 100%;
 	color: white;
 	margin-left: 15%;
-}
-.menu_div:hover{
-	width: 150px;
-	color: #60AFFE; 
-	background-color: #60AFFE;
 }
 .menu_div a:hover{
 	height:20px;
@@ -102,81 +97,3 @@ label{
     height: 12px;
     width: 17px;
 }
-
-/*
-.width_large{
-  width: 150px;
-  color: blue;
-}
-a {
-	text-decoration:none;
-}
-.width_medium{
-  width: 125px;
-}
-.width_large{
-  width: 200px;
-}
-.width_medium_grey{
-  width: 125px;
-  background-color: #F8F8F8
-}
-.medium_lbl{
-  width: 125px;
-  display: inline-block;
-}
-.medium_lbl_grey{
-  width: 125px;
-  display: inline-block;
-  background-color: #D8D8D8; 
-}
-.big_lbl_grey{
-  width: 200px;
-  display: inline-block;
-  background-color: #D8D8D8; 
-}
-.border{
-  border-width: .1em; 
-  border-style: solid; 
-  border-color: #D8D8D8; 
-}
-.top_pad_40{
-  padding-top: 40px;
-}
-.top_pad_20{
-  padding-top: 15px;
-}
-.div_button_bottom{
-  padding-top: 1%;
-  margin-left: 35%;
-}
-.large_div_bottom{
-  margin-top: 2%;
-  margin-left: 45%;
-}
-.large_div{
-  position: absolute;
-  left: 650px;
-}
-.plain_button{
-  background-color: #D8D8D8; 
-  width: 100px;
-}
-.small_button{
-  background-color: #D8D8D8; 
-  width: 65px;
-}
-
-.small_text {
-    height: 75px;
-    width: 210px;
-}
-.small_text_area {
-    height: 75px;
-    width: 210px;
-}
-.medium_text_area {
-    height: 150px;
-    width: 250px;
-}
-*/
