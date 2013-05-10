@@ -31,12 +31,10 @@
 	      <%= link_to 'Log Out', :controller => "sessions", :action => "destroy"%>
 		</div>
 	</div>
-	<div style="margin-left: 20%; margin-right: 20%; font-family:Verdana; width: 70%">
+	<div style="margin-left: 20%; margin-right: 20%; font-family:Verdana; width: 70%" align="center">
 		<div id="success_msg" class="success"></div>
 		<div id="failure_msg" class="failure"></div>
-		<div id = "main_div">
-      		<%= yield %>
-      	</div>
+   		<%= yield %>
     </div>
     <% else %>
       <%= render :template => "sessions/new"%>

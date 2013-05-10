@@ -38,7 +38,7 @@ Base.prototype = {
 		})
 	},
 	
-	createEntity : function(resultDiv){
+	createEntity : function(){
 		Base = this  		
 		entity = Base.entity
 		Base.clearMessages()
@@ -48,7 +48,7 @@ Base.prototype = {
 		  data : $("#createForm").serialize(),
 	      success : function(response){
 	      	if(response.status == 'SUCCESS'){
-	      		Base.searchEntity(resultDiv)
+	      		Base.searchEntity()
 	  			Base.showSuccessMessage("Successfully created.")
 	  		}
 	      	else if(response.status == 'FAILURE'){
@@ -97,7 +97,7 @@ Base.prototype = {
 			      		if(entity == 'prices')
 			  				Base.searchEntity()
 			  			else
-			      			$("#part_"+id).remove()
+			      			$("#" + entity + '_' + id).remove()
 			  			Base.showSuccessMessage("Successfully deleted.")
 			  		}
 			      	else if(response.status == 'FAILURE'){
@@ -124,7 +124,7 @@ Base.prototype = {
 	  				Base.updateDisplayValues(response.displayValue, id)
 	  			else
 	  				Base.searchEntity()
-				Base.showSuccessMessage("Part successfully updated.")
+				Base.showSuccessMessage("Successfully updated.")
 	  		}
 	      	else if(response.status == 'FAILURE'){
 	  			Base.showFailureMessage("Error while updating.")
@@ -137,7 +137,7 @@ Base.prototype = {
 	
 	updateDisplayValues : function(displayValue, id){
 		for(i = 0; i < displayValue.length;i++)
-			$("#part_" + id + '_' + i).html(displayValue[i])
+			$("#" + entity + '_' + id + '_' + i).html(displayValue[i])
 	},
 
 	showSuccessMessage : function(msg){
@@ -177,7 +177,9 @@ Base.prototype = {
 
 Part = new Base('parts', false)
 Price = new Base('prices', true)
-//search parameter can be removed later
+Model = new Base('models', false)
+
+//search parameter can be removed later with a form to be seciarilized
 
 Price.getSearchParams = function() {
 	return {

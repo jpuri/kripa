@@ -1,25 +1,12 @@
-<h1>List Models</h1>
-
-<table class="borderedTable">
-  <tr>
-    <th>S. No.</th>
-    <th>Model #</th>
-    <th>Description</th>
-  </tr>
-
-  <% i = 1 %>
-
-  <% for model in @models %>
-  <tr onclick="openPage('models', <%= model.id %>)">
-    <td><%= i %></td>
-    <td><%= model.number %></td>
-    <td><%= model.description %></td>
-  </tr>
-  <% i = i + 1 %>
-  <% end %>
-
-</table>
-
-<br/>
-
-<%= link_to 'New Model', new_model_path %>
+<div style="width: 65%">
+<div>
+  <span class="heading">Models</span>
+  <span style="float: right"><a onclick="Model.newEntity()" class="button_link">Add Model</a>
+  <img id="spinner_new" style="display:none" src="/images/spinner.gif"/></span>
+</div>
+<div id="results" name="results" style="padding-top: 10%; width: 100%">
+  <%= render 'result' %>
+</div>
+</div>
+<div name="dialog_create" id="dialog_create" class="popup" title="<font color='#60AFFE'>Add Part</font>"></div>
+<div name="dialog_update" id="dialog_update" class="popup" title="<font color='#60AFFE'>Edit Part</font>"></div>

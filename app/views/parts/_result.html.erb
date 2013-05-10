@@ -10,15 +10,15 @@
 <% i = 1 %>
 <% @parts.each do |part| %>
 	<% if i%2 == 0 %>
-  		<tr id="<%= 'part_' + String(part.id) %>" style="background-color: #C6E2FF">
+  		<tr id="<%= 'parts_' + String(part.id) %>" style="background-color: #C6E2FF">
   	<% else %>
-  		<tr id="<%= 'part_' + String(part.id) %>" style="background-color: #EFFBFE">
+  		<tr id="<%= 'parts_' + String(part.id) %>" style="background-color: #EFFBFE">
   	<% end %>
 		    <td><%= i %></td>
-		    <td><div id="part_<%=part.id%>_0"><%= part.number %></div></td>
-		    <td><div id="part_<%=part.id%>_1"><%= part.description %></div></td>
-		    <td><div id="part_<%=part.id%>_2"><%= part.weight %></div></td>
-			<td><div id="part_<%=part.id%>_3"><%= part.model_parts.collect { |modelPart| modelPart.model.number }.join(', ')%></div></td>
+		    <td><div id="parts_<%=part.id%>_0"><%= part.number %></div></td>
+		    <td><div id="parts_<%=part.id%>_1"><%= part.description %></div></td>
+		    <td><div id="parts_<%=part.id%>_2"><%= part.weight %></div></td>
+			<td><div id="parts_<%=part.id%>_3"><%= part.model_parts.collect { |modelPart| modelPart.model.number }.join(', ')%></div></td>
 		    <td>
 		    	<span style="margin-left: 20%;">
 		    		<img src="/images/edit.jpg" id="edit_<%= part.id %>" class="edit_image" onclick="Part.editEntity(<%= part.id %>)"/>

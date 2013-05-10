@@ -7,32 +7,17 @@ Kripa::Application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
 
   post "welcome/index"
-  get 'parts/ajaxIndex'
-  get 'parts/ajaxSearch'
-  get 'parts/ajaxNew'
-  get 'parts/ajaxEdit'
-  get 'parts/ajaxUpdate'
-  get 'parts/ajaxCreate'
-  get 'parts/ajaxDelete'
-
-  get 'prices/ajaxIndex'
-  get 'prices/ajaxSearch'
-  get 'prices/ajaxNew'
-  get 'prices/ajaxEdit'
-  get 'prices/ajaxUpdate'
-  get 'prices/ajaxCreate'
-  get 'prices/ajaxDelete'
-
-  get 'bills/getPartDetails'
-  get 'bills/calculatePartDetails'
-  get 'bills/getWeigthPrice'
-  get 'models/addModelPart'
-  get 'models/saveModelPart'
-  get 'models/search'
-  get 'makes/addModel'
-  get 'makes/saveModel'
-
-  resources :bill_parts
+  
+  ['parts', 'models', 'prices', 'makes'].each do |entity|
+    get entity + '/ajaxIndex'
+    get entity + '/ajaxSearch'
+    get entity + '/ajaxNew'
+    get entity + '/ajaxEdit'
+    get entity + '/ajaxUpdate'
+    get entity + '/ajaxCreate'
+    get entity + '/ajaxDelete'
+  end
+  
   resources :customers
   resources :prices
   resources :bills

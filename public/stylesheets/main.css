@@ -9,6 +9,7 @@ table.borderedTable{
 	border-left:1px solid black; 
 	border-color: #60AFFE;
 	padding:4px; 
+	width:100%;
 }
 table.borderedTable th{ 
 	background-color: #60AFFE; 
