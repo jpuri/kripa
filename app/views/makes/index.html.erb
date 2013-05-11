@@ -1,23 +1,12 @@
-<h1>List Makes</h1>
-
-<table class="borderedTable">
-  <tr>
-    <th>S.No.</th>
-    <th>Name</th>
-    <th>Description</th>
-  </tr>
-
-<% i = 1 %>
-<% @makes.each do |make| %>
-  <tr onclick="openPage('makes', <%= make.id %>)">
-    <td><%= i %></td>
-    <td><%= make.name %></td>
-    <td><%= make.description %></td>
-    <% i = i + 1 %>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Make', new_make_path %>
+<div style="width: 50%">
+<div>
+  <span class="heading">Makes</span>
+  <span style="float: right"><a onclick="Make.newEntity()" class="button_link">Add Make</a>
+  <img id="spinner_new" style="display:none" src="/images/spinner.gif"/></span>
+</div>
+<div id="results" name="results" style="padding-top: 10%; width: 100%">
+  <%= render 'result' %>
+</div>
+</div>
+<div name="dialog_create" id="dialog_create" class="popup" title="<font color='#60AFFE'>Add Make</font>"></div>
+<div name="dialog_update" id="dialog_update" class="popup" title="<font color='#60AFFE'>Edit Make</font>"></div>

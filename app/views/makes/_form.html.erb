@@ -1,25 +1,8 @@
-<%= form_for(@make) do |f| %>
-  <% if @make.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@make.errors.count, "error") %> prohibited this make from being saved:</h2>
-
-      <ul>
-      <% @make.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <b><%= f.label :name %></b><br />
-    <%= f.text_field :name %>
+  <div style="width:75%;padding-top: 12%;" align="center">
+    <div style="float:left;"><label><b>Make Name</b></label></div>
+    <div style="float:right;"><input type="text" value="<%= @make.name%>" id="make_name" name="make[name]"></div>
   </div>
-  <div class="field">
-    <b><%= f.label :description %></b><br />
-    <%= f.text_field :description %>
+  <div style="width:75%;padding-top: 12%;" align="center">
+    <div style="float:left;"><label><b>Description</b></label></div>
+    <div style="float:right;"><input type="text" value="<%= @make.description%>" id="make_description" name="make[description]"></div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

@@ -178,6 +178,7 @@ Base.prototype = {
 Part = new Base('parts', false)
 Price = new Base('prices', true)
 Model = new Base('models', false)
+Make = new Base('makes', false)
 
 //search parameter can be removed later with a form to be seciarilized
 

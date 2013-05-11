@@ -1,108 +1,51 @@
 class MakesController < ApplicationController
-  # GET /makes
-  # GET /makes.xml
+
   def index
-    @makes = Make.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @makes }
-    end
+    @makes = Make.all(:order => "name")
   end
 
-  # GET /makes/1
-  # GET /makes/1.xml
-  def show
-    @make = Make.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @make }
-    end
+  def ajaxSearch
+    @makes = Make.all(:order => "name")
+    render :partial => 'result', :locals => { :makes => @makes}
   end
 
-  # GET /makes/new
-  # GET /makes/new.xml
-  def new
+  def ajaxNew
     @make = Make.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @make }
-    end
+    render :partial => 'new', :locals => { :make => @make}    
   end
 
-  # GET /makes/1/edit
-  def edit
-    @make = Make.find(params[:id])
-  end
-
-  # POST /makes
-  # POST /makes.xml
-  def create
+  def ajaxCreate
     @make = Make.new(params[:make])
 
-    respond_to do |format|
-      if @make.save
-        format.html { redirect_to(@make, :notice => 'Make was successfully created.') }
-        format.xml  { render :xml => @make, :status => :created, :location => @make }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @make.errors, :status => :unprocessable_entity }
-      end
+    if @make.save
+     render :json => {:status => 'SUCCESS'}
+    else
+      render :json => {:status => 'FAILURE'}
     end
   end
 
-  # PUT /makes/1
-  # PUT /makes/1.xml
-  def update
+  def ajaxEdit
+    @make = Make.find(params[:id])
+    render :partial => 'edit', :locals => { :make => @make}    
+  end
+
+  def ajaxUpdate
     @make = Make.find(params[:id])
 
-    respond_to do |format|
-      if @make.update_attributes(params[:make])
-        format.html { redirect_to(@make, :notice => 'Make was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @make.errors, :status => :unprocessable_entity }
-      end
+    if @make.update_attributes(params[:make])
+      render :json => {:status => 'SUCCESS', :displayValue => [@make.name, @make.description]}
+    else
+      render :json => {:status => 'FAILURE'}
     end
   end
 
-  # DELETE /makes/1
-  # DELETE /makes/1.xml
-  def destroy
+  def ajaxDelete
     @make = Make.find(params[:id])
-    @make.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(makes_url) }
-      format.xml  { head :ok }
+    if @make.delete
+      render :json => {:status => 'SUCCESS'}
+    else
+      render :json => {:status => 'FAILURE'}
     end
   end
 
-  def addModel
-    @make = Make.find(params[:make_id])
-    @models = Model.all(:order => "number")
-
-    respond_to do |format|
-      format.html
-      format.xml
-    end
-  end
-
- def saveModel
-   
-    @make = Make.find(params[:make_id])
-    @model = Model.find(params[:model][:id])
-
-    @model.make = @make
-    
-    if @model.save 
-      respond_to do |format|
-        format.html { redirect_to(@make, :notice => 'Model successfully added to Make.') }
-        format.xml
-      end
-    end
-  end
 end
