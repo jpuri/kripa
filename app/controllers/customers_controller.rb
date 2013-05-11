@@ -1,5 +1,7 @@
 class CustomersController < ApplicationController
 
+  before_filter :session_timeout
+
   def index
     @customers = Customer.all(:order => "name")
   end

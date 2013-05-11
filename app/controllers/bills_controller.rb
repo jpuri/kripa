@@ -1,4 +1,7 @@
 class BillsController < ApplicationController
+
+  before_filter :session_timeout
+
   # GET /bills
   # GET /bills.xml
   def index

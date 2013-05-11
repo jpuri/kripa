@@ -1,5 +1,7 @@
 class PricesController < ApplicationController
 
+  before_filter :session_timeout
+
   def index
     
     @makes = Make.all(:order => "name")

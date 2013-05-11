@@ -1,5 +1,7 @@
 class PartsController < ApplicationController
-  
+
+  before_filter :session_timeout
+
   def index
     @parts = Part.all(:order => "number")
   end

@@ -14,4 +14,12 @@ $(document).ready(function() {
 		height : 450,
 		modal : true
 	});
+	
 });
+
+$(document).ajaxError(function(event, jqXHR, settings, throwError){
+    if(jqXHR.status=='408'){
+        window.location = server_url
+    }
+});
+

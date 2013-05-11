@@ -1,5 +1,7 @@
 class ModelsController < ApplicationController
 
+  before_filter :session_timeout
+
   def index
     @models = Model.all(:order => "number")
   end
