@@ -179,6 +179,7 @@ Part = new Base('parts', false)
 Price = new Base('prices', true)
 Model = new Base('models', false)
 Make = new Base('makes', false)
+Customer = new Base('customers', false)
 
 //search parameter can be removed later with a form to be seciarilized
 

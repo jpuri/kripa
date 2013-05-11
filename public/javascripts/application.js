@@ -8,16 +8,10 @@ $(document).ready(function() {
 		height : 350,
 		modal : true
 	});
+	  $(".large-popup").dialog({
+	    autoOpen : false,
+		width : 400,
+		height : 450,
+		modal : true
+	});
 });
-
-//to be removed
-function openPage(entity, id, action){
-	var path = '/' + entity
-	if(id)
-	  path += '/' + id
-	if(action)
-	  path += '/' + action
-	window.location = path
-}
-
-
