@@ -1,6 +1,6 @@
 select, input{
 	width:100%; 
-	color: #60AFFE
+	color: #60AFFE;
 }
 table.borderedTable{ 
 	border-collapse:collapse;
