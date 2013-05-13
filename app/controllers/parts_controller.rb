@@ -77,4 +77,9 @@ class PartsController < ApplicationController
     end
   end
 
+  def ajaxAutoCompleteValue
+    @parts = Part.all(:order => "number")
+      render :json => {:list => @parts.collect { |part| part.number }}
+  end
+
 end

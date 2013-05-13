@@ -14,13 +14,11 @@
 		 </div>
 		 <div style="width: 22%;float: left;padding-left: 5%">
 	  		  <div style="float: left; width:30%"><%= label_tag(:model, "Model#", :class => 'medium_lbl_grey') %></div>
-			  <div style="float: right; width:70%"><%= collection_select(:model, :id,  @models, :id, :number, {:prompt => 'Select Model', 
-			  	:selected => @model_id})%></div>
+			  <div style="float: right; width:70%"><input type="text" id="model_number" name="model_number" class="modelsautocomplete"/></div>
 		 </div>
 		 <div style="width: 22%;float: left;padding-left: 5%">
 			  <div style="float: left; width:30%"><%= label_tag(:part, "Part#", :class => 'medium_lbl_grey') %></div>
-			  <div style="float: right; width:70%"><%= collection_select(:part, :id,  @parts, :id, :number, {:prompt => 'Select Part', 
-			  	:selected => @part_id})%></div>
+			  <div style="float: right; width:70%"><input type="text" id="part_number" name="part_number" class="partsautocomplete"/></div>
 		</div>
 		</div>
 		<div style="padding-top: 5%" align="left">

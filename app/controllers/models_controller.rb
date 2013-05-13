@@ -52,4 +52,9 @@ class ModelsController < ApplicationController
     end
   end
 
+  def ajaxAutoCompleteValue
+    @models = Model.all(:order => "number")
+      render :json => {:list => @models.collect { |model| model.number }}
+  end
+
 end

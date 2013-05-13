@@ -181,13 +181,11 @@ Model = new Base('models', false)
 Make = new Base('makes', false)
 Customer = new Base('customers', false)
 
-//search parameter can be removed later with a form to be seciarilized
-
 Price.getSearchParams = function() {
 	return {
 		'make_id' : $('#make_id').val(),
-		'model_id' : $('#model_id').val(),
-		'part_id' : $('#part_id').val(),
+		'model_number' : $('#model_number').val(),
+		'part_number' : $('#part_number').val(),
 		'customer_id' : $('#customer_id').val(),
 		'currency_id' : $('#currency_id').val(),
 	}

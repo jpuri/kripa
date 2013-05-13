@@ -10,6 +10,7 @@ Kripa::Application.routes.draw do
   
   ['parts', 'models', 'prices', 'makes', 'customers'].each do |entity|
     get entity + '/index'
+    get entity + '/ajaxAutoCompleteValue'
     get entity + '/ajaxIndex'
     get entity + '/ajaxSearch'
     get entity + '/ajaxNew'

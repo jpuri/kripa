@@ -19,7 +19,7 @@ class PricesController < ApplicationController
   end
 
   def fetchSearchResults
-    
+      
       condition = 'true'
         
       if(params[:make_id])
@@ -29,17 +29,17 @@ class PricesController < ApplicationController
         end
       end
       
-      if(params[:model_id])
-        @model_id = params[:model_id]
-        if(@model_id.length > 0)
-          condition += " and m.id = #{@model_id}"
+      if(params[:model_number])
+        @model_number = params[:model_number]
+        if(@model_number.length > 0)
+          condition += " and m.number like '#{@model_number}%"
         end
       end
       
-      if(params[:part_id])
-        @part_id = params[:part_id]
-        if(@part_id.length > 0)
-          condition += " and p.id = #{@part_id}"
+      if(params[:part_number])
+        @part_number = params[:part_number]
+        if(@part_number.length > 0)
+          condition += " and p.number like '#{@part_number}%'"
         end
       end
       
