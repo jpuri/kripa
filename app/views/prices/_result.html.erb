@@ -12,40 +12,31 @@
 	    <th width="10%">Action</th>
 	  </tr>
 	
-	<%= @result.cmd_tuples%>
+	  <% i = 1 %>
 	
-  	  <% if @result && @result.cmd_tuples > 0%>
-		  
-		  <% i = 1 %>
-		
-		  <% for column in @result %>
-		  <tr>
-		    <td><%= i %></td>
-		    <td><%= column["make_name"] %></td>
-		    <td><%= column["model_number"] %></td>
-		    <td><%= column["part_number"] %></td>
-		    <td><%= column["part_description"] %></td>
-		    <td><%= column["weight"] %></td>
-		    <td><%= column["name"] %></td>
-		    <td><%= column["value"] %></td>
-		    <td>
-		    	<span style="margin-left: 20%;">
-		    		<img src="/images/edit.jpg" id="edit_<%= column["id"] %>" class="edit_image" onclick="Price.editEntity(<%= column["id"] %>, <%= i %>)"/>
-				</span>
-				<img id="spinner_edit_<%= i %>" style="display:none" src="/images/spinner.gif"/>
-				<span style="margin-left: 20%;">
-		    		<img src="/images/delete.jpg" id="delete_<%= column["id"] %>" class="delete_image" onclick="Price.deleteEntity(<%= column["id"] %>, <%= i %>)"></img>
-				<img id="spinner_delete_<%= i %>" style="display:none;" src="/images/spinner.gif"/>
-				</span>
-		    </td>
-		  </tr>
-		  <% i = i + 1 %>
+	  <% for column in @result %>
+	  <tr>
+	    <td><%= i %></td>
+	    <td><%= column["make_name"] %></td>
+	    <td><%= column["model_number"] %></td>
+	    <td><%= column["part_number"] %></td>
+	    <td><%= column["part_description"] %></td>
+	    <td><%= column["weight"] %></td>
+	    <td><%= column["name"] %></td>
+	    <td><%= column["value"] %></td>
+	    <td>
+	    	<span style="margin-left: 20%;">
+	    		<img src="/images/edit.jpg" id="edit_<%= column["id"] %>" class="edit_image" onclick="Price.editEntity(<%= column["id"] %>, <%= i %>)"/>
+			</span>
+			<img id="spinner_edit_<%= i %>" style="display:none" src="/images/spinner.gif"/>
+			<span style="margin-left: 20%;">
+	    		<img src="/images/delete.jpg" id="delete_<%= column["id"] %>" class="delete_image" onclick="Price.deleteEntity(<%= column["id"] %>, <%= i %>)"></img>
+			<img id="spinner_delete_<%= i %>" style="display:none;" src="/images/spinner.gif"/>
+			</span>
+	    </td>
+	  </tr>
+	  <% i = i + 1 %>
 	  <% end %>
-
-    <% else %>
 	
-	<div id="failure_msg" class="failure">Your search did not gave any Results !!!</div>
-	
-    <% end %>
 	</table>
 </div>
