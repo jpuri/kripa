@@ -12,7 +12,6 @@
 	    <th width="10%">Action</th>
 	  </tr>
 	
-  	  <% if @result && @result.cmd_tuples > 0%>
 		  
 		  <% i = 1 %>
 		
@@ -40,10 +39,5 @@
 		  <% i = i + 1 %>
 	  <% end %>
 
-    <% else %>
-	
-	<div id="failure_msg" class="failure">Your search did not gave any Results !!!</div>
-	
-    <% end %>
 	</table>
 </div>
