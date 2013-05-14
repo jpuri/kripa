@@ -53,8 +53,12 @@ class ModelsController < ApplicationController
   end
 
   def ajaxAutoCompleteValue
-    @models = Model.all(:order => "number")
-      render :json => {:list => @models.collect { |model| model.number }}
+    if(params[:make_id] && params[:make_id].length > 0)
+      @models = Model.where(:make_id => params[:make_id]).order('number asc')
+    else
+      @models = Model.all(:order => "number")
+    end
+    render :json => {:list => @models.collect { |model| model.number }}
   end
 
 end

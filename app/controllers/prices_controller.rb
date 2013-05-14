@@ -32,7 +32,7 @@ class PricesController < ApplicationController
       if(params[:model_number])
         @model_number = params[:model_number]
         if(@model_number.length > 0)
-          condition += " and m.number like '#{@model_number}%"
+          condition += " and m.number like '#{@model_number}%'"
         end
       end
       
@@ -62,7 +62,7 @@ class PricesController < ApplicationController
         parts p, prices pp, customers c, currencies cur where mk.id = m.make_id and m.id = mp.model_id and p.id = mp.part_id and p.id = pp.part_id  
         and pp.customer_id = c.id and pp.currency_id = cur.id and " + condition)
   
-      @result   
+      @result  
   end
 
   def ajaxNew

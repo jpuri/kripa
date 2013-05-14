@@ -78,7 +78,11 @@ class PartsController < ApplicationController
   end
 
   def ajaxAutoCompleteValue
-    @parts = Part.all(:order => "number")
+    if(params[:model_number] && params[:model_number].length > 0)
+      @parts = Part.joins(:models).where(:models => {:number => params[:model_number]}).order('number asc')
+    else
+      @parts = Part.all(:order => "number")
+    end
       render :json => {:list => @parts.collect { |part| part.number }}
   end
 
