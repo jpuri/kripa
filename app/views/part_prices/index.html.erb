@@ -1,57 +1,38 @@
-<h1>Price List</h1>
-
-<%= form_tag({:controller=>"models", :action => "search"}, :method => "get") do %>
-
-<div class="top_pad_20">
-  <%= label_tag(:make, "Make", :class => 'medium_lbl_grey') %>
-  <%= collection_select(:make, :id,  @makes, :id, :name, {:prompt => 'Select Make', :selected => @make_id}, :class => 'width_large')%>
-  <%= label_tag(:model, "Model #", :class => 'medium_lbl_grey') %>
-  <%= collection_select(:model, :id,  @models_select, :id, :number, {:prompt => 'Select Model', :selected => @model_id}, :class => 'width_large')%>
-  <%= label_tag(:part, "Part #", :class => 'medium_lbl_grey') %>
-  <%= collection_select(:part, :id,  @parts, :id, :number, {:prompt => 'Select Part', :selected => @part_id}, :class => 'width_large')%>
-</div>
-
-<div class="top_pad_20">
-  <%= label_tag(:customer, "Customer", :class => 'medium_lbl_grey') %>
-  <%= collection_select(:customer, :id,  @customers, :id, :name, {:prompt => 'Select Customer', :selected => @customer_id}, :class => 'width_large')%>
-  <%= label_tag(:currency, "Currency", :class => 'medium_lbl_grey') %>
-  <%= collection_select(:currency, :id,  @currencies, :id, :name, {:prompt => 'Select Currency', :selected => @currency_id}, :class => 'width_large')%>
-
-  <%= submit_tag "Search", :class => "small_button" %>
-  <%= submit_tag "Reset", :class => "small_button" %>
-</div>
-
-<% end %>
-
-<div class="top_pad_20">
-<table class="borderedTable">
-  <tr>
-    <th>S. No.</th>
-    <th>Make</th>
-    <th>Model #</th>
-    <th>Part #</th>
-    <th>Part Description</th>
-    <th>Weight(Kg)</th>
-    <th>Customer</th>
-    <th>Price</th>
-  </tr>
-
-  <% i = 1 %>
-
-  <% for column in @result %>
-  <tr>
-    <td><%= i %></td>
-    <td><%= column["make_name"] %></td>
-    <td><%= column["model_number"] %></td>
-    <td><%= column["part_number"] %></td>
-    <td><%= column["part_description"] %></td>
-    <td><%= column["weight"] %></td>
-    <td><%= column["name"] %></td>
-    <td><%= column["price"] %></td>
-  </tr>
-  <% i = i + 1 %>
-  <% end %>
-
-</table>
-
-</div>
+<div style="width: 100%">
+	<div>
+	  <span class="heading">Part Prices</span>
+	  <span style="float: right"><a onclick="PartPrice.newEntity()" class="button_link">Add</a>
+	  <img id="spinner_new" style="display:none" src="/images/spinner.gif"/></span>
+	</div>
+	<div style="padding-top: 3%; widows: 100%">
+	
+		<div style="padding-top: 2%" align="left">
+		  <div style="width: 17%;float: left;">
+		  	  <div style="float: left; width:20%"><%= label_tag(:make, "Make") %></div>
+		  	  <div style="float: right; width:80%"><input type="text" id="make" name="make"/></div>
+		 </div>
+		 <div style="width: 17%;float: left;padding-left: 4%">
+	  		  <div style="float: left; width:23%"><%= label_tag(:model, "Model", :class => 'medium_lbl_grey') %></div>
+			  <div style="float: right; width:77%"><input type="text" id="model" name="model"/></div>
+		 </div>
+		 <div style="width: 17%;float: left;padding-left: 4%">
+			  <div style="float: left; width:18%"><%= label_tag(:part, "Part", :class => 'medium_lbl_grey') %></div>
+			  <div style="float: right; width:82%"><input type="text" id="part_number" name="part_number"/></div>
+		</div>
+		 <div style="width: 17%;float: left;padding-left: 4%">
+			  <div style="float: left; width:35%"><%= label_tag(:currency, "Currency", :class => 'medium_lbl_grey') %></div>
+			  <div style="float: right; width:65%"><input type="text" id="currency" name="currency"/></div>
+		</div>
+		 <div style="width: 16%;float: left;padding-left: 4%;">
+			  <a onclick="PartPrice.searchEntity()" class="button_link">Search</a>
+			  <img id="spinner_search" style="display:none" src="/images/spinner.gif"/>
+			  <a onclick="PartPrice.resetSearchFields()" class="button_link">Reset</a>
+			</div>
+		</div>
+	</div>
+	<div id="results" name="results" style="padding-top: 2%; width: 100%">
+	  <%= render 'result' %>
+	</div>
+	<div name="dialog_create" id="dialog_create" class="popup" title="<font color='#60AFFE'>Add Price</font>"></div>
+	<div name="dialog_update" id="dialog_update" class="popup" title="<font color='#60AFFE'>Edit Price</font>"></div>
+<div>

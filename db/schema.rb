@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511165445) do
+ActiveRecord::Schema.define(:version => 20130527071938) do
 
   create_table "bill_parts", :force => true do |t|
     t.integer  "bill_id"
@@ -85,6 +85,18 @@ ActiveRecord::Schema.define(:version => 20130511165445) do
   create_table "part_models", :force => true do |t|
     t.string   "model_name"
     t.integer  "part_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "part_prices", :force => true do |t|
+    t.string   "make"
+    t.string   "model"
+    t.string   "part_number"
+    t.string   "part_desc"
+    t.float    "weight"
+    t.integer  "currency_id"
+    t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

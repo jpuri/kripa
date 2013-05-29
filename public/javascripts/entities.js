@@ -110,6 +110,7 @@ Base.prototype = {
 	},
 	
 	updateEntity : function (id){
+		alert($("#createForm").serialize())
 		Base = this  		
 		entity = Base.entity
 		search = Base.search
@@ -180,6 +181,7 @@ Price = new Base('prices', true)
 Model = new Base('models', false)
 Make = new Base('makes', false)
 Customer = new Base('customers', false)
+PartPrice = new Base('part_prices', true)
 
 Price.getSearchParams = function() {
 	return {
@@ -197,4 +199,133 @@ Price.resetSearchFields = function() {
 	$('#part_id').val('')
 	$('#customer_id').val('')
 	$('#currency_id').val('')
-} 
+}
+
+PartPrice.getSearchParams = function() {
+	return {
+		'make' : $('#make').val(),
+		'model' : $('#model').val(),
+		'part_number' : $('#part_number').val(),
+		'currency' : $('#currency').val(),
+	}
+}
+
+PartPrice.resetSearchFields = function() {
+	$('#make').val('')
+	$('#model').val('')
+	$('#part_number').val('')
+	$('#currency').val('')
+}
+
+PartPrice.newEntity = function(){
+	Base = this  		
+	entity = Base.entity
+	Base.showSpinner("spinner_new")
+    $.ajax({
+      url : server_url + entity + "/ajaxNew",
+      success : function(html){
+		Base.hideSpinner("spinner_new")
+		$("#createNewRow").show()
+		$("#createNewRow").html(html)
+      }
+	})
+}
+
+PartPrice.hideCreateRow = function(){
+	$("#createNewRow").hide()
+}
+
+PartPrice.createEntity = function(){
+		Base = this  		
+		entity = Base.entity
+		Base.clearMessages()
+		Base.showSpinner('spinner_create')
+	    $.ajax({
+	      url : server_url + entity + "/ajaxCreate",
+		  data : {
+					'part_price[make]': $('#part_price_make').val(),
+					'part_price[model]': $('#part_price_model').val(),
+					'part_price[part_number]': $('#part_price_part_number').val(),
+					'part_price[part_desc]': $('#part_price_part_desc').val(),
+					'part_price[weight]': $('#part_price_weight').val(),
+					'part_price[currency]': $('#part_price_currency').val(),
+					'part_price[price]': $('#part_price_price').val()
+				},
+	      success : function(response){
+	      	if(response.status == 'SUCCESS'){
+	      		Base.searchEntity()
+	  			Base.showSuccessMessage("Successfully created.")
+				$("#createNewRow").hide()
+	  		}
+	      	else if(response.status == 'FAILURE'){
+	  			Base.showFailureMessage("Error while creating.")
+	  		}
+			Base.hideSpinner('spinner_create')
+	      }
+	      //failure to be done
+		})
+	}
+	
+PartPrice.updateEntity = function (id, index){
+		Base = this  		
+		entity = Base.entity
+		search = Base.search
+		Base.clearMessages()
+		Base.showSpinner('spinner_update')
+	    $.ajax({
+	      url : server_url + entity + "/ajaxUpdate",
+		  data : {
+					'id': $('#part_price_id').val(),
+					'part_price[make]': $('#part_price_make').val(),
+					'part_price[model]': $('#part_price_model').val(),
+					'part_price[part_number]': $('#part_price_part_number').val(),
+					'part_price[part_desc]': $('#part_price_part_desc').val(),
+					'part_price[weight]': $('#part_price_weight').val(),
+					'part_price[currency]': $('#part_price_currency').val(),
+					'part_price[price]': $('#part_price_price').val()
+				},
+	      success : function(response){
+	      	if(response.status == 'SUCCESS'){
+	      		Base.showEntityInRow(id, index)
+				Base.showSuccessMessage("Successfully updated.")
+	  		}
+	      	else if(response.status == 'FAILURE'){
+	  			Base.showFailureMessage("Error while updating.")
+	  		}
+			Base.hideSpinner('spinner_update')
+	      }
+	      //failure to be done
+		})
+	}
+	
+PartPrice.editEntity = function(id, index){
+		Base = this  		
+		entity = Base.entity
+		if(!index)
+			index = id
+		Base.showSpinner('spinner_edit_' + index)
+	    $.ajax({
+	      url : server_url + entity + "/ajaxEdit",
+		  data : {
+		  	id: id,
+		  	index: index
+		  },
+	      success : function(html){
+			Base.hideSpinner('spinner_edit_' + index)
+			$("#" + entity + '_' + id).html(html)
+	      }
+		})
+	}
+	
+PartPrice.showEntityInRow = function(id, index){
+    $.ajax({
+      url : server_url + entity + "/ajaxSingleDisplayRow",
+	  data : {
+	  	id: id,
+	  	index: index
+	  },
+      success : function(html){
+		$("#" + entity + '_' + id).html(html)
+      }
+    })
+}	

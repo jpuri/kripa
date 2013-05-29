@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  make_number: 
+  model_number: 
+  part_number: 
+  part_desc: 
+  weight: 
+  currency: 
+  price: 1.5
+
+two:
+  make_number: 
+  model_number: 
+  part_number: 
+  part_desc: 
+  weight: 
+  currency: 
+  price: 1.5

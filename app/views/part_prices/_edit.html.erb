@@ -1,0 +1,12 @@
+<td><%=index%></td>
+<%= render 'form' %>
+<td>
+	<input type="hidden" id="part_price_id" value="<%=@part_price.id%>">
+	<span style="margin-left: 15%;">
+		<img src="/images/right_green.jpg" class="edit_image" onclick="PartPrice.updateEntity(<%=@part_price.id%>, <%=index%>)"/>
+	</span>
+	<img id="spinner_update" style="display:none" src="/images/spinner.gif"/>
+	<span style="margin-left: 15%;">
+		<img src="/images/wrong_red.jpg" class="edit_image" onclick="PartPrice.showEntityInRow(<%=@part_price.id%>, <%=index%>)"/>
+	</span>
+</td>

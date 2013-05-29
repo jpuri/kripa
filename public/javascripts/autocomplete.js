@@ -3,9 +3,9 @@ function populatePartsAutoComplete(){
 	  url : server_url + "parts/ajaxAutoCompleteValue",
 	  data: {model_number: $('#model_number').val()},
 	  success : function(data){
-		$( ".partsautocomplete" ).autocomplete({ minLength: 0 });
-		$( ".partsautocomplete" ).autocomplete({ delay: 0 });
-		$( ".partsautocomplete" ).autocomplete({
+		$( ".search_part" ).autocomplete({ minLength: 0 });
+		$( ".search_part" ).autocomplete({ delay: 0 });
+		$( ".search_part" ).autocomplete({
 		  	source: function( request, response ) {
 	          var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
 	          response( $.grep( data.list, function( item ){
@@ -16,14 +16,15 @@ function populatePartsAutoComplete(){
 	  }
 	})
 }
+
 function populateModelsAutoComplete(){
 	$.ajax({
 	  url : server_url + "models/ajaxAutoCompleteValue",
 	  data: {make_id: $('#make_id').val()},
 	  success : function(data){
-		$( ".modelsautocomplete" ).autocomplete({ minLength: 0 });
-		$( ".modelsautocomplete" ).autocomplete({ delay: 0 });
-		$( ".modelsautocomplete" ).autocomplete({
+		$( ".search_model" ).autocomplete({ minLength: 0 });
+		$( ".search_model" ).autocomplete({ delay: 0 });
+		$( ".search_model" ).autocomplete({
 		  	source: function( request, response ) {
 	          var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
 	          response( $.grep( data.list, function( item ){
@@ -35,11 +36,18 @@ function populateModelsAutoComplete(){
 	})
 }
 
-
-function clearPartNumber(){
-	$('#part_number').val('')
-}
-function clearPartModelNumber(){
-	$('#part_number').val('')
-	$('#model_number').val('')
-}
+$(document).ready(function() {
+	$(".search_make").change(function(event) {
+	  $(".search_model").val('')
+	  $(".search_part").val('')
+	});
+	$(".search_model").change(function() {
+	  $(".search_part").val('')
+	});
+	$(".search_model").focusin(function() {
+	  populateModelsAutoComplete();
+	});
+	$(".search_part").focusin(function() {
+	  populatePartsAutoComplete();
+	});
+})

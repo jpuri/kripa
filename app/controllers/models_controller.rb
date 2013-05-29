@@ -56,7 +56,7 @@ class ModelsController < ApplicationController
     if(params[:make_id] && params[:make_id].length > 0)
       @models = Model.where(:make_id => params[:make_id]).order('number asc')
     else
-      @models = Model.all(:order => "number")
+      @models = Model.all(:order => 'number')
     end
     render :json => {:list => @models.collect { |model| model.number }}
   end

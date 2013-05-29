@@ -98,3 +98,6 @@ label{
     height: 12px;
     width: 17px;
 }
+.inline_textbox{
+	width: 90%; 
+}

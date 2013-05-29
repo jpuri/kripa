@@ -8,7 +8,7 @@ Kripa::Application.routes.draw do
 
   post "welcome/index"
   
-  ['parts', 'models', 'prices', 'makes', 'customers'].each do |entity|
+  ['parts', 'models', 'prices', 'makes', 'customers', 'part_prices'].each do |entity|
     get entity + '/index'
     get entity + '/ajaxAutoCompleteValue'
     get entity + '/ajaxIndex'
@@ -18,11 +18,12 @@ Kripa::Application.routes.draw do
     get entity + '/ajaxUpdate'
     get entity + '/ajaxCreate'
     get entity + '/ajaxDelete'
+    get entity + '/ajaxSingleDisplayRow'
   end
   
   resources :customers
   resources :sessions
   resources :users
 
-  root :to => "welcome#index"
+  root :to => "part_prices#index"
 end
