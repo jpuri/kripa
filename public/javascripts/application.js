@@ -16,6 +16,7 @@ $(document).ready(function() {
 		modal : true
 	});
 
+
 });
 
 $(document).ajaxError(function(event, jqXHR, settings, throwError){
@@ -38,22 +39,10 @@ function showPriceMenuDiv(){
 
 }
 	
-	
-function mouseAlert(e){
-	if(e.srcElement.id != 'priceMenuDivMain' && e.srcElement.id != 'priceMenuDivSub'){
-	el = document.getElementById("priceMenuDivMain");
-	el.style.visibility = "hidden" 
-	}
-}		
-
-//	    document.addEventListener('mousedown', mouseAlert, false);
-
-		
 function hidePriceMenuDiv(){
 	el = document.getElementById("priceMenuDivMain");
 	el.style.visibility = "hidden" 
 }
-			
 
 function searchPartPrice(make, currency){
 	$('#make').val(make)

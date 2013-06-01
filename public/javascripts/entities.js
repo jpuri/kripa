@@ -231,7 +231,7 @@ PartPrice.newEntity = function(){
 }
 
 PartPrice.hideCreateRow = function(){
-	$("#createNewRow").hide()
+	$("#createNewRow").html('')
 }
 
 PartPrice.createEntity = function(){
@@ -328,3 +328,5 @@ PartPrice.showEntityInRow = function(id, index){
       }
     })
 }	
+
+

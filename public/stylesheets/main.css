@@ -57,16 +57,27 @@ label{
 	color: white;
 	border-radius: 10px;
 }
+.button_image:hover{
+    cursor: pointer;
+    width:35px;
+    height:35px;
+}
+.button_image{
+    width:30px;
+    height:30px;
+}
 .menu_div a{
 	text-decoration:none;
-	font-size:12pt;
+	font-size:15px;
 	font-weight: 250;
 	width: 100%;
+	height: 100%;
 	color: white;
 	margin-left: 15%;
 }
 .menu_div:hover{
 	background-color: #FAAFBE;
+	cursor: default;
 }
 .success{
 	font-size:10pt;
@@ -103,7 +114,7 @@ label{
      visibility: hidden;
      position: absolute;
      left: 100%;
-     width:120px;
+     width:110px;
      margin: 10px auto;
      padding:15px;
 	 border-radius: 10px;

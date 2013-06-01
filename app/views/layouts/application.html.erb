@@ -2,7 +2,7 @@
 <html>
 <head>
 <script src="/javascripts/application.js"></script>
-<script src="/javascripts/jquery-1.6.1.js"></script>
+<script src="/javascripts/jquery-1.10.1.min.js"></script>
 <script src="/javascripts/jquery-ui-1.8.15.custom.min.js"></script>
   <title>Kripa</title>
   <%= stylesheet_link_tag :all %>
@@ -13,7 +13,7 @@
   <div style="width: 100%">
   	<% if current_user %>
     <div style="font-family:Verdana;
-    position:absolute;left:0%;bottom:0%;top:0%;width:7%;background-color: #60AFFE;">
+    position:absolute;left:0%;bottom:0%;top:0%;width:10%;background-color: #60AFFE;">
     	<div id="priceMenuDivMain"></div>
     	<!--<div class="menu_div" style="margin-top: 5%;" > 
 	      <%= link_to 'Makes', :controller => "makes", :action => "index"%><br/>
@@ -30,10 +30,12 @@
     	<div style="margin-top: 5%;" class="menu_div"> 
 	      <%= link_to 'Log Out', :controller => "sessions", :action => "destroy"%>
 		</div>-->
-    	<div style="margin-top: 10%; width:100%" class="menu_div" id="test" onmouseover="showPriceMenuDiv()"> 
-    		 
+    	<div style="margin-top: 10%; width:100%" class="menu_div" onmouseover="showPriceMenuDiv()"> 
 	      <a>Prices</a>
 	    </div>
+    	<div style="margin-top: 7%;" class="menu_div"> 
+	      <%= link_to 'Log Out', :controller => "sessions", :action => "destroy"%>
+		</div>
 	</div>
 	<div style="margin-left: 20%; margin-right: 20%; font-family:Verdana; width: 70%; height: 100%" align="center">
 		<div id="success_msg" class="success"></div>
