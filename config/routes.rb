@@ -7,6 +7,7 @@ Kripa::Application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
 
   post "welcome/index"
+  post "part_prices/index"
   
   ['parts', 'models', 'prices', 'makes', 'customers', 'part_prices'].each do |entity|
     get entity + '/index'
@@ -21,9 +22,10 @@ Kripa::Application.routes.draw do
     get entity + '/ajaxSingleDisplayRow'
   end
   
+  get "part_prices/ajaxPartPriceMenu"
   resources :customers
   resources :sessions
   resources :users
 
-  root :to => "part_prices#index"
+  root :to => "welcome#index"
 end

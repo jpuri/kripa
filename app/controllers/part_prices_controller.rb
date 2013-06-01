@@ -3,12 +3,16 @@ class PartPricesController < ApplicationController
   before_filter :session_timeout
 
   def index
-    @part_prices = PartPrice.all(:order => "make")
+    @make = params[:part_price][:make]
+    @currency = params[:part_price][:currency]
+    @part_prices = PartPrice.where("make = ? and currency =  ?", 
+    "#{params[:part_price][:make]}", "#{params[:part_price][:currency]}").order('make asc')
   end
 
   def ajaxSearch
-    @part_prices = PartPrice.where("make like ? and model like ? and part_number like ? and currency like ?", 
-    "%#{params[:make]}%", "%#{params[:model]}%", "%#{params[:part_number]}%", "%#{params[:currency]}%").order('make asc')
+    @part_prices = PartPrice.where("lower(model) like ? and lower(part_number) like ? and make = ? and currency =  ?", 
+    "%#{params[:model].strip.downcase}%", "%#{params[:part_number].strip.downcase}%",
+    "#{params[:make]}", "#{params[:currency]}", ).order('make asc')
     render :partial => 'result', :locals => { :part_prices => @part_prices}
   end
 
@@ -59,4 +63,10 @@ class PartPricesController < ApplicationController
     render :partial => 'singleRow', :locals => { :part_price => @part_price, :i => index}    
   end
   
+  def ajaxPartPriceMenu
+    @makes = Make.all(:order => "name")
+    @currencies = Currency.all
+    render :partial => 'partPriceMenu', :locals => { :models => @models, :currencies => @currencies}    
+  end
+
 end

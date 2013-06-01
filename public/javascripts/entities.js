@@ -110,7 +110,6 @@ Base.prototype = {
 	},
 	
 	updateEntity : function (id){
-		alert($("#createForm").serialize())
 		Base = this  		
 		entity = Base.entity
 		search = Base.search
@@ -203,10 +202,10 @@ Price.resetSearchFields = function() {
 
 PartPrice.getSearchParams = function() {
 	return {
-		'make' : $('#make').val(),
+		'make' : $('#part_price_make').val(),
 		'model' : $('#model').val(),
 		'part_number' : $('#part_number').val(),
-		'currency' : $('#currency').val(),
+		'currency' : $('#part_price_currency').val(),
 	}
 }
 
@@ -275,7 +274,7 @@ PartPrice.updateEntity = function (id, index){
 	    $.ajax({
 	      url : server_url + entity + "/ajaxUpdate",
 		  data : {
-					'id': $('#part_price_id').val(),
+					'id': id,
 					'part_price[make]': $('#part_price_make').val(),
 					'part_price[model]': $('#part_price_model').val(),
 					'part_price[part_number]': $('#part_price_part_number').val(),

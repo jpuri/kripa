@@ -1,0 +1,14 @@
+<div id="priceMenuDivSub">
+  <% for make in @makes %>
+  	<div style="padding-bottom: 10%">
+		<div class="partPriceMenuLinkMain"><%=make.name%></div>
+		<div class="partPriceMenuLinkSub"><% for currency in @currencies %>
+			<a onclick="searchPartPrice('<%=make.name%>', '<%=currency.name%>')"><%=currency.name%></a> &nbsp;
+	    <% end %></div>
+    </div>
+  <% end %>
+</div>
+<form id="partPriceSearchForm" action="/part_prices/index" method="GET">
+	<input type="hidden" id="make" name="part_price[make]">
+	<input type="hidden" id="currency" name="part_price[currency]">
+</form>

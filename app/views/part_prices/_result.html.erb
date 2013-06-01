@@ -1,14 +1,12 @@
-<div style="padding-top: 3%">
+<div style="padding-top: 3%;position:absolute; padding-right: 10%">
 	<table class="borderedTable">
 	  <tr>
 	    <th width="4%">S. No.</th>
-	    <th width="10%">Make</th>
 	    <th width="10%">Model</th>
 	    <th width="10%">Part Number</th>
 	    <th width="20%">Part Description</th>
 	    <th width="3%">Weight(Kg)</th>
-	    <th width="5%">Currency</th>
-	    <th width="5%">Price</th>
+	    <th width="5%">Price(<%= @currency %>)</th>
 	    <th width="7%">Action</th>
 	  </tr>
 	  <tr id="createNewRow"/>
@@ -17,12 +15,10 @@
 	  <% for part_price in @part_prices %>
   	  <tr id="<%= 'part_prices_' + String(part_price.id) %>">
 	    <td><%= i %></td>
-	    <td><%= part_price.make %></td>
 	    <td><%= part_price.model %></td>
 	    <td><%= part_price.part_number %></td>
 	    <td><%= part_price.part_desc %></td>
 	    <td><%= part_price.weight %></td>
-	    <td><%= part_price.currency %></td>
 	    <td><%= part_price.price %></td>
 	    <td>
 	    	<span style="margin-left: 15%;">
@@ -40,3 +36,6 @@
 	
 	</table>
 </div>
+		<div style="padding-top: 3%;position:absolute; padding-right: 10%;padding-left: 70%;">
+		<img id="spinner_search" src="/images/plus.jpg"/ onclick="PartPrice.newEntity()">
+		<img id="spinner_new" style="display:none" src="/images/spinner.gif"/></div>

@@ -23,3 +23,40 @@ $(document).ajaxError(function(event, jqXHR, settings, throwError){
         window.location = server_url
     }
 });
+
+function showPriceMenuDiv(){
+	    $.ajax({
+	      url : server_url + "part_prices/ajaxPartPriceMenu",
+		  data : {
+		  },
+	      success : function(html){
+			$("#priceMenuDivMain").html(html)
+			el = document.getElementById("priceMenuDivMain");
+			el.style.visibility = "visible";
+	      }
+		})
+
+}
+	
+	
+function mouseAlert(e){
+	if(e.srcElement.id != 'priceMenuDivMain' && e.srcElement.id != 'priceMenuDivSub'){
+	el = document.getElementById("priceMenuDivMain");
+	el.style.visibility = "hidden" 
+	}
+}		
+
+//	    document.addEventListener('mousedown', mouseAlert, false);
+
+		
+function hidePriceMenuDiv(){
+	el = document.getElementById("priceMenuDivMain");
+	el.style.visibility = "hidden" 
+}
+			
+
+function searchPartPrice(make, currency){
+	$('#make').val(make)
+	$('#currency').val(currency)
+	$('#partPriceSearchForm').submit()
+}
