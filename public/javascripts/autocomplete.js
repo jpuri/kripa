@@ -1,7 +1,8 @@
 function populatePartsAutoComplete(){
 	$.ajax({
-	  url : server_url + "parts/ajaxAutoCompleteValue",
-	  data: {model_number: $('#model_number').val()},
+	  url : server_url + "part_prices/ajaxAutoCompleteParts",
+	  data: {model_number: $('#model').val(),
+	  currency: $('#part_price_currency').val()},
 	  success : function(data){
 		$( ".search_part" ).autocomplete({ minLength: 0 });
 		$( ".search_part" ).autocomplete({ delay: 0 });
@@ -19,8 +20,9 @@ function populatePartsAutoComplete(){
 
 function populateModelsAutoComplete(){
 	$.ajax({
-	  url : server_url + "models/ajaxAutoCompleteValue",
-	  data: {make_id: $('#make_id').val()},
+	  url : server_url + "part_prices/ajaxAutoCompleteModels",
+	  data: {make: $('#part_price_make').val(),
+	  currency: $('#part_price_currency').val()},
 	  success : function(data){
 		$( ".search_model" ).autocomplete({ minLength: 0 });
 		$( ".search_model" ).autocomplete({ delay: 0 });
@@ -37,10 +39,6 @@ function populateModelsAutoComplete(){
 }
 
 $(document).ready(function() {
-	$(".search_make").change(function(event) {
-	  $(".search_model").val('')
-	  $(".search_part").val('')
-	});
 	$(".search_model").change(function() {
 	  $(".search_part").val('')
 	});

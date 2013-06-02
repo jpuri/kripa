@@ -12,26 +12,30 @@
 	  <tr id="createNewRow"/>
 	  <% i = 1 %>
 	
-	  <% for part_price in @part_prices %>
-  	  <tr id="<%= 'part_prices_' + String(part_price.id) %>">
-	    <td><%= i %></td>
-	    <td><%= part_price.model %></td>
-	    <td><%= part_price.part_number %></td>
-	    <td><%= part_price.part_desc %></td>
-	    <td><%= part_price.weight %></td>
-	    <td><%= part_price.price %></td>
-	    <td>
-	    	<span style="margin-left: 15%;">
-	    		<img src="/images/pencil_edit.jpg" id="edit_<%= part_price.id %>" class="edit_image" onclick="PartPrice.editEntity(<%= part_price.id %>, <%= i %>)"/>
-			</span>
-			<img id="spinner_edit_<%= part_price.id %>" style="display:none" src="/images/spinner.gif"/>
-			<span style="margin-left: 15%;">
-	    		<img src="/images/minus_red.jpg" id="delete_<%= part_price.id %>" class="edit_image" onclick="PartPrice.deleteEntity(<%= part_price.id %>)"></img>
-			<img id="spinner_delete_<%= part_price.id %>" style="display:none;" src="/images/spinner.gif"/>
-			</span>
-	    </td>
-	  </tr>
-	  <% i = i + 1 %>
+	  <%if @part_prices.length > 0%>
+		  <% for part_price in @part_prices %>
+	  	  <tr id="<%= 'part_prices_' + String(part_price.id) %>">
+		    <td><%= i %></td>
+		    <td><%= part_price.model %></td>
+		    <td><%= part_price.part_number %></td>
+		    <td><%= part_price.part_desc %></td>
+		    <td><%= part_price.weight %></td>
+		    <td><%= part_price.price %></td>
+		    <td>
+		    	<span style="margin-left: 15%;">
+		    		<img src="/images/pencil_edit.jpg" id="edit_<%= part_price.id %>" class="edit_image" onclick="PartPrice.editEntity(<%= part_price.id %>, <%= i %>)"/>
+				</span>
+				<img id="spinner_edit_<%= part_price.id %>" style="display:none" src="/images/spinner.gif"/>
+				<span style="margin-left: 15%;">
+		    		<img src="/images/minus_red.jpg" id="delete_<%= part_price.id %>" class="edit_image" onclick="PartPrice.deleteEntity(<%= part_price.id %>)"></img>
+				<img id="spinner_delete_<%= part_price.id %>" style="display:none;" src="/images/spinner.gif"/>
+				</span>
+		    </td>
+		  </tr>
+		  <% i = i + 1 %>
+		  <% end %>
+	  <% else %>
+	  	<div class="failure" style="position: fixed; margin-top: 3%; margin-left: 20%">There are no records matching your seatch parameters.</div>
 	  <% end %>
 	
 	</table>

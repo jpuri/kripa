@@ -16,7 +16,14 @@ $(document).ready(function() {
 		modal : true
 	});
 
+	$('#priceMenuDivMain').on('mouseleave', function(e){
+		hidePriceMenuDiv()
+	})
 
+	$('#priceMenuDiv').on('mouseleave', function(e){
+		if(e.toElement.id != 'priceMenuDivMain')
+			hidePriceMenuDiv()
+	})
 });
 
 $(document).ajaxError(function(event, jqXHR, settings, throwError){
@@ -26,17 +33,16 @@ $(document).ajaxError(function(event, jqXHR, settings, throwError){
 });
 
 function showPriceMenuDiv(){
-	    $.ajax({
-	      url : server_url + "part_prices/ajaxPartPriceMenu",
-		  data : {
-		  },
-	      success : function(html){
-			$("#priceMenuDivMain").html(html)
-			el = document.getElementById("priceMenuDivMain");
-			el.style.visibility = "visible";
-	      }
-		})
-
+    $.ajax({
+      url : server_url + "part_prices/ajaxPartPriceMenu",
+	  data : {
+	  },
+      success : function(html){
+		$("#priceMenuDivMain").html(html)
+		el = document.getElementById("priceMenuDivMain");
+		el.style.visibility = "visible";
+      }
+	})
 }
 	
 function hidePriceMenuDiv(){

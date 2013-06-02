@@ -219,6 +219,7 @@ PartPrice.resetSearchFields = function() {
 PartPrice.newEntity = function(){
 	Base = this  		
 	entity = Base.entity
+	Base.clearMessages()
 	Base.showSpinner("spinner_new")
     $.ajax({
       url : server_url + entity + "/ajaxNew",
@@ -303,6 +304,7 @@ PartPrice.editEntity = function(id, index){
 		if(!index)
 			index = id
 		Base.showSpinner('spinner_edit_' + index)
+		Base.clearMessages()
 	    $.ajax({
 	      url : server_url + entity + "/ajaxEdit",
 		  data : {
@@ -328,5 +330,3 @@ PartPrice.showEntityInRow = function(id, index){
       }
     })
 }	
-
-

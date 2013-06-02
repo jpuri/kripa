@@ -8,6 +8,8 @@ Kripa::Application.routes.draw do
 
   post "welcome/index"
   post "part_prices/index"
+  get "part_prices/ajaxAutoCompleteParts"
+  get "part_prices/ajaxAutoCompleteModels"
   
   ['parts', 'models', 'prices', 'makes', 'customers', 'part_prices'].each do |entity|
     get entity + '/index'

@@ -7,11 +7,11 @@
 		<div style="padding-top: 2%" align="left">
 		  <div style="width: 25%;float: left;">
 	  		  <div style="float: left; width:23%"><%= label_tag(:model, "Model", :class => 'medium_lbl_grey') %></div>
-			  <div style="float: right; width:77%"><input type="text" id="model" name="model"/></div>
+			  <div style="float: right; width:77%"><input type="text" id="model" name="model" class='search_model'/></div>
 		 </div>
 		 <div style="width: 25%;float: left;padding-left: 5%">
 			  <div style="float: left; width:18%"><%= label_tag(:part, "Part", :class => 'medium_lbl_grey') %></div>
-			  <div style="float: right; width:82%"><input type="text" id="part_number" name="part_number"/></div>
+			  <div style="float: right; width:82%"><input type="text" id="part_number" name="part_number" class='search_part'/></div>
 		</div>
 		 <div style="width: 25%;float: left;padding-left: 5%;">
 			  <a onclick="PartPrice.searchEntity()" class="button_link">Search</a>
