@@ -24,13 +24,13 @@ $(document).ready(function() {
 		if(e.toElement.id != 'priceMenuDivMain')
 			hidePriceMenuDiv()
 	})
+	$(document).ajaxError(function(event, jqXHR, settings, throwError){
+	    if(jqXHR.status=='500'){
+	        window.location = server_url
+	    }
+	});
 });
 
-$(document).ajaxError(function(event, jqXHR, settings, throwError){
-    if(jqXHR.status=='408'){
-        window.location = server_url
-    }
-});
 
 function showPriceMenuDiv(){
     $.ajax({

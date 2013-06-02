@@ -14,6 +14,7 @@ Base.prototype = {
 			data = Base.getSearchParams()
 		else
 			data = {}
+		Base.clearMessages()
 		Base.showSpinner("spinner_search")
     	$.ajax({
       		url : server_url + entity + "/ajaxSearch",
@@ -84,8 +85,8 @@ Base.prototype = {
 		search = Base.search
 		if(!index)
 			index = id
+		Base.clearMessages()
 		if(confirm('Are you sure you want to delete ?')){
-			Base.clearMessages()
 		    Base.showSpinner('spinner_delete_' + index)
 		    $.ajax({
 		    	url : server_url + entity + "/ajaxDelete",
@@ -210,6 +211,7 @@ PartPrice.getSearchParams = function() {
 }
 
 PartPrice.resetSearchFields = function() {
+	PartPrice.clearMessages()
 	$('#make').val('')
 	$('#model').val('')
 	$('#part_number').val('')
