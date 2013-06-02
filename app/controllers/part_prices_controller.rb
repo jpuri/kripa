@@ -66,8 +66,8 @@ class PartPricesController < ApplicationController
   end
   
   def ajaxPartPriceMenu
-    @makes = Make.all(:order => "name")
-    @currencies = Currency.all
+    @makes = ['HAMWORTHY', 'Hatlapa', 'SALAR', 'SPERRE', 'TANABE']
+    @currencies = ['EURO', 'GBP', 'USD']
     render :partial => 'partPriceMenu', :locals => { :models => @models, :currencies => @currencies}    
   end
 

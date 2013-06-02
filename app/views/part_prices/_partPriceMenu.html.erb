@@ -1,9 +1,9 @@
 <div id="priceMenuDivSub">
   <% for make in @makes %>
   	<div style="padding-bottom: 10%">
-		<div class="partPriceMenuLinkMain"><%=make.name%></div>
+		<div class="partPriceMenuLinkMain"><%=make%></div>
 		<div class="partPriceMenuLinkSub"><% for currency in @currencies %>
-			<a id="price_menu_link" onclick="searchPartPrice('<%=make.name%>', '<%=currency.name%>')"><%=currency.name%></a> &nbsp;
+			<a id="price_menu_link" onclick="searchPartPrice('<%=make%>', '<%=currency%>')"><%=currency%></a> &nbsp;
 	    <% end %></div>
     </div>
   <% end %>
