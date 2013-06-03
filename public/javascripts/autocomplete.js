@@ -36,19 +36,3 @@ function populateModelsAutoComplete(data, textBoxClass){
 	})
 }
 
-$(document).ready(function() {
-	$(".search_model").change(function() {
-	  $(".search_part").val('')
-	});
-	$(".search_model").focusin(function() {
-	  var data = {make: $('#part_price_make').val(),
-	  currency: $('#part_price_currency').val()}
-	  populateModelsAutoComplete(data, "search_model");
-	});
-	$(".search_part").focusin(function() {
-	  var data = {model_number: $('#model').val(),
-	  currency: $('#part_price_currency').val(),
-	  make: $('#part_price_make').val()}
-	  populatePartsAutoComplete(data, "search_part");
-	});
-})
