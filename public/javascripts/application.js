@@ -15,11 +15,9 @@ $(document).ready(function() {
 		height : 450,
 		modal : true
 	});
-
 	$('#priceMenuDivMain').on('mouseleave', function(e){
 		hidePriceMenuDiv()
 	})
-
 	$('#priceMenuDiv').on('mouseleave', function(e){
 		if(e.toElement.id != 'priceMenuDivMain')
 			hidePriceMenuDiv()

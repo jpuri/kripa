@@ -1,5 +1,22 @@
-<td><input type="text" id="part_price_model" name="part_price[model]" value="<%=@part_price.model%>" class="inline_textbox"></td>
-<td><input type="text" id="part_price_part_number" name="part_price[part_number]" value="<%=@part_price.part_number%>" class="inline_textbox"></td>
+<td><input type="text" id="part_price_model" name="part_price[model]" value="<%=@part_price.model%>" class="search_model_form"></td>
+<td><input type="text" id="part_price_part_number" name="part_price[part_number]" value="<%=@part_price.part_number%>" class="search_part_form"></td>
 <td><input type="text" id="part_price_part_desc" name="part_price[part_desc]" value="<%=@part_price.part_desc%>" class="inline_textbox"></td>
 <td><input type="text" id="part_price_weight" name="part_price[weight]" value="<%=@part_price.weight%>" class="inline_textbox"></td>
 <td><input type="text" id="part_price_price" name="part_price[price]" value="<%=@part_price.price%>" class="inline_textbox"></td>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#part_price_model").change(function() {
+		  $("#part_price_part_number").val('')
+		});
+		$("#part_price_part_number").focusin(function() {
+		  var data = {model_number: $('#part_price_model').val(),
+		  make: $('#part_price_make').val()}
+		  populatePartsAutoComplete(data, "search_part_form");
+		});
+		$("#part_price_model").focusin(function() {
+		  var data = {make: $('#part_price_make').val()}
+		  populateModelsAutoComplete(data, "search_model_form");
+		});
+	})
+</script>

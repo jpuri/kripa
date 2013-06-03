@@ -72,16 +72,25 @@ class PartPricesController < ApplicationController
   end
 
   def ajaxAutoCompleteParts
-    condition = "currency = '#{params[:currency]}'"
+    condition = "true"
+    if(params[:currency] && params[:currency].length > 0)
+      condition += " and currency = '#{params[:currency]}'"
+    end
     if(params[:model_number] && params[:model_number].length > 0)
        condition += " and model = '#{params[:model_number]}'"
+    end
+    if(params[:make] && params[:make].length > 0)
+      condition += " and make = '#{params[:make]}'"
     end
     @result = ActiveRecord::Base.connection.execute("select distinct(part_number) from part_prices where " + condition)
     render :json => {:list => @result.collect { |column| column["part_number"] }}
   end
 
   def ajaxAutoCompleteModels
-    condition = "make = '#{params[:make]}' and currency = '#{params[:currency]}'"
+    condition = "make = '#{params[:make]}'"
+    if(params[:currency] && params[:currency].length > 0)
+      condition += " and currency = '#{params[:currency]}'"
+    end
     @result = ActiveRecord::Base.connection.execute("select distinct(model) from part_prices where " + condition)
     render :json => {:list => @result.collect { |column| column["model"] }}
   end
