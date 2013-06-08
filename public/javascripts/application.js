@@ -15,10 +15,10 @@ $(document).ready(function() {
 		height : 450,
 		modal : true
 	});
-	$('#priceMenuDivMain').on('mouseleave', function(e){
+	$('#priceMenuDivMain').live('mouseleave', function(e){
 		hidePriceMenuDiv()
 	})
-	$('#priceMenuDiv').on('mouseleave', function(e){
+	$('#priceMenuDiv').live('mouseleave', function(e){
 		if(e.toElement.id != 'priceMenuDivMain')
 			hidePriceMenuDiv()
 	})

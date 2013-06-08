@@ -18,5 +18,8 @@
 		  var data = {make: $('#part_price_make').val()}
 		  populateModelsAutoComplete(data, "search_model_form");
 		});
+		$("#part_price_part_number").focusout(function() {
+		  PartPrice.showPartDescription()
+		});
 	})
 </script>

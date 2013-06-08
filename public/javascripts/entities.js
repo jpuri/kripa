@@ -332,3 +332,19 @@ PartPrice.showEntityInRow = function(id, index){
       }
     })
 }	
+PartPrice.showPartDescription = function(){
+	
+	var part_number = $('#part_price_part_number').val()
+	if(part_number && part_number.length > 0){
+	    $.ajax({
+	      url : server_url + entity + "/ajaxGetPartDescription",
+		  data : {
+		  	part_number: part_number
+		  },
+	      success : function(data){
+			$("#part_price_part_desc").val(data.part_desc)
+			$("#part_price_weight").val(data.weight)
+	      }
+	    })
+	}
+}	
