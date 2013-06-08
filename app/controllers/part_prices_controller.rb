@@ -99,6 +99,9 @@ class PartPricesController < ApplicationController
     @part_price = PartPrice.where("part_number = ?", params[:part_number]).first
     if(@part_price != nil)
       render :json => {:part_desc => @part_price.part_desc, :weight => @part_price.weight}
+    else
+      render :json => {:part_desc => '', :weight => ''}
     end
+      
   end
 end
