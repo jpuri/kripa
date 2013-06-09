@@ -95,10 +95,10 @@ ActiveRecord::Schema.define(:version => 20130527071938) do
     t.string   "part_number"
     t.string   "part_desc"
     t.float    "weight"
-    t.integer  "currency_id"
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "currency"
   end
 
   create_table "parts", :force => true do |t|
