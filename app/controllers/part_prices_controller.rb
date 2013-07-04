@@ -6,7 +6,7 @@ class PartPricesController < ApplicationController
     @make = params[:part_price][:make]
     @currency = params[:part_price][:currency]
     @part_prices = PartPrice.where("make = ? and currency =  ?", 
-    "#{params[:part_price][:make]}", "#{params[:part_price][:currency]}").order('make asc')
+    "#{params[:part_price][:make]}", "#{params[:part_price][:currency]}").order('part_number asc')
   end
 
   def ajaxSearch
