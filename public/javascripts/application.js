@@ -55,3 +55,11 @@ function searchPartPrice(make, currency){
 	$('#currency').val(currency)
 	$('#partPriceSearchForm').submit()
 }
+    $(".decimal_places2").live('blur', function() {
+        var value = $(this).val()
+        if(value){
+        $(this).val($.number(value, 2, '.', ''));
+        $(this).trigger("twoDecimalPlaces_changed")
+        }
+
+    })

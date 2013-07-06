@@ -1,8 +1,8 @@
 <td><input type="text" id="part_price_model" name="part_price[model]" value="<%=@part_price.model%>" class="search_model_form"></td>
 <td><input type="text" id="part_price_part_number" name="part_price[part_number]" value="<%=@part_price.part_number%>" class="search_part_form"></td>
 <td><input type="text" id="part_price_part_desc" name="part_price[part_desc]" value="<%=@part_price.part_desc%>" class="inline_textbox"></td>
-<td><input type="text" id="part_price_weight" name="part_price[weight]" value="<%=@part_price.weight%>" class="inline_textbox"></td>
-<td><input type="text" id="part_price_price" name="part_price[price]" value="<%=@part_price.price%>" class="inline_textbox"></td>
+<td><input type="text" id="part_price_weight" name="part_price[weight]" value="<%=@part_price.weight%>" class="inline_textbox only_decimal decimal_places2"></td>
+<td><input type="text" id="part_price_price" name="part_price[price]" value="<%=@part_price.price%>" class="inline_textbox only_decimal decimal_places2"></td>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -21,4 +21,10 @@
 		  PartPrice.showPartDescription()
 		});
 	})
+	    $(".decimal_places2").numeric({
+        allowMinus:false,
+        maxDecimalPlaces:'2',
+        maxPreDecimalPlaces:'7'
+    })
+
 </script>

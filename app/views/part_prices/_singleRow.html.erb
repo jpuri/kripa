@@ -2,8 +2,8 @@
 	    <td><%= part_price.model %></td>
 	    <td><%= part_price.part_number %></td>
 	    <td><%= part_price.part_desc %></td>
-	    <td><%= part_price.weight %></td>
-	    <td><%= part_price.price %></td>
+	    <td><%= number_with_precision(part_price.weight , :precision => 2)%></td>
+	    <td><%= number_with_precision(part_price.price , :precision => 2)%></td>
 	    <td class="admin_action">
 	    	<span style="margin-left: 15%;">
 	    		<img src="/images/pencil_edit.jpg" id="edit_<%= part_price.id %>" class="edit_image" onclick="PartPrice.editEntity(<%= part_price.id %>, <%= i %>)"/>
@@ -14,3 +14,7 @@
 			<img id="spinner_delete_<%= part_price.id %>" style="display:none;" src="/images/spinner.gif"/>
 			</span>
 	    </td>
+<script>
+	if(role == 'admin')
+		$(".admin_action").css('visibility','visible')
+</script>
