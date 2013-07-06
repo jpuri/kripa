@@ -1,9 +1,9 @@
-class RemoveModelPriceIdFromBillParts < ActiveRecord::Migration
+class RemoveEmailFromUsers < ActiveRecord::Migration
   def self.up
-    remove_column :bill_parts, :model_price_id
+    remove_column :email, :user_id
   end
 
   def self.down
-    add_column :bill_parts, :model_price_id, :BillParts
+    add_column :email, :users
   end
 end

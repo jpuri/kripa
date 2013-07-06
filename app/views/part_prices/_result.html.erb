@@ -7,7 +7,7 @@
 	    <th width="20%">Part Description</th>
 	    <th width="3%">Weight(Kg)</th>
 	    <th width="5%">Price(<%= @currency %>)</th>
-	    <th width="7%">Action</th>
+	    <th width="7%" class="admin_action">Action</th>
 	  </tr>
 	  <tr id="createNewRow"/>
 	  <% i = 1 %>
@@ -21,7 +21,7 @@
 		    <td><%= part_price.part_desc %></td>
 		    <td><%= part_price.weight %></td>
 		    <td><%= part_price.price %></td>
-		    <td>
+		    <td class="admin_action">
 		    	<span style="margin-left: 15%;">
 		    		<img src="/images/pencil_edit.jpg" id="edit_<%= part_price.id %>" class="edit_image" onclick="PartPrice.editEntity(<%= part_price.id %>, <%= i %>)"/>
 				</span>
@@ -40,7 +40,11 @@
 	
 	</table>
 </div>
-		<div style="position:absolute; padding-left: 70%; width: 6%">
+		<div style="position:absolute; padding-left: 70%; width: 6%" class="admin_action">
 		<span style="float: left"><img id="spinner_search" src="/images/plus.jpg"/ onclick="PartPrice.newEntity()" class="button_image"></span>
 		<span style="float: left">
 		<img id="spinner_new" style="display:none" src="/images/spinner.gif"/></span></div>
+<script>
+	if(role == 'admin')
+		$(".admin_action").css('visibility','visible')
+</script>

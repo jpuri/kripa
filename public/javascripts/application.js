@@ -44,8 +44,10 @@ function showPriceMenuDiv(){
 }
 	
 function hidePriceMenuDiv(){
+	setTimeout(function () { 
 	el = document.getElementById("priceMenuDivMain");
 	el.style.visibility = "hidden" 
+		}, 4000);
 }
 
 function searchPartPrice(make, currency){

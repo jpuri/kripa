@@ -14,7 +14,7 @@ class PartPricesController < ApplicationController
     @currency = params[:currency]
     @part_prices = PartPrice.where("lower(model) like ? and lower(part_number) like ? and make = ? and currency =  ?", 
     "%#{params[:model].strip.downcase}%", "%#{params[:part_number].strip.downcase}%",
-    "#{params[:make]}", "#{params[:currency]}", ).order('make asc')
+    "#{params[:make]}", "#{params[:currency]}", ).order('part_number asc')
     render :partial => 'result', :locals => { :part_prices => @part_prices}
   end
 

@@ -5,7 +5,7 @@
 	<%= form_tag({:controller=>"sessions", :action => "create"}, :method => "post") do %>	
 	  <div style="width: 100%; padding-top: 20%">
 	    <div style="width: 30%; float: left"><%= label_tag :Username %></div>
-	    <div style="width: 40%; float: left"><input type="text" value="<%= params[:email]%>" name="email"/>
+	    <div style="width: 40%; float: left"><input type="text" value="<%= params[:username]%>" name="username"/>
 	    	
 	    </div>
 	  </div><br/>

@@ -134,3 +134,6 @@ label{
 .partPriceMenuLinkSub:hover{
 	cursor: pointer;
 }
+.admin_action{
+	visibility: hidden;
+}

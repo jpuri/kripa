@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
 
-  attr_accessible :email, :password, :password_confirmation
+  attr_accessible :username, :password, :password_confirmation
   attr_accessor :password
   attr_accessor :password_confirmation
   before_save :encrypt_password
 
-  def self.authenticate(email, password)
-    user = find_by_email(email)
+  def self.authenticate(username, password)
+    user = find_by_username(username)
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user
     else
