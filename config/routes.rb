@@ -3,6 +3,9 @@ Kripa::Application.routes.draw do
   get "sessions/new"
 
   get "users/new"
+  get "users/edit"
+  get "users/update"
+
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
 
