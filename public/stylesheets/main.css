@@ -23,6 +23,40 @@ table.borderedTable td{
 	color:black;
 	padding:4px; 
 }
+a.sort_asc {
+	display: block;
+	background-image: url("/images/sort_asc.png");
+	background-position: right;
+	background-repeat: no-repeat;
+	text-align: left;
+	color:white;
+	text-decoration: none;
+	background-size: 12px;
+    cursor: pointer;
+}
+a.sort_desc {
+	display: block;
+	background-image: url("/images/sort_desc.png");
+	background-position: right;
+	background-repeat: no-repeat;
+	text-align: left;
+	color:white;
+	text-decoration: none;
+	background-size: 12px;
+    cursor: pointer;
+}
+a.sort_default {
+	display: block;
+	margin-left: 0px;
+	background-image: url("/images/sort_default.png");
+	background-size: 12px;
+	background-position: right;
+	background-repeat: no-repeat;
+	text-align: left;
+	color:white;
+	text-decoration: none;
+    cursor: pointer;
+}
 .heading {
 	font-family: Arial, Helvetica, sans-serif;
 	margin: 0;

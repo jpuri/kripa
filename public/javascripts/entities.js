@@ -6,7 +6,9 @@ function Base(entity, search){
 Base.prototype = {
 
 //to be modified for search form 
-  	searchEntity : function() {
+  	searchEntity : function(sort, order) {
+  		alert(sort)
+  		alert(order)
 		Base = this  		
 		entity = Base.entity
 		search = Base.search
@@ -14,6 +16,11 @@ Base.prototype = {
 			data = Base.getSearchParams()
 		else
 			data = {}
+		if(sort)
+			data.sort = sort
+		if(order)
+			data.order = order
+		alert(data.sort)
 		Base.clearMessages()
 		Base.showSpinner("spinner_search")
     	$.ajax({
