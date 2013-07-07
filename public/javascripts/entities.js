@@ -6,21 +6,25 @@ function Base(entity, search){
 Base.prototype = {
 
 //to be modified for search form 
-  	searchEntity : function(sort, order) {
-  		alert(sort)
-  		alert(order)
+  	searchEntity : function(sort_flag) {
 		Base = this  		
 		entity = Base.entity
 		search = Base.search
-		if(search)
-			data = Base.getSearchParams()
-		else
-			data = {}
-		if(sort)
-			data.sort = sort
-		if(order)
-			data.order = order
-		alert(data.sort)
+		if(sort_flag == true){
+			data = SortUtility.searchParams
+			data.sort = SortUtility.sort
+			data.order = SortUtility.order
+		}
+		else{
+			if(search)
+				data = Base.getSearchParams()
+			else
+				data = {}
+			SortUtility.searchParams = data
+			}
+		data.make =  $('#part_price_make').val()
+		data.currency = $('#part_price_currency').val()
+
 		Base.clearMessages()
 		Base.showSpinner("spinner_search")
     	$.ajax({
@@ -210,10 +214,8 @@ Price.resetSearchFields = function() {
 
 PartPrice.getSearchParams = function() {
 	return {
-		'make' : $('#part_price_make').val(),
-		'model' : $('#model').val(),
 		'part_number' : $('#part_number').val(),
-		'currency' : $('#part_price_currency').val(),
+		'model' : $('#model').val()
 	}
 }
 

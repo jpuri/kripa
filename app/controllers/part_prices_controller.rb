@@ -10,12 +10,16 @@ class PartPricesController < ApplicationController
   end
 
   def ajaxSearch
+
+    part_number = params[:part_number] ? params[:part_number] : ""
+    model = params[:model] ? params[:model] : ""
+    
     @make = params[:make]
     @currency = params[:currency]
     sort = params[:sort]? params[:sort] : 'part_number'
     order = params[:order]? params[:order] : 'asc'
     @part_prices = PartPrice.where("lower(model) like ? and lower(part_number) like ? and make = ? and currency =  ?", 
-    "%#{params[:model].strip.downcase}%", "%#{params[:part_number].strip.downcase}%",
+    "%#{model.strip.downcase}%", "%#{part_number.strip.downcase}%",
     "#{params[:make]}", "#{params[:currency]}", ).order(sort + ' ' + order)
     render :partial => 'result', :locals => { :part_prices => @part_prices}
   end

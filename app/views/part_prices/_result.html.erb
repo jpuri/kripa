@@ -3,7 +3,7 @@
 	  <tr>
 	    <th width="7%">S. No.</th>
 	    <th width="13%"><a class="sortable sort_default" name="model">Model</a></th>
-	    <th width="13%"><a class="sortable sort_asc" name="part_number">Part Number</a></th>
+	    <th width="13%"><a class="sortable sort_default" name="part_number">Part Number</a></th>
 	    <th width="25%"><a class="sortable sort_default" name="part_desc">Part Description</a></th>
 	    <th width="10%"><a class="sortable sort_default" name="weight">Weight(Kg)</a></th>
 	    <th width="10%"><a class="sortable sort_default" name="price">Price(<%= @currency %>)</a></th>
@@ -47,4 +47,8 @@
 <script>
 	if(role == 'admin')
 		$(".admin_action").css('visibility','visible')
+		
+		
+		$('.sortable').attr('class' , 'sortable sort_default')
+		$('[name="' + SortUtility.sort + '"]').attr('class' , 'sortable sort_' + SortUtility.order)
 </script>
