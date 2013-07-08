@@ -40,15 +40,13 @@
 	
 	</table>
 </div>
-		<div style="position:absolute; padding-left: 70%; width: 6%" class="admin_action">
+		<div style="position:absolute; left: 90%; width: 6%" class="admin_action">
 		<span style="float: left"><img id="spinner_search" src="/images/plus.jpg"/ onclick="PartPrice.newEntity()" class="button_image"></span>
 		<span style="float: left">
 		<img id="spinner_new" style="display:none" src="/images/spinner.gif"/></span></div>
 <script>
+	$('.sortable').attr('class' , 'sortable sort_default')
+	$('[name="' + SortUtility.sort + '"]').attr('class' , 'sortable sort_' + SortUtility.order)
 	if(role == 'admin')
 		$(".admin_action").css('visibility','visible')
-		
-		
-		$('.sortable').attr('class' , 'sortable sort_default')
-		$('[name="' + SortUtility.sort + '"]').attr('class' , 'sortable sort_' + SortUtility.order)
 </script>

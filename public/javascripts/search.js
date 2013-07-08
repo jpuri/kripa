@@ -6,6 +6,8 @@ var SortUtility = {
 		var sort_field = $(sort_element).attr('name')
 		if(sort_field == this.sort)
 			this.order = (this.order == 'asc') ? 'desc' : 'asc'
+		else
+			this.order = 'asc'
 		this.sort = sort_field
 		PartPrice.searchEntity(true)
 	}

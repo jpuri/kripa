@@ -21,7 +21,9 @@ Base.prototype = {
 			else
 				data = {}
 			SortUtility.searchParams = data
-			}
+			SortUtility.sort = 'part_number'
+			SortUtility.order = 'asc'
+		}
 		data.make =  $('#part_price_make').val()
 		data.currency = $('#part_price_currency').val()
 
