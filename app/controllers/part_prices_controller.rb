@@ -35,7 +35,11 @@ class PartPricesController < ApplicationController
     if @part_prices.save
      render :json => {:status => 'SUCCESS'}
     else
-      render :json => {:status => 'FAILURE'}
+      error_messages = Array.new
+      @part_prices.errors.each do |attr,message|
+        error_messages << message
+      end
+      render :json => {:status => 'FAILURE', :messages => error_messages}
     end
   end
 
@@ -61,7 +65,11 @@ class PartPricesController < ApplicationController
       render :json => {:status => 'SUCCESS', :displayValue => [@part_price.make, @part_price.model, @part_price.part_number,
         @part_price.part_desc, @part_price.weight, @part_price.currency, @part_price.price]}
     else
-      render :json => {:status => 'FAILURE'}
+      error_messages = Array.new
+      @part_price.errors.each do |attr,message|
+        error_messages << message
+      end
+      render :json => {:status => 'FAILURE', :messages => error_messages}
     end
   end
   

@@ -155,11 +155,11 @@ Base.prototype = {
 	},
 
 	showSuccessMessage : function(msg){
-		$("#success_msg").html(msg)
+		$("#success_msg").append('<div>' + msg + '</div>')
 	},
 	
 	showFailureMessage : function(msg){
-		$("#failure_msg").html(msg)
+		$("#failure_msg").append('<div>' + msg + '</div>')
 	},
 	
 	closeDialog : function(divId){
@@ -271,7 +271,10 @@ PartPrice.createEntity = function(){
 				$("#createNewRow").hide()
 	  		}
 	      	else if(response.status == 'FAILURE'){
-	  			Base.showFailureMessage("Error while creating.")
+	      		$(response.messages).each(function(index, element){
+		  			Base.showFailureMessage(element)
+		      		}
+	  			)
 	  		}
 			Base.hideSpinner('spinner_create')
 	      }
@@ -303,7 +306,10 @@ PartPrice.updateEntity = function (id, index){
 				Base.showSuccessMessage("Successfully updated.")
 	  		}
 	      	else if(response.status == 'FAILURE'){
-	  			Base.showFailureMessage("Error while updating.")
+	      		$(response.messages).each(function(index, element){
+		  			Base.showFailureMessage(element)
+		      		}
+	  			)
 	  		}
 			Base.hideSpinner('spinner_update')
 	      }
