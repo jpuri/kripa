@@ -36,9 +36,23 @@
     	<div style="margin-top: 5%;" class="menu_div"> 
 	      <%= link_to 'Log Out', :controller => "sessions", :action => "destroy"%>
 		</div>-->
+    	<div id="currentUserName"> 
+	      <%=current_user.username%>
+	    </div>
+    	<div id="currentUserName"> 
+	      <%=Date.today.to_formatted_s(:long) %>
+	    </div>
+	    
     	<div id="priceMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_div" onmouseover="showPriceMenuDiv()"> 
 	      <a>Prices</a>
 	    </div>
+	    <!--<div id="adminMenuDivMain">
+	    	<a id="price_menu_link" >User Management</a>
+	    	<a id="price_menu_link" >Data Management</a>
+	    </div>
+    	<div id="adminMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_div" onmouseover="showAdminMenuDiv()"> 
+	      <a>Admin</a>
+	    </div>-->
     	<div style="padding-top:5%;padding-bottom:5%; margin-top: 7%;" class="menu_div"> 
 	      <%= link_to 'Log Out', :controller => "sessions", :action => "destroy"%>
 		</div>

@@ -18,9 +18,16 @@ $(document).ready(function() {
 	$('#priceMenuDivMain').live('mouseleave', function(e){
 		hidePriceMenuDiv()
 	})
+	$('#adminMenuDivMain').live('mouseleave', function(e){
+		hideAdminMenuDiv()
+	})
 	$('#priceMenuDiv').live('mouseleave', function(e){
 		if(e.toElement.id != 'priceMenuDivMain')
 			hidePriceMenuDiv()
+	})
+	$('#adminMenuDiv').live('mouseleave', function(e){
+		if(e.toElement.id != 'adminMenuDivMain')
+			hideAdminMenuDiv()
 	})
 	$(document).ajaxError(function(event, jqXHR, settings, throwError){
 	    if(jqXHR.status=='500'){
@@ -31,6 +38,7 @@ $(document).ready(function() {
 
 
 function showPriceMenuDiv(){
+	//hideAdminMenuDivImmediate()
     $.ajax({
       url : server_url + "part_prices/ajaxPartPriceMenu",
 	  data : {
@@ -42,12 +50,39 @@ function showPriceMenuDiv(){
       }
 	})
 }
+
+function showAdminMenuDiv(){
+	hidePriceMenuDivImmediate()
+	el = document.getElementById("adminMenuDivMain");
+	el.style.visibility = "visible";
+}
 	
-function hidePriceMenuDiv(){
+function hidePriceMenuDiv(timeout){
+	if(!timeout)
+		timeout = 4000
 	setTimeout(function () { 
-	el = document.getElementById("priceMenuDivMain");
+		el = document.getElementById("priceMenuDivMain");
+		el.style.visibility = "hidden" 
+	}, timeout);
+}
+
+function hidePriceMenuDivImmediate(){
+		el = document.getElementById("priceMenuDivMain");
+		el.style.visibility = "hidden" 
+}
+
+function hideAdminMenuDivImmediate(){
+		el = document.getElementById("adminMenuDivMain");
+		el.style.visibility = "hidden" 
+}
+
+function hideAdminMenuDiv(timeout){
+	if(!timeout)
+		timeout = 4000
+	setTimeout(function () { 
+	el = document.getElementById("adminMenuDivMain");
 	el.style.visibility = "hidden" 
-		}, 4000);
+		}, timeout);
 }
 
 function searchPartPrice(make, currency){
