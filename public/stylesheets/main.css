@@ -160,12 +160,12 @@ label{
      visibility: hidden;
      position: absolute;
      left: 100%;
-     width:120px;
+     width:130px;
      margin: 3px auto;
      padding:15px;
 	 border-radius: 10px;
 	 background-color: #FAAFBE;
-	 margin-top: 5px;
+	 margin-top: -10px;
 }
 
 .partPriceMenuLinkMain{
@@ -187,7 +187,6 @@ label{
 	padding-left: 5px;
 }
 #currentUserName{
-	font-style: italic;
 	margin-top: 5px;
 	margin-left: 15px;
 	color: white;

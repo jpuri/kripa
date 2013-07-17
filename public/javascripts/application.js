@@ -38,11 +38,10 @@ $(document).ready(function() {
 
 
 function showPriceMenuDiv(){
-	//hideAdminMenuDivImmediate()
+	hideAdminMenuDivImmediate()
     $.ajax({
       url : server_url + "part_prices/ajaxPartPriceMenu",
-	  data : {
-	  },
+	  data : {},
       success : function(html){
 		$("#priceMenuDivMain").html(html)
 		el = document.getElementById("priceMenuDivMain");

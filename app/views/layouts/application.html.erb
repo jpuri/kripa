@@ -21,38 +21,26 @@
     <div style="font-family:Verdana;
     position:fixed;left:0%;bottom:0%;top:0%;width:10%;background-color: #60AFFE; height: 100%">
     	<div id="priceMenuDivMain"></div>
-    	<!--<div class="menu_div" style="margin-top: 5%;" > 
-	      <%= link_to 'Makes', :controller => "makes", :action => "index"%><br/>
-	    </div>
-    	<div style="margin-top: 5%;" class="menu_div"> 
-	      <%= link_to 'Models', :controller => "models", :action => "index"%><br/>
-	    </div>
-    	<div style="margin-top: 5%;" class="menu_div"> 
-	      <%= link_to 'Parts', :controller => "parts", :action => "index"%>
-	    </div>
-    	<div style="margin-top: 5%;" class="menu_div"> 
-	      <%= link_to 'Customers', :controller => "customers", :action => "index"%><br/>
-	    </div>
-    	<div style="margin-top: 5%;" class="menu_div"> 
-	      <%= link_to 'Log Out', :controller => "sessions", :action => "destroy"%>
-		</div>-->
+
     	<div id="currentUserName"> 
 	      <%=current_user.username%>
 	    </div>
     	<div id="currentUserName"> 
-	      <%=Date.today.to_formatted_s(:long) %>
+	      <%=Date.today.strftime("%d %b %Y")%>
 	    </div>
 	    
     	<div id="priceMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_div" onmouseover="showPriceMenuDiv()"> 
 	      <a>Prices</a>
 	    </div>
-	    <!--<div id="adminMenuDivMain">
-	    	<a id="price_menu_link" >User Management</a>
-	    	<a id="price_menu_link" >Data Management</a>
+	    <div style="clear"/>
+	    <div id="adminMenuDivMain" class="partPriceMenuLinkSub">
+	    	<div class="partPriceMenuLinkSub"><a id="price_menu_link" >USER MANAGEMENT</a></div>
+	    	<div style="height: 10px"></div>
+	    	<div class="partPriceMenuLinkSub"><a id="price_menu_link" >DATA BACKUP</a></div>
 	    </div>
     	<div id="adminMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_div" onmouseover="showAdminMenuDiv()"> 
 	      <a>Admin</a>
-	    </div>-->
+	    </div>
     	<div style="padding-top:5%;padding-bottom:5%; margin-top: 7%;" class="menu_div"> 
 	      <%= link_to 'Log Out', :controller => "sessions", :action => "destroy"%>
 		</div>
