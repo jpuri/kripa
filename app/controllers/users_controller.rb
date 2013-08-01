@@ -27,7 +27,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    puts '========================================================='
     @user = User.find(params[:id])
 
     respond_to do |format|

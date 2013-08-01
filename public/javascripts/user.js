@@ -1,4 +1,4 @@
-angular.module('user', ['ngGrid']).
+angular.module('user', []).
   config(['$routeProvider', function($routeProvider) {
   $routeProvider.
       when('', {templateUrl: 'partials/user_list.html',   controller: UserListCtrl});
@@ -11,10 +11,10 @@ function UserListCtrl($scope, $http) {
     $scope.users = data;
   });
   $scope.saveUser = function(user){
-  	//alert(user.username)
+  	alert(user.username)
   }
   $scope.deleteUser = function(id){
-  	//alert(user.username)
+  	alert(id)
   }
 }
 
