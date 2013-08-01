@@ -1,0 +1,40 @@
+<div ng-controller="UserListCtrl">
+  	<table class="borderedTable" width="20%">
+	  <tr>
+	    	<th width="5%">User Name</th>
+	    	<th width="5%">Role</th>
+	    	<th width="5%">Action</th>
+	  </tr>
+  	  <tr ng-repeat="user in users">
+	        <td>
+	        	<label ng-hide="editorEnabled">{{user.username}}</label>
+	        	<input ng-show="editorEnabled" ng-model="user.username"/>
+	        </td>
+	        <td>
+	        	<label ng-hide="editorEnabled">{{user.role}}</label>
+	        	<input ng-show="editorEnabled" ng-model="user.role"/>
+	        </td>
+		    <td>
+		    	<span ng-hide="editorEnabled">
+			    	<span style="margin-left: 15%;">
+			    		<img src="/images/pencil_edit.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled"/>
+					</span>
+					<img id="spinner_edit_<%= part_price.id %>" style="display:none" src="/images/spinner.gif"/>
+					<span style="margin-left: 15%;">
+			    		<img src="/images/minus_red.jpg" class="edit_image" ng-click="deleteUser({{user.id}})"/>
+					<img id="spinner_delete_<%= part_price.id %>" style="display:none;" src="/images/spinner.gif"/>
+					</span>
+				</span>
+				<span ng-show="editorEnabled">
+					<span style="margin-left: 15%;">
+						<img src="/images/right_green.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled;saveUser(user)"/>
+					</span>
+					<img id="spinner_update" style="display:none" src="/images/spinner.gif"/>
+					<span style="margin-left: 15%;">
+						<img src="/images/wrong_red.jpg" class="edit_image" ng-click="deleteUser(user.id)"/>
+					</span>
+				</span>
+		    </td>
+	  </tr>
+	</table>
+</div>

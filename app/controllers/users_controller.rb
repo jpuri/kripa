@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.all
+  end
+
+  def appUsers
+    @users = User.all
+    render :json => @users.collect { |user| {:id => user.id, :username => user.username, :role => user.role} }
+  end
+
   def new
     @user = User.new
   end
@@ -18,6 +27,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    puts '========================================================='
     @user = User.find(params[:id])
 
     respond_to do |format|

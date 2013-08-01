@@ -10,6 +10,8 @@ Kripa::Application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
 
   post "welcome/index"
+  get "users/index"
+  get "users/appUsers"
   get "part_prices/index"
   get "part_prices/ajaxAutoCompleteParts"
   get "part_prices/ajaxAutoCompleteModels"
