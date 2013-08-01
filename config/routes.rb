@@ -34,6 +34,6 @@ Kripa::Application.routes.draw do
   resources :customers
   resources :sessions
   resources :users
-
+  
   root :to => "welcome#index"
 end

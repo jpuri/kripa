@@ -12,9 +12,14 @@ function UserListCtrl($scope, $http) {
   });
   $scope.saveUser = function(user){
   	alert(user.username)
+	$http.put('users/' + user.id, {"user[id]": user.id, "user[username]": user.username, "user[role]":user.role}).success(function() {
+	  alert('success !!!')
+	});
   }
   $scope.deleteUser = function(id){
-  	alert(id)
+	/*$http.delete('users', {"user[username]": user.username, "user[role]":user.role}).success(function() {
+	  alert('success !!!')
+	});*/
   }
 }
 
