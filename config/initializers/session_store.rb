@@ -2,7 +2,7 @@
 
 Kripa::Application.config.session_store :active_record_store, {
   :key =>           '_kripa_session',
-  :expire_after =>  60 * 5
+  :expire_after =>  60 * 60
 }
 
 # Use the database for sessions instead of the cookie-based default,

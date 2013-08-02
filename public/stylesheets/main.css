@@ -133,8 +133,6 @@ label{
 }
 .edit_image:hover{
     cursor: pointer;
-    height: 17px;
-    width: 17px;
 }
 .delete_image:hover{
     cursor: pointer;
