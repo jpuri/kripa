@@ -4,25 +4,25 @@ angular.module('user', []).
       when('', {templateUrl: 'partials/user_list.html',   controller: UserListCtrl});
 }]);
 
-
 function UserListCtrl($scope, $http) {
   $scope.editorEnabled = false;
   $http.get('users/appUsers').success(function(data) {
     $scope.users = data;
   });
   $scope.saveUser = function(user){
-  	alert(user.username)
-	$http.put('users/' + user.id, {"user[id]": user.id, "user[username]": user.username, "user[role]":user.role}).success(function() {
-	  alert('success !!!')
-	});
+	$http.put('users/' + user.id, {user: user}).success()
   }
-  $scope.deleteUser = function(id){
-	/*$http.delete('users', {"user[username]": user.username, "user[role]":user.role}).success(function() {
-	  alert('success !!!')
-	});*/
+  $scope.createUser = function(user){
+	$http.post('users', {user: user}).success(function(result){
+		user.id = result.user_id
+    	$scope.users[$scope.users.length] = user;
+	})
+  }
+  $scope.deleteUser = function(user){
+	$http.delete('users/' + user.id)
+	for(var i = 0; i < $scope.users.length;i++){
+		if($scope.users[i].id === user.id)
+			$scope.users[i] = null
+	}
   }
 }
-
-
-
-

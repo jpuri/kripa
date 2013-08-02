@@ -10,28 +10,31 @@ class UsersController < ApplicationController
   end
 
   def create
-    puts 'me here ..................................in creATE'
+
     @user = User.new(params[:user])
     if @user.save
-      redirect_to root_url
+      render :json => {:status => 'SUCCESS', :user_id => @user.id}
     else
-      render "new"
+      render :json => {:status => 'FAILURE'}
     end
   end
   
-  def edit
+  def update
     @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      render :json => {:status => 'SUCCESS'}
+    else
+      render :json => {:status => 'FAILURE'}
+    end
   end
 
-  def update
-    puts 'me here ..................................'
-    puts params[:user].inspect
+  def destroy
+    puts '---------------------------------------------------------into delete'
     @user = User.find(params[:id])
-
-      if @user.update_attributes(params[:user])
-        render :json => {:status => 'SUCCESS'}
-      else
-        render :json => {:status => 'FAILURE'}
-      end
+    if @user.delete
+      render :json => {:status => 'SUCCESS'}
+    else
+      render :json => {:status => 'FAILURE'}
+    end
   end
 end
