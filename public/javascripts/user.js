@@ -19,10 +19,12 @@ function UserListCtrl($scope, $http) {
 	})
   }
   $scope.deleteUser = function(user){
-	$http.delete('users/' + user.id)
-	for(var i = 0; i < $scope.users.length;i++){
-		if($scope.users[i].id === user.id)
-			$scope.users[i] = null
+  	if(confirm('Are you sure you want to delete ?')){
+		$http.delete('users/' + user.id)
+		for(var i = 0; i < $scope.users.length;i++){
+			if($scope.users[i].id === user.id)
+				$scope.users[i] = null
+		}
 	}
   }
 }
