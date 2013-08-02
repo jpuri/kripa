@@ -100,6 +100,5 @@ $(".decimal_places2").live('blur', function() {
 })
 
 $("#user_mgt_link").live('click', function(){
-	alert(server_url + "users")
 	window.location = server_url + "users"
 })
