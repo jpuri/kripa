@@ -15,7 +15,11 @@ class UsersController < ApplicationController
     if @user.save
       render :json => {:status => 'SUCCESS', :user_id => @user.id}
     else
-      render :json => {:status => 'FAILURE'}
+      error_messages = Array.new
+      @user.errors.each do |attr,message|
+        error_messages << message
+      end
+      render :json => {:status => 'FAILURE', :messages => error_messages}
     end
   end
   
@@ -29,7 +33,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    puts '---------------------------------------------------------into delete'
     @user = User.find(params[:id])
     if @user.delete
       render :json => {:status => 'SUCCESS'}
