@@ -83,27 +83,34 @@
 			  </tr>
 			</table>
 		</div>
-		<div ng-show="changePassword">
-		  <div>
-		    <div style="float: left"><label>User Name</label></div>
-		    <div style="float: left"><label>{{changePasswordUser.username}}</label></div>
+		<div style="clear: both"></div>
+		<div ng-show="changePassword"style="margin-top: 20%">
+  	    <div ng-repeat="errorMsg in passwordErrorMessage" ng-show="passwordErrorMessage" class="failure">
+  	  	  {{errorMsg}}
+  	    </div>
+		<div style="border: 1px solid #60AFFE; width: 80%">
+			<div class="header_div">Change Password</div>
+		  <div style="margin-top: 20px">
+		    <div style="float: left; width:40%"><label><b>User Name</b></label></div>
+		    <div style="float: left; width:40%"><label>{{changePasswordUser.username}}</label></div>
 		    <div style="clear: both"></div>
 		  </div>
-		  <div>
-		    <div style="float: left"><label>Password</label></div>
-		    <div style="float: left"><input ng-model="changePasswordUser.password" required/></div>
+		  <div style="margin-top: 20px">
+		    <div style="float: left; width:40%"><label><b>Password</b></label></div>
+		    <div style="float: left; width:40%"><input ng-model="changePasswordUser.password" required/></div>
 		    <div style="clear: both"></div>
 		  </div>
-		  <div>
-		    <div style="float: left"><label>Confirm Password</label></div>
-		    <div style="float: left"><input ng-model="changePasswordUser.password_confirmation"/></div>
+		  <div style="margin-top: 20px">
+		    <div style="float: left; width:40%;"><label><b>Confirm Password</b></label></div>
+		    <div style="float: left; width:40%"><input ng-model="changePasswordUser.password_confirmation"/></div>
 		    <div style="clear: both"></div>
 		  </div>
-		  <div>
+		  <div style="margin-top: 20px; margin-left: 35%; margin-bottom: 5%">
 		  	<a ng-click="updatePassword()" class="button_link">Change</a>
 			<a ng-click="changePassword = !changePassword" class="button_link">Cancel</a>
 		    <div style="clear: both"></div>
 		  </div>
 		</div>
-	</div>
+	  </div>
+	  </div>
 <div>

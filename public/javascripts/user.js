@@ -55,14 +55,14 @@ function UserCtrl($scope, $http) {
   	$scope.clearMessages()
 	$http.put('users/' + $scope.changePasswordUser.id, {user: $scope.changePasswordUser, changePassword: true}).success(function(result){
 		if(result.status == 'SUCCESS'){
-			$scope.successMessage = 'Password successfully updated.'
+			$scope.successMessage = 'Password successfully updated for ' + $scope.changePasswordUser.username
   			$scope.changePasswordUser.password = undefined
   			$scope.changePasswordUser.password_confirmation = undefined
   			$scope.changePasswordUser = undefined
 		    $scope.changePassword = !$scope.changePassword
 	    }
 	    else{
-	    	$scope.errorMessages = result.messages
+	    	$scope.passwordErrorMessage = result.messages
 	    }
 	})
   }
