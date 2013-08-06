@@ -10,75 +10,100 @@
   	    <div ng-repeat="errorMsg in errorMessages" ng-show="errorMessages" class="failure">
   	  	  {{errorMsg}}
   	    </div>
-		<span style="float: left">
-	  	<table class="borderedTable">
-		  <tr>
-		    	<th width="10%">User Name</th>
-		    	<th width="10%">Role</th>
-		    	<th width="5%">Action</th>
-		  </tr>
-		  <tr ng-show="createEnabled">
-		        <td>
-		        	<input ng-model="user.username"/>
-		        </td>
-		        <td>
-		        	<input ng-model="user.role"/>
-		        </td>
-			    <td>
-					<span>
-						<span style="margin-left: 15%;">
-							<img src="/images/right_green.jpg" class="edit_image" 
-							ng-click="createEnabled = !createEnabled;createUser(user)"/>
-						</span>
-						<img id="spinner_update" style="display:none" src="/images/spinner.gif"/>
-						<span style="margin-left: 15%;">
-							<img src="/images/wrong_red.jpg" class="edit_image" 
-							ng-click="createEnabled = !createEnabled"/>
-						</span>
-					</span>
-			    </td>
-		  </tr>
-	  	  <tr ng-repeat="user in users" ng-show="user">
-		        <td>
-		        	<label ng-hide="editorEnabled">{{user.username}}</label>
-		        	<input ng-show="editorEnabled" ng-model="user.username"/>
-		        </td>
-		        <td>
-		        	<label ng-hide="editorEnabled">{{user.role}}</label>
-		        	<input ng-show="editorEnabled" ng-model="user.role"/>
-		        </td>
-			    <td>
-			    	<span ng-hide="editorEnabled">
-				    	<span style="margin-left: 15%;">
-				    		<img src="/images/pencil_edit.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled"/>
-						</span>
-						<img id="spinner_edit_" style="display:none" src="/images/spinner.gif"/>
-						<span style="margin-left: 15%;">
-				    		<img src="/images/minus_red.jpg" class="edit_image" ng-click="deleteUser(user)"/>
-						<img id="spinner_delete_" style="display:none;" src="/images/spinner.gif"/>
-						</span>
-						<span style="margin-left: 15%;">
-				    		<img src="/images/change_pwd.jpg" class="edit_image" ng-click="changePassword(user)"/>
-						</span>
-					</span>
-					<span ng-show="editorEnabled">
-						<span style="margin-left: 15%;">
-							<img src="/images/right_green.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled;saveUser(user)"/>
-						</span>
-						<img id="spinner_update" style="display:none" src="/images/spinner.gif"/>
-						<span style="margin-left: 15%;">
-							<img src="/images/wrong_red.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled;"/>
-						</span>
-					</span>
-			    </td>
-		  </tr>
-		</table>
-		</span>
-		<span style="position:absolute ;float: right">
+  	    <div ng-show="successMessage" class="success">
+  	  	  {{successMessage}}
+  	    </div>
+		<div style="float: right">
 			<span style="float: left"><img id="spinner_search" src="/images/plus.jpg"/ ng-click="createEnabled = !createEnabled" class="button_image"></span>
 			<span style="float: left">
 				<img id="spinner_new" style="display:none" src="/images/spinner.gif"/>
 			</span>
-		</span>
+		</div>
+		<div style="margin-right:10%;float:left">
+		  	<table class="borderedTable">
+			  <tr>
+			    	<th width="10%">User Name</th>
+			    	<th width="10%">Role</th>
+			    	<th width="5%">Action</th>
+			  </tr>
+			  <tr ng-show="createEnabled">
+			        <td>
+			        	<input ng-model="user.username"/>
+			        </td>
+			        <td>
+			        	<input ng-model="user.role"/>
+			        </td>
+				    <td>
+						<span>
+							<span style="margin-left: 15%;">
+								<img src="/images/right_green.jpg" class="edit_image" 
+								ng-click="createEnabled = !createEnabled;createUser(user)"/>
+							</span>
+							<img id="spinner_update" style="display:none" src="/images/spinner.gif"/>
+							<span style="margin-left: 15%;">
+								<img src="/images/wrong_red.jpg" class="edit_image" 
+								ng-click="createEnabled = !createEnabled"/>
+							</span>
+						</span>
+				    </td>
+			  </tr>
+		  	  <tr ng-repeat="user in users" ng-show="user">
+			        <td>
+			        	<label ng-hide="editorEnabled">{{user.username}}</label>
+			        	<input ng-show="editorEnabled" ng-model="user.username"/>
+			        </td>
+			        <td>
+			        	<label ng-hide="editorEnabled">{{user.role}}</label>
+			        	<input ng-show="editorEnabled" ng-model="user.role"/>
+			        </td>
+				    <td>
+				    	<span ng-hide="editorEnabled">
+					    	<span style="margin-left: 15%;">
+					    		<img src="/images/pencil_edit.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled"/>
+							</span>
+							<img id="spinner_edit_" style="display:none" src="/images/spinner.gif"/>
+							<span style="margin-left: 15%;">
+					    		<img src="/images/minus_red.jpg" class="edit_image" ng-click="deleteUser(user)"/>
+							<img id="spinner_delete_" style="display:none;" src="/images/spinner.gif"/>
+							</span>
+							<span style="margin-left: 15%;">
+					    		<img src="/images/change_pwd.jpg" class="edit_image" ng-click="showChangePassword(user)"/>
+							</span>
+						</span>
+						<span ng-show="editorEnabled">
+							<span style="margin-left: 15%;">
+								<img src="/images/right_green.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled;saveUser(user)"/>
+							</span>
+							<img id="spinner_update" style="display:none" src="/images/spinner.gif"/>
+							<span style="margin-left: 15%;">
+								<img src="/images/wrong_red.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled;"/>
+							</span>
+						</span>
+				    </td>
+			  </tr>
+			</table>
+		</div>
+		<div ng-show="changePassword">
+		  <div>
+		    <div style="float: left"><label>User Name</label></div>
+		    <div style="float: left"><label>{{changePasswordUser.username}}</label></div>
+		    <div style="clear: both"></div>
+		  </div>
+		  <div>
+		    <div style="float: left"><label>Password</label></div>
+		    <div style="float: left"><input ng-model="changePasswordUser.password" required/></div>
+		    <div style="clear: both"></div>
+		  </div>
+		  <div>
+		    <div style="float: left"><label>Confirm Password</label></div>
+		    <div style="float: left"><input ng-model="changePasswordUser.password_confirmation"/></div>
+		    <div style="clear: both"></div>
+		  </div>
+		  <div>
+		  	<a ng-click="updatePassword()" class="button_link">Change</a>
+			<a ng-click="changePassword = !changePassword" class="button_link">Cancel</a>
+		    <div style="clear: both"></div>
+		  </div>
+		</div>
 	</div>
 <div>

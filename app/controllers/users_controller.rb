@@ -24,11 +24,29 @@ class UsersController < ApplicationController
   end
   
   def update
+    changePassword = params[:changePassword]
+    changePasswordFlag = true
+    error_messages = Array.new
+    puts params[:user][:password]
+    if(changePassword)
+      if !params[:user][:password]
+        changePasswordFlag = false
+        error_messages << 'Password can not be null.'
+      else 
+        if (params[:user][:password] != params[:user][:password_confirmation])
+          changePasswordFlag = false
+          error_messages << 'Password do not match.'
+        end
+      end
+    end
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
+    if changePasswordFlag && @user.update_attributes(params[:user])
       render :json => {:status => 'SUCCESS'}
     else
-      render :json => {:status => 'FAILURE'}
+      @user.errors.each do |attr,message|
+        error_messages << message
+      end
+      render :json => {:status => 'FAILURE', :messages => error_messages}
     end
   end
 

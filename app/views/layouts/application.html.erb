@@ -21,15 +21,15 @@
 	
 	</script>
   <div style="width: 100%">
-  	<% if true %>
+  	<% if current_user %>
     <div style="font-family:Verdana;
     position:fixed;left:0%;bottom:0%;top:0%;width:10%;background-color: #60AFFE; height: 100%">
     	<div id="priceMenuDivMain"></div>
 
-    	<div id="currentUserName"> 
+		<div id="currentUserName"> 
 	      <%=current_user.username%>
 	    </div>
-    	<div id="currentUserName"> 
+	    <div id="currentUserName"> 
 	      <%=Date.today.strftime("%d %b %Y")%>
 	    </div>
 	    
@@ -41,9 +41,11 @@
 	    	<div style="height: 10px"></div>
 	    	<div class="partPriceMenuLinkSub"><a id="price_menu_link" >DATA BACKUP</a></div>
 	    </div>
-    	<div id="adminMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_div" onmouseover="showAdminMenuDiv()"> 
-	      <a>Admin</a>
-	    </div>
+	    <% if current_user.role == 'admin' %>
+	    	<div id="adminMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_div" onmouseover="showAdminMenuDiv()"> 
+		      <a>Admin</a>
+		    </div>
+    	<% end %>
     	<div style="padding-top:5%;padding-bottom:5%; margin-top: 7%;" class="menu_div"> 
 	      <%= link_to 'Log Out', :controller => "sessions", :action => "destroy"%>
 		</div>
