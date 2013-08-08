@@ -63,5 +63,3 @@ UserCtrl = function($scope, $http, $timeout) {
 	})
   }
 }
-
-//for error/success messages there should be timeout

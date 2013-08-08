@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def appUsers
-    @users = User.all
+    @users = User.order('username')
     render :json => @users.collect { |user| {:id => user.id, :username => user.username, :role => user.role} }
   end
 
@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   end
 
   def create
-
     @user = User.new(params[:user])
     if @user.save
       render :json => {:status => 'SUCCESS', :user_id => @user.id}
@@ -24,28 +23,28 @@ class UsersController < ApplicationController
   end
   
   def update
-    changePassword = params[:changePassword]
-    changePasswordFlag = true
     error_messages = Array.new
-    puts params[:user][:password]
-    if(changePassword)
+    
+    if(params[:changePassword])
       if !params[:user][:password]
-        changePasswordFlag = false
         error_messages << 'Password can not be null.'
       else 
         if (params[:user][:password] != params[:user][:password_confirmation])
-          changePasswordFlag = false
           error_messages << 'Password do not match.'
         end
       end
     end
+
     @user = User.find(params[:id])
-    if changePasswordFlag && @user.update_attributes(params[:user])
-      render :json => {:status => 'SUCCESS'}
-    else
+    if !@user.update_attributes(params[:user])
       @user.errors.each do |attr,message|
         error_messages << message
       end
+    end
+
+    if error_messages.length == 0
+      render :json => {:status => 'SUCCESS'}
+    else
       render :json => {:status => 'FAILURE', :messages => error_messages}
     end
   end
