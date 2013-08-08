@@ -7,7 +7,15 @@ angular.module('user', []).
 UserCtrl = function($scope, $http, $timeout) {
   $http.get('users/appUsers').success(function(data) {
     $scope.users = data;
+    angular.forEach($scope.users, function(user){
+      user.hiddenUserName = user.username
+      user.hiddenRole = user.role
+    });
   });
+  $scope.cancelEdit = function(user){
+      user.username = user.hiddenUserName
+      user.role = user.hiddenRole
+  }
   $scope.saveUser = function(user){
 	$http.put('users/' + user.id, {user: user}).success(function(result){
 	  if(result.status == 'SUCCESS')
@@ -63,3 +71,5 @@ UserCtrl = function($scope, $http, $timeout) {
 	})
   }
 }
+
+//REFACTORED

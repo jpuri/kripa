@@ -65,7 +65,7 @@
 			  <img src="/images/right_green.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled;saveUser(user)"/>
 			</span>
 			<span style="margin-left: 5%;">
-			  <img src="/images/wrong_red.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled;"/>
+			  <img src="/images/wrong_red.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled;cancelEdit(user)"/>
 			</span>
 		  </span>
 		</td>
@@ -103,6 +103,8 @@
   </div>
 <div>
 	
-<!--alignment of elements in change pwd box.
+<!--
+	REFACTORED
+	alignment of elements in change pwd box.
 	if we edit a user leave username blank and hit cross original username should be shown  
 -->
