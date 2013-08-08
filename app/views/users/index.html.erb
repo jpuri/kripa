@@ -32,7 +32,7 @@
 		</td>
 		<td>
 	      <span style="margin-left: 15%;">
-		    <img src="/images/right_green.jpg" class="edit_image" ng-click="createEnabled = !createEnabled;createUser(user)"/>
+		    <img src="/images/right_green.jpg" class="edit_image" ng-click="createUser(user)"/>
 		  </span>
 		  <span style="margin-left: 15%;">
 			<img src="/images/wrong_red.jpg" class="edit_image" ng-click="createEnabled = !createEnabled"/>
@@ -41,17 +41,17 @@
       </tr>
 	  <tr ng-repeat="user in users" ng-show="user">
         <td>
-    	  <label ng-hide="editorEnabled">{{user.username}}</label>
-    	  <input ng-show="editorEnabled" ng-model="user.username"/>
+    	  <label ng-hide="editEnabled">{{user.username}}</label>
+    	  <input ng-show="editEnabled" ng-model="user.username"/>
         </td>
         <td>
-    	  <label ng-hide="editorEnabled">{{user.role}}</label>
-    	  <input ng-show="editorEnabled" ng-model="user.role"/>
+    	  <label ng-hide="editEnabled">{{user.role}}</label>
+    	  <input ng-show="editEnabled" ng-model="user.role"/>
         </td>
 		<td>
-    	  <span ng-hide="editorEnabled">
+    	  <span ng-hide="editEnabled">
 	        <span style="margin-left: 5%;">
-	    	  <img src="/images/pencil_edit.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled"/>
+	    	  <img src="/images/pencil_edit.jpg" class="edit_image" ng-click="editEnabled = !editEnabled"/>
 			</span>
 			<span style="margin-left: 5%;">
 	    	  <img src="/images/minus_red.jpg" class="edit_image" ng-click="deleteUser(user)"/>
@@ -60,12 +60,12 @@
 	    	  <img src="/images/change_pwd.jpg" class="edit_image" ng-click="showChangePassword(user)"/>
 			</span>
 		  </span>
-		  <span ng-show="editorEnabled">
+		  <span ng-show="editEnabled">
 			<span style="margin-left: 5%;">
-			  <img src="/images/right_green.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled;saveUser(user)"/>
+			  <img src="/images/right_green.jpg" class="edit_image" ng-click="editEnabled = !editEnabled;saveUser(user)"/>
 			</span>
 			<span style="margin-left: 5%;">
-			  <img src="/images/wrong_red.jpg" class="edit_image" ng-click="editorEnabled = !editorEnabled;cancelEdit(user)"/>
+			  <img src="/images/wrong_red.jpg" class="edit_image" ng-click="editEnabled = !editEnabled;cancelEdit(user)"/>
 			</span>
 		  </span>
 		</td>

@@ -27,6 +27,7 @@ UserCtrl = function($scope, $http, $timeout) {
   $scope.createUser = function(user){
 	$http.post('users', {user: user}).success(function(result){
 	  if(result.status == 'SUCCESS'){
+	  	$scope.createEnabled = !$scope.createEnabled;
 	    user.id = result.user_id
 	    $scope.users[$scope.users.length] = user;
 	    $scope.showMessage('successMessage', 'User successfully created.', 2000)
