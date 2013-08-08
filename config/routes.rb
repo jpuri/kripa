@@ -1,39 +1,25 @@
 Kripa::Application.routes.draw do
 
-  get "sessions/new"
-
-#  get "users/new"
-#  get "users/edit"
-#  get "users/update"
-
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
-
-  post "welcome/index"
-  get "users/index"
+  resources :sessions
+  
   get "users/appUsers"
+  resources :users
+  
+  # part price menus to be refactored and removed
   get "part_prices/index"
+  get 'part_prices/ajaxSearch'
+  get 'part_prices/ajaxNew'
+  get 'part_prices/ajaxCreate'
+  get 'part_prices/ajaxEdit'
+  get 'part_prices/ajaxUpdate'
+  get 'part_prices/ajaxDelete'
+  get 'part_prices/ajaxSingleDisplayRow'
+  get "part_prices/ajaxPartPriceMenu"
   get "part_prices/ajaxAutoCompleteParts"
   get "part_prices/ajaxAutoCompleteModels"
   get "part_prices/ajaxGetPartDescription"
-  
-  ['parts', 'models', 'prices', 'makes', 'customers', 'part_prices'].each do |entity|
-    get entity + '/index'
-    get entity + '/ajaxAutoCompleteValue'
-    get entity + '/ajaxIndex'
-    get entity + '/ajaxSearch'
-    get entity + '/ajaxNew'
-    get entity + '/ajaxEdit'
-    get entity + '/ajaxUpdate'
-    get entity + '/ajaxCreate'
-    get entity + '/ajaxDelete'
-    get entity + '/ajaxSingleDisplayRow'
-  end
-  
-  get "part_prices/ajaxPartPriceMenu"
-  resources :customers
-  resources :sessions
-  resources :users
   
   root :to => "welcome#index"
 end

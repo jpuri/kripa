@@ -1,12 +1,11 @@
 <script src="/javascripts/vendorjs/angular.min.js"></script>
-<script src="/javascripts/vendorjs/ui-bootstrap-tpls-0.4.0.min.js"></script>
 <script src="/javascripts/user.js"></script>
 
 <div>
   <span class="heading">Users</span>
 </div>
 <div style="width: 100%; padding-top: 5%" ng-app="user">
-	<div ng-controller="UserCtrl" style="width:40%">
+	<div ng-controller="UserCtrl" style="width:50%">
   	    <div ng-repeat="errorMsg in errorMessages" ng-show="errorMessages" class="failure">
   	  	  {{errorMsg}}
   	    </div>
@@ -22,9 +21,9 @@
 		<div style="margin-right:10%;float:left">
 		  	<table class="borderedTable">
 			  <tr>
-			    	<th width="10%">User Name</th>
-			    	<th width="10%">Role</th>
-			    	<th width="5%">Action</th>
+			    	<th width="15%">User Name</th>
+			    	<th width="15%">Role</th>
+			    	<th width="15%">Action</th>
 			  </tr>
 			  <tr ng-show="createEnabled">
 			        <td>
@@ -97,12 +96,12 @@
 		  </div>
 		  <div style="margin-top: 20px">
 		    <div style="float: left; width:40%"><label><b>Password</b></label></div>
-		    <div style="float: left; width:40%"><input ng-model="changePasswordUser.password" required/></div>
+		    <div style="float: left; width:40%"><input ng-model="changePasswordUser.password" placeholder="Type new password..."/></div>
 		    <div style="clear: both"></div>
 		  </div>
 		  <div style="margin-top: 20px">
 		    <div style="float: left; width:40%;"><label><b>Confirm Password</b></label></div>
-		    <div style="float: left; width:40%"><input ng-model="changePasswordUser.password_confirmation"/></div>
+		    <div style="float: left; width:40%"><input ng-model="changePasswordUser.password_confirmation" placeholder="Retype new password..."/></div>
 		    <div style="clear: both"></div>
 		  </div>
 		  <div style="margin-top: 20px; margin-left: 35%; margin-bottom: 5%">
