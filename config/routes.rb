@@ -16,7 +16,6 @@ Kripa::Application.routes.draw do
   get 'part_prices/ajaxUpdate'
   get 'part_prices/ajaxDelete'
   get 'part_prices/ajaxSingleDisplayRow'
-  get "part_prices/ajaxPartPriceMenu"
   get "part_prices/ajaxAutoCompleteParts"
   get "part_prices/ajaxAutoCompleteModels"
   get "part_prices/ajaxGetPartDescription"

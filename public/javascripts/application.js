@@ -39,15 +39,8 @@ $(document).ready(function() {
 
 function showPriceMenuDiv(){
 	hideAdminMenuDivImmediate()
-    $.ajax({
-      url : server_url + "part_prices/ajaxPartPriceMenu",
-	  data : {},
-      success : function(html){
-		$("#priceMenuDivMain").html(html)
-		el = document.getElementById("priceMenuDivMain");
-		el.style.visibility = "visible";
-      }
-	})
+	el = document.getElementById("priceMenuDivMain");
+	el.style.visibility = "visible";
 }
 
 function showAdminMenuDiv(){

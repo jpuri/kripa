@@ -79,12 +79,6 @@ class PartPricesController < ApplicationController
     render :partial => 'singleRow', :locals => { :part_price => @part_price, :i => index}    
   end
   
-  def ajaxPartPriceMenu
-    @makes = ['HAMWORTHY', 'Hatlapa', 'SALAR', 'SPERRE', 'TANABE']
-    @currencies = ['EURO', 'GBP', 'USD']
-    render :partial => 'partPriceMenu', :locals => { :models => @models, :currencies => @currencies}    
-  end
-
   def ajaxAutoCompleteParts
     condition = "true"
     if(params[:currency] && params[:currency].length > 0)

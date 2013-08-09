@@ -1,4 +1,9 @@
-<div style="position:absolute; padding-right: 10%" width="50%">
+  <div style="float: right">
+		<span style="float: left"><img id="spinner_search" src="/images/plus.jpg"/ onclick="PartPrice.newEntity()" class="button_image"></span>
+		<span style="float: left">
+		<img id="spinner_new" style="display:none" src="/images/spinner.gif"/></span></div>
+
+  <div style="margin-right:0%;float:left">
 	<table class="borderedTable">
 	  <tr>
 	    <th width="7%">S. No.</th>
@@ -40,10 +45,6 @@
 	
 	</table>
 </div>
-		<div style="position:absolute; left: 90%; width: 6%" class="admin_action">
-		<span style="float: left"><img id="spinner_search" src="/images/plus.jpg"/ onclick="PartPrice.newEntity()" class="button_image"></span>
-		<span style="float: left">
-		<img id="spinner_new" style="display:none" src="/images/spinner.gif"/></span></div>
 <script>
 	$('.sortable').attr('class' , 'sortable sort_default')
 	$('[name="' + SortUtility.sort + '"]').attr('class' , 'sortable sort_' + SortUtility.order)

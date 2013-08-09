@@ -93,8 +93,6 @@ label{
 }
 .button_image:hover{
     cursor: pointer;
-    width:35px;
-    height:35px;
 }
 .button_image{
     width:30px;
@@ -138,9 +136,6 @@ label{
     cursor: pointer;
     height: 12px;
     width: 17px;
-}
-.inline_textbox{
-	width: 90%; 
 }
 #priceMenuDivMain {
      visibility: hidden;
