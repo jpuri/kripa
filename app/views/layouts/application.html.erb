@@ -24,7 +24,54 @@
   	<% if current_user %>
     <div style="font-family:Verdana;
     position:fixed;left:0%;bottom:0%;top:0%;width:10%;background-color: #60AFFE; height: 100%">
-    	<div id="priceMenuDivMain"></div>
+    	<div id="priceMenuDivMain">
+    		<div id="priceMenuDivSub">
+  	<div style="padding-bottom: 3%">
+		<div class="partPriceMenuLinkMain">HAMWORTHY</div>
+		<div class="partPriceMenuLinkSub">
+			<a id="price_menu_link" onclick="searchPartPrice('HAMWORTHY', 'EURO')">EURO</a> &nbsp;
+			<a id="price_menu_link" onclick="searchPartPrice('HAMWORTHY', 'GBP')">GBP</a> &nbsp;
+			<a id="price_menu_link" onclick="searchPartPrice('HAMWORTHY', 'USD')">USD</a> &nbsp;
+	    </div>
+    </div>
+  	<div style="padding-bottom: 3%">
+		<div class="partPriceMenuLinkMain">Hatlapa</div>
+		<div class="partPriceMenuLinkSub">
+			<a id="price_menu_link" onclick="searchPartPrice('Hatlapa', 'EURO')">EURO</a> &nbsp;
+			<a id="price_menu_link" onclick="searchPartPrice('Hatlapa', 'GBP')">GBP</a> &nbsp;
+			<a id="price_menu_link" onclick="searchPartPrice('Hatlapa', 'USD')">USD</a> &nbsp;
+	    </div>
+    </div>
+  	<div style="padding-bottom: 3%">
+		<div class="partPriceMenuLinkMain">SALAR</div>
+		<div class="partPriceMenuLinkSub">
+			<a id="price_menu_link" onclick="searchPartPrice('SALAR', 'EURO')">EURO</a> &nbsp;
+			<a id="price_menu_link" onclick="searchPartPrice('SALAR', 'GBP')">GBP</a> &nbsp;
+			<a id="price_menu_link" onclick="searchPartPrice('SALAR', 'USD')">USD</a> &nbsp;
+	    </div>
+    </div>
+  	<div style="padding-bottom: 3%">
+		<div class="partPriceMenuLinkMain">SPERRE</div>
+		<div class="partPriceMenuLinkSub">
+			<a id="price_menu_link" onclick="searchPartPrice('SPERRE', 'EURO')">EURO</a> &nbsp;
+			<a id="price_menu_link" onclick="searchPartPrice('SPERRE', 'GBP')">GBP</a> &nbsp;
+			<a id="price_menu_link" onclick="searchPartPrice('SPERRE', 'USD')">USD</a> &nbsp;
+	    </div>
+    </div>
+  	<div style="padding-bottom: 3%">
+		<div class="partPriceMenuLinkMain">TANABE</div>
+		<div class="partPriceMenuLinkSub">
+			<a id="price_menu_link" onclick="searchPartPrice('TANABE', 'EURO')">EURO</a> &nbsp;
+			<a id="price_menu_link" onclick="searchPartPrice('TANABE', 'GBP')">GBP</a> &nbsp;
+			<a id="price_menu_link" onclick="searchPartPrice('TANABE', 'USD')">USD</a> &nbsp;
+	    </div>
+    </div>
+</div>
+<form id="partPriceSearchForm" action="/part_prices/index" method="GET">
+	<input type="hidden" id="make" name="part_price[make]">
+	<input type="hidden" id="currency" name="part_price[currency]">
+</form>
+    	</div>
 
 		<div id="currentUserName"> 
 	      <%=current_user.username%>
