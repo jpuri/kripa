@@ -14,6 +14,7 @@
 <script src="/javascripts/vendorjs/angular.min.js"></script>
 <script src="/javascripts/main.js"></script>
 <script src="/javascripts/user.js"></script>
+<script src="/javascripts/part_price.js"></script>
 
 <title>Kripa</title>
 <%= stylesheet_link_tag :all %>
@@ -31,18 +32,18 @@
     width:10%;background-color: #60AFFE; height: 100%">
       <div id="priceMenuDivMain">
         <div id="priceMenuDivSub">
-	      <div ng-repeat="model in ['HAMWORTHY', 'Hatlapa', 'SALAR', 'SPERRE', 'TANABE']" style="padding-bottom: 3%">
- 		    <div class="partPriceMenuLinkMain">{{model}}</div>
+	      <div ng-repeat="make in ['HAMWORTHY', 'Hatlapa', 'SALAR', 'SPERRE', 'TANABE']" style="padding-bottom: 3%">
+ 		    <div class="partPriceMenuLinkMain">{{make}}</div>
 		    <div class="partPriceMenuLinkSub">
 			  <span ng-repeat="currency in ['EURO', 'GBP', 'USD']">
-			    <a id="price_menu_link" onclick="searchPartPrice('{{model}}', '{{currency}}')">{{currency}}</a>
+			    <a id="price_menu_link" href="/#part_prices?make={{make}}&currency={{currency}}">{{currency}}</a>
 			  </span>
 	        </div>
 	      </div>	    			
         </div>
         <form id="partPriceSearchForm" action="/part_prices/index" method="GET">
-	      <input type="hidden" id="make" name="part_price[make]">
-	      <input type="hidden" id="currency" name="part_price[currency]">
+	      <input type="hidden" id="make" name="make">
+	      <input type="hidden" id="currency" name="currency">
         </form>
       </div>
 
@@ -57,7 +58,7 @@
 	      <a>Prices</a>
 	    </div>
 	    <div id="adminMenuDivMain" class="partPriceMenuLinkSub">
-	    	<div class="partPriceMenuLinkSub"><a id="user_mgt_link" href="#users">USER MANAGEMENT</a></div>
+	    	<div class="partPriceMenuLinkSub"><a id="user_mgt_link" href="/#users">USER MANAGEMENT</a></div>
 	    	<div style="height: 10px"></div>
 	    	<div class="partPriceMenuLinkSub"><a id="price_menu_link" >DATA BACKUP</a></div>
 	    </div>
@@ -74,6 +75,7 @@
 		<div id="success_msg" class="success"></div>
 		<div id="failure_msg" class="failure"></div>
    		<div ng-view></div>
+   		<!--<%=yield%>-->
     </div>
     <% else %>
       <%= render :template => "sessions/new"%>
