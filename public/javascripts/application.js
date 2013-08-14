@@ -1,5 +1,5 @@
-server_url = 'http://obscure-atoll-7710.herokuapp.com/'
-//server_url = 'http://localhost:3000/'
+//server_url = 'http://obscure-atoll-7710.herokuapp.com/'
+server_url = 'http://localhost:3000/'
 
 $(document).ready(function() {
 	
@@ -93,5 +93,5 @@ $(".decimal_places2").live('blur', function() {
 })
 
 $("#user_mgt_link").live('click', function(){
-	window.location = server_url + "users"
+	$http.get('users')
 })

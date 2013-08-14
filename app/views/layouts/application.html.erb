@@ -1,77 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="kripa">
 <head>
+	
 <script src="/javascripts/vendorjs/jquery.alphanum.js"></script>
 <script src="/javascripts/vendorjs/jquery.number.min.js"></script>
 <script src="/javascripts/vendorjs/jquery-1.6.1.min.js"></script>
 <script src="/javascripts/vendorjs/jquery-ui-1.8.15.custom.min.js"></script>
-<script src="/javascripts/application.js?1"></script>
+<script src="/javascripts/application.js"></script>
 <script src="/javascripts/entities.js"></script>
 <script src="/javascripts/part_price.js"></script>
 <script src="/javascripts/search.js"></script>
 <script src="/javascripts/autocomplete.js"></script>
-  <title>Kripa</title>
-  <%= stylesheet_link_tag :all %>
-  <%= csrf_meta_tag %>
+<script src="/javascripts/vendorjs/angular.min.js"></script>
+<script src="/javascripts/main.js"></script>
+<script src="/javascripts/user.js"></script>
+
+<title>Kripa</title>
+<%= stylesheet_link_tag :all %>
+<%= csrf_meta_tag %>
+  
 </head>
 <body >
-	<script>
-
+  <script>
 	var role = '<%= current_user ? current_user.role : nil %>'
-	
-	</script>
+  </script>
+  
   <div style="width: 100%">
   	<% if current_user %>
-    <div style="font-family:Verdana;
-    position:fixed;left:0%;bottom:0%;top:0%;width:10%;background-color: #60AFFE; height: 100%">
-    	<div id="priceMenuDivMain">
-    		<div id="priceMenuDivSub">
-  	<div style="padding-bottom: 3%">
-		<div class="partPriceMenuLinkMain">HAMWORTHY</div>
-		<div class="partPriceMenuLinkSub">
-			<a id="price_menu_link" onclick="searchPartPrice('HAMWORTHY', 'EURO')">EURO</a> &nbsp;
-			<a id="price_menu_link" onclick="searchPartPrice('HAMWORTHY', 'GBP')">GBP</a> &nbsp;
-			<a id="price_menu_link" onclick="searchPartPrice('HAMWORTHY', 'USD')">USD</a> &nbsp;
-	    </div>
-    </div>
-  	<div style="padding-bottom: 3%">
-		<div class="partPriceMenuLinkMain">Hatlapa</div>
-		<div class="partPriceMenuLinkSub">
-			<a id="price_menu_link" onclick="searchPartPrice('Hatlapa', 'EURO')">EURO</a> &nbsp;
-			<a id="price_menu_link" onclick="searchPartPrice('Hatlapa', 'GBP')">GBP</a> &nbsp;
-			<a id="price_menu_link" onclick="searchPartPrice('Hatlapa', 'USD')">USD</a> &nbsp;
-	    </div>
-    </div>
-  	<div style="padding-bottom: 3%">
-		<div class="partPriceMenuLinkMain">SALAR</div>
-		<div class="partPriceMenuLinkSub">
-			<a id="price_menu_link" onclick="searchPartPrice('SALAR', 'EURO')">EURO</a> &nbsp;
-			<a id="price_menu_link" onclick="searchPartPrice('SALAR', 'GBP')">GBP</a> &nbsp;
-			<a id="price_menu_link" onclick="searchPartPrice('SALAR', 'USD')">USD</a> &nbsp;
-	    </div>
-    </div>
-  	<div style="padding-bottom: 3%">
-		<div class="partPriceMenuLinkMain">SPERRE</div>
-		<div class="partPriceMenuLinkSub">
-			<a id="price_menu_link" onclick="searchPartPrice('SPERRE', 'EURO')">EURO</a> &nbsp;
-			<a id="price_menu_link" onclick="searchPartPrice('SPERRE', 'GBP')">GBP</a> &nbsp;
-			<a id="price_menu_link" onclick="searchPartPrice('SPERRE', 'USD')">USD</a> &nbsp;
-	    </div>
-    </div>
-  	<div style="padding-bottom: 3%">
-		<div class="partPriceMenuLinkMain">TANABE</div>
-		<div class="partPriceMenuLinkSub">
-			<a id="price_menu_link" onclick="searchPartPrice('TANABE', 'EURO')">EURO</a> &nbsp;
-			<a id="price_menu_link" onclick="searchPartPrice('TANABE', 'GBP')">GBP</a> &nbsp;
-			<a id="price_menu_link" onclick="searchPartPrice('TANABE', 'USD')">USD</a> &nbsp;
-	    </div>
-    </div>
-</div>
-<form id="partPriceSearchForm" action="/part_prices/index" method="GET">
-	<input type="hidden" id="make" name="part_price[make]">
-	<input type="hidden" id="currency" name="part_price[currency]">
-</form>
-    	</div>
+    <div style="font-family:Verdana;position:fixed;left:0%;bottom:0%;top:0%;
+    width:10%;background-color: #60AFFE; height: 100%">
+      <div id="priceMenuDivMain">
+        <div id="priceMenuDivSub">
+	      <div ng-repeat="model in ['HAMWORTHY', 'Hatlapa', 'SALAR', 'SPERRE', 'TANABE']" style="padding-bottom: 3%">
+ 		    <div class="partPriceMenuLinkMain">{{model}}</div>
+		    <div class="partPriceMenuLinkSub">
+			  <span ng-repeat="currency in ['EURO', 'GBP', 'USD']">
+			    <a id="price_menu_link" onclick="searchPartPrice('{{model}}', '{{currency}}')">{{currency}}</a>
+			  </span>
+	        </div>
+	      </div>	    			
+        </div>
+        <form id="partPriceSearchForm" action="/part_prices/index" method="GET">
+	      <input type="hidden" id="make" name="part_price[make]">
+	      <input type="hidden" id="currency" name="part_price[currency]">
+        </form>
+      </div>
 
 		<div id="currentUserName"> 
 	      <%=current_user.username%>
@@ -84,7 +57,7 @@
 	      <a>Prices</a>
 	    </div>
 	    <div id="adminMenuDivMain" class="partPriceMenuLinkSub">
-	    	<div class="partPriceMenuLinkSub"><a id="user_mgt_link">USER MANAGEMENT</a></div>
+	    	<div class="partPriceMenuLinkSub"><a id="user_mgt_link" href="#users">USER MANAGEMENT</a></div>
 	    	<div style="height: 10px"></div>
 	    	<div class="partPriceMenuLinkSub"><a id="price_menu_link" >DATA BACKUP</a></div>
 	    </div>
@@ -100,7 +73,7 @@
 	<div style="margin-left: 20%; margin-right: 20%; font-family:Verdana; width: 70%; height: 100%" align="center">
 		<div id="success_msg" class="success"></div>
 		<div id="failure_msg" class="failure"></div>
-   		<%= yield %>
+   		<div ng-view></div>
     </div>
     <% else %>
       <%= render :template => "sessions/new"%>
