@@ -3,10 +3,11 @@ class PartPricesController < ApplicationController
   before_filter :session_timeout
 
   def index
-    @make = params[:part_price][:make]
-    @currency = params[:part_price][:currency]
+    @make = params[:make]
+    @currency = params[:currency]
     @part_prices = PartPrice.where("make = ? and currency =  ?", 
-    "#{params[:part_price][:make]}", "#{params[:part_price][:currency]}").order('part_number asc')
+    "#{params[:make]}", "#{params[:currency]}").order('part_number asc')
+    render :json => @part_prices
   end
 
   def ajaxSearch

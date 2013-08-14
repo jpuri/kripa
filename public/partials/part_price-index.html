@@ -1,0 +1,90 @@
+<div style="width: 100%">
+	<div>
+	  <span class="heading">{{model}}</span>
+	</div>
+	<div style="padding-top: 5%; widows: 100%">
+	
+		<div style="padding-top: 2%" align="left">
+		  <div style="width: 25%;float: left;">
+	  		  <div style="float: left; width:23%"><label class = "medium_lbl_grey">Model</label></div>
+			  <div style="float: right; width:77%"><input type="text" id="model" name="model123" class='search_model'/></div>
+		 </div>
+		 <div style="width: 25%;float: left;padding-left: 5%">
+			  <div style="float: left; width:18%"><label class = "medium_lbl_grey">Part</label></div>
+			  <div style="float: right; width:82%"><input type="text" id="part_number" name="part_number123" class='search_part'/></div>
+		</div>
+		 <div style="width: 25%;float: left;padding-left: 5%;">
+			  <a onclick="PartPrice.searchEntity()" class="button_link">Search</a>
+			  <img id="spinner_search" style="display:none" src="/images/spinner.gif"/>
+			  <a onclick="PartPrice.resetSearchFields()" class="button_link">Reset</a>
+			</div>
+		</div>
+	</div>
+	<div id="results" name="results" style="padding-top: 3%; width: 100%">
+	    <div style="float: right">
+		<span style="float: left"><img id="spinner_search" src="/images/plus.jpg"/ onclick="PartPrice.newEntity()" class="button_image"></span>
+		<span style="float: left">
+		<img id="spinner_new" style="display:none" src="/images/spinner.gif"/></span></div>
+
+  <div style="float:left;width:100%">
+	<table class="borderedTable">
+	  <tr>
+	    <th width="7%">S. No.</th>
+	    <th width="13%"><a class="sortable sort_default" name="model">Model</a></th>
+	    <th width="13%"><a class="sortable sort_default" name="part_number">Part Number</a></th>
+	    <th width="25%"><a class="sortable sort_default" name="part_desc">Part Description</a></th>
+	    <th width="10%"><a class="sortable sort_default" name="weight">Weight(Kg)</a></th>
+	    <th width="10%"><a class="sortable sort_default" name="price">Price({{currency}})</a></th>
+	    <th width="7%" class="admin_action">Action</th>
+	  </tr>
+	  <tr id="createNewRow"/>
+	
+	  	  <tr id="part_prices_{{part_price.part_price.id}}" ng-repeat="part_price in part_prices">
+		    <td>{{$index + 1}}</td>
+		    <td>{{part_price.part_price.model}}</td>
+		    <td>{{part_price.part_price.part_number}}</td>
+		    <td>{{part_price.part_price.part_desc}}</td>
+		    <td>{{part_price.part_price.weight}}</td>
+		    <td>{{part_price.part_price.price}}</td>
+		    <td class="admin_action">
+		    	<span style="margin-left: 15%;">
+		    		<img src="/images/pencil_edit.jpg" id="edit_{{part_price.part_price.id}}" class="edit_image" onclick="PartPrice.editEntity({{part_price.part_price.id}}, {{$index + 1}})"/>
+				</span>
+				<img id="spinner_edit_{{part_price.part_price.id}}" style="display:none" src="/images/spinner.gif"/>
+				<span style="margin-left: 15%;">
+		    		<img src="/images/minus_red.jpg" id="delete_{{part_price.part_price.id}}" class="edit_image" onclick="PartPrice.deleteEntity({{part_price.part_price.id}}, {{$index + 1}})"></img>
+				<img id="spinner_delete_{{part_price.part_price.id}}" style="display:none;" src="/images/spinner.gif"/>
+				</span>
+		    </td>
+		  </tr>
+	  	<div class="failure" style="position: fixed; margin-top: 5%; margin-left: 20%" ng-show="part_prices.length == 0">There are no records matching your seatch parameters.</div>
+	
+	</table>
+</div>
+
+	</div>
+	<div name="dialog_create" id="dialog_create" class="popup" title="<font color='#60AFFE'>Add Price</font>"></div>
+	<div name="dialog_update" id="dialog_update" class="popup" title="<font color='#60AFFE'>Edit Price</font>"></div>
+<div>
+<input type="hidden" id="part_price_make" name="make" value="{{make}}">
+<input type="hidden" id="part_price_currency" name="currency" value="{{currency}}">
+<script type="text/javascript">
+	$(".search_model").change(function() {
+	  $(".search_part").val('')
+	});
+	$(".search_model").focusin(function() {
+	  var data = {make: $('#part_price_make').val(),
+	  currency: $('#part_price_currency').val()}
+	  populateModelsAutoComplete(data, "search_model");
+	});
+	$(".search_part").focusin(function() {
+	  var data = {model_number: $('#model').val(),
+	  currency: $('#part_price_currency').val(),
+	  make: $('#part_price_make').val()}
+	  populatePartsAutoComplete(data, "search_part");
+	});
+	$('.sortable').attr('class' , 'sortable sort_default')
+	$('[name="' + SortUtility.sort + '"]').attr('class' , 'sortable sort_' + SortUtility.order)
+	if(role == 'admin')
+		$(".admin_action").css('visibility','visible')
+</script>

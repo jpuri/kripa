@@ -165,9 +165,10 @@ label{
 	color: white;
 	font-size: 15px;
 }
-.partPriceMenuLinkSub{
+.partPriceMenuLinkSub a{
 	color: #3300FF;
 	font-size: 12px;
+	text-decoration:none;
 }
 .partPriceMenuLinkMain:hover{
 	cursor: default;
