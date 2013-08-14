@@ -20,6 +20,8 @@ Kripa::Application.routes.draw do
   get "part_prices/ajaxAutoCompleteModels"
   get "part_prices/ajaxGetPartDescription"
   
+  resources :part_prices
+
   root :to => "welcome#index"
 end
 

@@ -1,11 +1,5 @@
-angular.module('user', []).
-  config(['$routeProvider', function($routeProvider) {
-  $routeProvider.
-      when('', {templateUrl: 'partials/user_list.html',   controller: UserCtrl});
-}]);
-
-UserCtrl = function($scope, $http, $timeout) {
-  $http.get('users/appUsers').success(function(data) {
+function UserCtrl($scope, $http, $timeout) {
+  $http.get('users').success(function(data) {
     $scope.users = data;
     angular.forEach($scope.users, function(user){
       user.hiddenUserName = user.username

@@ -1,11 +1,8 @@
-<script src="/javascripts/vendorjs/angular.min.js"></script>
-<script src="/javascripts/user.js"></script>
-
 <div>
   <span class="heading">Users</span>
 </div>
 
-<div style="padding-top: 5%; width:50%" ng-app="user" ng-controller="UserCtrl">
+<div style="padding-top: 5%; width:50%">
 	
   <div ng-repeat="errorMsg in errorMessages" ng-show="errorMessages" class="failure">
     {{errorMsg}}
@@ -106,5 +103,7 @@
 <!--
 	REFACTORED
 	alignment of elements in change pwd box.
-	if we edit a user leave username blank and hit cross original username should be shown  
+	if we edit a user leave username blank and hit cross original username should be shown 
+	
+	refactoring required to move all styling to main.css 
 -->

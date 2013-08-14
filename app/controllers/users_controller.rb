@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  def appUsers
+  def index
     @users = User.order('username')
     render :json => @users.collect { |user| {:id => user.id, :username => user.username, :role => user.role} }
   end
