@@ -43,8 +43,6 @@ function UserCtrl($scope, $http, $timeout) {
   $scope.deleteUser = function(user){
   	if(confirm('Are you sure you want to delete ?')){
 	  $http.delete('users/' + user.id)
-	  alert($scope.users.length)
-	  alert(user.id)
 	  for(var i = 0; i < $scope.users.length;i++){
 	    if($scope.users[i].id === user.id)
 		  $scope.users.splice(i,1);
