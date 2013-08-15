@@ -1,12 +1,8 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.order('username')
+    @users = User.all
     render :json => @users.collect { |user| {:id => user.id, :username => user.username, :role => user.role} }
-  end
-
-  def new
-    @user = User.new
   end
 
   def create

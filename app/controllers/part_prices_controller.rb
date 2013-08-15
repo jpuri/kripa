@@ -3,15 +3,6 @@ class PartPricesController < ApplicationController
   before_filter :session_timeout
 
   def index
-    @make = params[:make]
-    @currency = params[:currency]
-    @part_prices = PartPrice.where("make = ? and currency =  ?", 
-    "#{params[:make]}", "#{params[:currency]}").order('part_number asc')
-    render :json => @part_prices
-  end
-
-  def ajaxSearch
-
     part_number = params[:part_number] ? params[:part_number] : ""
     model = params[:model] ? params[:model] : ""
     
@@ -22,44 +13,48 @@ class PartPricesController < ApplicationController
     @part_prices = PartPrice.where("lower(model) like ? and lower(part_number) like ? and make = ? and currency =  ?", 
     "%#{model.strip.downcase}%", "%#{part_number.strip.downcase}%",
     "#{params[:make]}", "#{params[:currency]}", ).order(sort + ' ' + order)
+    
+    render :json => @part_prices.collect { |part_price| {:id => part_price.id, :model => part_price.model, 
+      :part_number => part_price.part_number, :part_desc => part_price.part_desc, :weight => part_price.weight , :price => part_price.price} }
+  end
+
+  def ajaxSearch
+
+    part_number = params[:part_number] ? params[:part_number] : ""
+    model = params[:model] ? params[:model] : ""
+    
+    @make = params[:make]
+    @currency = params[:currency]
+    @part_prices = PartPrice.where("lower(model) like ? and lower(part_number) like ? and make = ? and currency =  ?", 
+    "%#{model.strip.downcase}%", "%#{part_number.strip.downcase}%",
+    "#{params[:make]}", "#{params[:currency]}", )
     render :partial => 'result', :locals => { :part_prices => @part_prices}
   end
 
-  def ajaxNew
-    @part_price = PartPrice.new
-    render :partial => 'new', :locals => { :part_price => @part_price}    
-  end
+  def create
+    @part_price = PartPrice.new(params[:part_price])
 
-  def ajaxCreate
-    @part_prices = PartPrice.new(params[:part_price])
-
-    if @part_prices.save
-     render :json => {:status => 'SUCCESS'}
+    if @part_price.save
+     render :json => {:status => 'SUCCESS', :part_price_id => @part_price.id}
     else
       error_messages = Array.new
-      @part_prices.errors.each do |attr,message|
+      @part_price.errors.each do |attr,message|
         error_messages << message
       end
       render :json => {:status => 'FAILURE', :messages => error_messages}
     end
   end
 
-  def ajaxDelete
-    @part_prices = PartPrice.find(params[:id])
-    if @part_prices.delete
+  def destroy
+    @part_price = PartPrice.find(params[:id])
+    if @part_price.delete
       render :json => {:status => 'SUCCESS'}
     else
       render :json => {:status => 'FAILURE'}
     end
   end
 
-  def ajaxEdit
-    @part_price = PartPrice.find(params[:id])
-    index = params[:index]
-    render :partial => 'edit', :locals => { :part_price => @part_price, :index => index}    
-  end
-
-  def ajaxUpdate
+  def update
     @part_price = PartPrice.find(params[:id])
 
     if @part_price.update_attributes(params[:part_price])
@@ -73,13 +68,7 @@ class PartPricesController < ApplicationController
       render :json => {:status => 'FAILURE', :messages => error_messages}
     end
   end
-  
-  def ajaxSingleDisplayRow
-    @part_price = PartPrice.find(params[:id])
-    index = params[:index]
-    render :partial => 'singleRow', :locals => { :part_price => @part_price, :i => index}    
-  end
-  
+
   def ajaxAutoCompleteParts
     condition = "true"
     if(params[:currency] && params[:currency].length > 0)

@@ -36,7 +36,7 @@
 		  </span>
 		</td>
       </tr>
-	  <tr ng-repeat="user in users" ng-show="user">
+	  <tr ng-repeat="user in users | orderBy : sort:'username':false" ng-show="user">
         <td>
     	  <label ng-hide="editEnabled">{{user.username}}</label>
     	  <input ng-show="editEnabled" ng-model="user.username"/>
@@ -59,7 +59,7 @@
 		  </span>
 		  <span ng-show="editEnabled">
 			<span style="margin-left: 5%;">
-			  <img src="/images/right_green.jpg" class="edit_image" ng-click="editEnabled = !editEnabled;saveUser(user)"/>
+			  <img src="/images/right_green.jpg" class="edit_image" ng-click="editEnabled = !editEnabled;updateUser(user)"/>
 			</span>
 			<span style="margin-left: 5%;">
 			  <img src="/images/wrong_red.jpg" class="edit_image" ng-click="editEnabled = !editEnabled;cancelEdit(user)"/>

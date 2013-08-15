@@ -10,7 +10,7 @@ function UserCtrl($scope, $http, $timeout) {
       user.username = user.hiddenUserName
       user.role = user.hiddenRole
   }
-  $scope.saveUser = function(user){
+  $scope.updateUser = function(user){
 	$http.put('users/' + user.id, {user: user}).success(function(result){
 	  if(result.status == 'SUCCESS')
 	    $scope.showMessage('successMessage', 'User successfully updated.', 2000)
@@ -68,3 +68,4 @@ function UserCtrl($scope, $http, $timeout) {
 }
 
 //REFACTORED
+//move search sorting to angular
