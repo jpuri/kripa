@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<div id="results" name="results" style="padding-top: 3%; width: 100%">
-	    <div style="float: right">
+	    <div style="float: right" class="admin_action" >
 		<span style="float: left"><img id="spinner_search" src="/images/plus.jpg" ng-click="createEnabled = !createEnabled" class="button_image"></span>
 		<span style="float: left">
 		<img id="spinner_new" style="display:none" src="/images/spinner.gif"/></span></div>
@@ -37,7 +37,7 @@
 	    <th width="10%"><a ng-click="changeSortOrder('price')" class="{{getSortClass('price')}}">Price({{currency}})</a></th>
 	    <th width="7%" class="admin_action">Action</th>
 	  </tr>
-	  <tr ng-show="createEnabled">
+	  <tr ng-show="createEnabled" class="admin_action" >
 		    <td></td>
 		    <td><input ng-model="part_price.model"/></td>
 		    <td><input ng-model="part_price.part_number"/></td>
@@ -85,7 +85,7 @@
 				<img id="spinner_delete_{{part_price.id}}" style="display:none;" src="/images/spinner.gif"/>
 				</span>
 		    </td>
-			<td ng-show="editEnabled">
+			<td ng-show="editEnabled" class="admin_action">
 				<span style="margin-left: 15%;">
 					<img src="/images/right_green.jpg" class="edit_image"  ng-click="editEnabled = !editEnabled;updatePartPrice(part_price)"/>
 				</span>
