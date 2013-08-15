@@ -43,6 +43,7 @@ function PartPriceCtrl($scope, $http, $timeout, $routeParams) {
 	  	$scope.createEnabled = !$scope.createEnabled;
 	    part_price.id = result.part_price_id
 	    	 $scope.backupPartPriceData(part_price)
+	    	 $scope.part_price = null
 	    $scope.part_prices[$scope.part_prices.length] = part_price;
 	    $scope.showMessage('successMessage', 'Part successfully created.', 2000)
 	  }
