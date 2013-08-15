@@ -8,13 +8,18 @@ function PartPriceCtrl($scope, $http, $timeout, $routeParams) {
     $scope.order = false
   }
   $scope.searchPartPrices = function(){
-	  $scope.searchGoingOn = true;
 	  $http.get('part_prices?make=' + $scope.make + "&currency=" + $scope.currency + "&model=" + $scope.model + 
 	  "&part_number=" + $scope.part_number).success(function(data) {
 	    $scope.part_prices = data;
+	    angular.forEach($scope.part_prices, function(part_price){
+	      part_price.hidden_model = part_price.model
+	      part_price.hidden_part_number = part_price.part_number
+	      part_price.hidden_part_desc = part_price.part_desc
+	      part_price.hidden_weight = part_price.weight
+	      part_price.hidden_price = part_price.price
+	    });
+	  	$scope.resetSortParams();
 	  });
-	  $scope.searchGoingOn = false;
-	  $scope.resetSortParams();
   }
   $scope.searchPartPrices()
   $scope.deletePartPrice = function(part_price){
@@ -54,6 +59,13 @@ function PartPriceCtrl($scope, $http, $timeout, $routeParams) {
 	  //else
 		//$scope.showMessage('errorMessages', result.messages, 2000)
 	})
+  }
+  $scope.cancelEdit = function(part_price){
+      part_price.model = part_price.hidden_model
+      part_price.part_number = part_price.hidden_part_number
+      part_price.part_desc = part_price.hidden_part_desc
+      part_price.weight = part_price.hidden_weight
+      part_price.price = part_price.hidden_price
   }
   $scope.changeSortOrder = function(sort_field){
   	if($scope.sort == sort_field)

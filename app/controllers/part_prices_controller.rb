@@ -18,19 +18,6 @@ class PartPricesController < ApplicationController
       :part_number => part_price.part_number, :part_desc => part_price.part_desc, :weight => part_price.weight , :price => part_price.price} }
   end
 
-  def ajaxSearch
-
-    part_number = params[:part_number] ? params[:part_number] : ""
-    model = params[:model] ? params[:model] : ""
-    
-    @make = params[:make]
-    @currency = params[:currency]
-    @part_prices = PartPrice.where("lower(model) like ? and lower(part_number) like ? and make = ? and currency =  ?", 
-    "%#{model.strip.downcase}%", "%#{part_number.strip.downcase}%",
-    "#{params[:make]}", "#{params[:currency]}", )
-    render :partial => 'result', :locals => { :part_prices => @part_prices}
-  end
-
   def create
     @part_price = PartPrice.new(params[:part_price])
 

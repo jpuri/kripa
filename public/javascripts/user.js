@@ -2,18 +2,23 @@ function UserCtrl($scope, $http, $timeout) {
   $http.get('users').success(function(data) {
     $scope.users = data;
     angular.forEach($scope.users, function(user){
-      user.hiddenUserName = user.username
-      user.hiddenRole = user.role
+    	$scope.setHiddenValues(user)
     });
   });
+  $scope.setHiddenValues = function(user){
+      user.hiddenUserName = user.username
+      user.hiddenRole = user.role
+  }
   $scope.cancelEdit = function(user){
       user.username = user.hiddenUserName
       user.role = user.hiddenRole
   }
   $scope.updateUser = function(user){
 	$http.put('users/' + user.id, {user: user}).success(function(result){
-	  if(result.status == 'SUCCESS')
+	  if(result.status == 'SUCCESS'){
 	    $scope.showMessage('successMessage', 'User successfully updated.', 2000)
+	    $scope.setHiddenValues(user)
+	   }
 	  else
 		$scope.showMessage('errorMessages', result.messages, 2000)
 	})
@@ -23,8 +28,10 @@ function UserCtrl($scope, $http, $timeout) {
 	  if(result.status == 'SUCCESS'){
 	  	$scope.createEnabled = !$scope.createEnabled;
 	    user.id = result.user_id
+	    $scope.setHiddenValues(user)
 	    $scope.users[$scope.users.length] = user;
 	    $scope.showMessage('successMessage', 'User successfully created.', 2000)
+	    $scope.user = null
 	  }
 	  else{
 		$scope.showMessage('errorMessages', result.messages, 2000)
@@ -34,9 +41,11 @@ function UserCtrl($scope, $http, $timeout) {
   $scope.deleteUser = function(user){
   	if(confirm('Are you sure you want to delete ?')){
 	  $http.delete('users/' + user.id)
+	  alert($scope.users.length)
+	  alert(user.id)
 	  for(var i = 0; i < $scope.users.length;i++){
 	    if($scope.users[i].id === user.id)
-		  $scope.users[i] = null
+		  $scope.users.splice(i,1);
 	    $scope.showMessage('successMessage', 'User successfully deleted.', 2000)
 	  }
 	}
@@ -68,4 +77,3 @@ function UserCtrl($scope, $http, $timeout) {
 }
 
 //REFACTORED
-//move search sorting to angular
