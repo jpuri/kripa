@@ -6,12 +6,9 @@
 <script src="/javascripts/vendorjs/jquery.number.min.js"></script>
 <script src="/javascripts/vendorjs/jquery-1.6.1.min.js"></script>
 <script src="/javascripts/vendorjs/jquery-ui-1.8.15.custom.min.js"></script>
-<script src="/javascripts/application.js"></script>
-<script src="/javascripts/entities.js"></script>
-<script src="/javascripts/part_price.js"></script>
-<script src="/javascripts/search.js"></script>
-<script src="/javascripts/autocomplete.js"></script>
 <script src="/javascripts/vendorjs/angular.min.js"></script>
+<script src="/javascripts/application.js"></script>
+
 <script src="/javascripts/main.js"></script>
 <script src="/javascripts/user.js"></script>
 <script src="/javascripts/part_price.js"></script>
@@ -75,7 +72,6 @@
 		<div id="success_msg" class="success"></div>
 		<div id="failure_msg" class="failure"></div>
    		<div ng-view></div>
-   		<!--<%=yield%>-->
     </div>
     <% else %>
       <%= render :template => "sessions/new"%>
