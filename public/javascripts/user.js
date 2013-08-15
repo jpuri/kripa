@@ -1,23 +1,25 @@
 function UserCtrl($scope, $http, $timeout) {
+  $scope.backupData = {}
   $http.get('users').success(function(data) {
     $scope.users = data;
     angular.forEach($scope.users, function(user){
-    	$scope.setHiddenValues(user)
+    	$scope.backupUserData(user)
     });
   });
-  $scope.setHiddenValues = function(user){
-      user.hiddenUserName = user.username
-      user.hiddenRole = user.role
+  $scope.backupUserData = function(user){
+	$scope.backupData[user.id] = {
+		username: user.username, 
+		role: user.role}
   }
   $scope.cancelEdit = function(user){
-      user.username = user.hiddenUserName
-      user.role = user.hiddenRole
+      user.username = $scope.backupData[user.id].username
+      user.role = $scope.backupData[user.id].role
   }
   $scope.updateUser = function(user){
 	$http.put('users/' + user.id, {user: user}).success(function(result){
 	  if(result.status == 'SUCCESS'){
 	    $scope.showMessage('successMessage', 'User successfully updated.', 2000)
-	    $scope.setHiddenValues(user)
+	    $scope.backupUserData(user)
 	   }
 	  else
 		$scope.showMessage('errorMessages', result.messages, 2000)
@@ -28,7 +30,7 @@ function UserCtrl($scope, $http, $timeout) {
 	  if(result.status == 'SUCCESS'){
 	  	$scope.createEnabled = !$scope.createEnabled;
 	    user.id = result.user_id
-	    $scope.setHiddenValues(user)
+	    $scope.backupUserData(user)
 	    $scope.users[$scope.users.length] = user;
 	    $scope.showMessage('successMessage', 'User successfully created.', 2000)
 	    $scope.user = null

@@ -45,8 +45,7 @@ class PartPricesController < ApplicationController
     @part_price = PartPrice.find(params[:id])
 
     if @part_price.update_attributes(params[:part_price])
-      render :json => {:status => 'SUCCESS', :displayValue => [@part_price.make, @part_price.model, @part_price.part_number,
-        @part_price.part_desc, @part_price.weight, @part_price.currency, @part_price.price]}
+      render :json => {:status => 'SUCCESS'}
     else
       error_messages = Array.new
       @part_price.errors.each do |attr,message|
