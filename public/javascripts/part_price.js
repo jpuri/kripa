@@ -2,21 +2,17 @@ function PartPriceCtrl($scope, $http, $timeout, $routeParams) {
   $scope.backupData = {}
   $scope.make = $routeParams.make
   $scope.currency = $routeParams.currency
-  $scope.model = ""
-  $scope.part_number = ""
+  
+  $http.get('part_prices?make=' + $scope.make + "&currency=" + $scope.currency).success(function(data) {
+    $scope.part_prices = data;
+    angular.forEach($scope.part_prices, function(part_price){
+    	 $scope.backupPartPriceData(part_price)
+    });
+  });
+
   $scope.resetSortParams = function(){
     $scope.sort = "part_number"
     $scope.order = false
-  }
-  $scope.searchPartPrices = function(){
-	  $http.get('part_prices?make=' + $scope.make + "&currency=" + $scope.currency + "&model=" + $scope.model + 
-	  "&part_number=" + $scope.part_number).success(function(data) {
-	    $scope.part_prices = data;
-	    angular.forEach($scope.part_prices, function(part_price){
-	    	 $scope.backupPartPriceData(part_price)
-	    });
-	  	$scope.resetSortParams();
-	  });
   }
   $scope.backupPartPriceData = function(part_price){
 	$scope.backupData[part_price.id] = {model: part_price.model, 
@@ -25,7 +21,6 @@ function PartPriceCtrl($scope, $http, $timeout, $routeParams) {
 		weight: part_price.weight, 
 		price: part_price.price}
   }
-  $scope.searchPartPrices()
   $scope.deletePartPrice = function(part_price){
   	if(confirm('Are you sure you want to delete ?')){
 	  $http.delete('part_prices/' + part_price.id)
@@ -36,7 +31,6 @@ function PartPriceCtrl($scope, $http, $timeout, $routeParams) {
 	  }
 	}
   }
-  $scope.searchPartPrices()
   $scope.resetSearchParams = function(){
 	  $scope.model = ""
 	  $scope.part_number = ""

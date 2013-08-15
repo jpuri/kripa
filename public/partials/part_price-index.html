@@ -7,17 +7,11 @@
 		<div style="padding-top: 2%" align="left">
 		  <div style="width: 25%;float: left;">
 	  		  <div style="float: left; width:23%"><label class = "medium_lbl_grey">Model</label></div>
-			  <div style="float: right; width:77%"><input type="text" ng-model="model" /></div> <!--id="model" class='search_model'-->
+			  <div style="float: right; width:77%"><input type="text" ng-model="search.model" /></div> <!--id="model" class='search_model'-->
 		 </div>
 		 <div style="width: 25%;float: left;padding-left: 5%">
 			  <div style="float: left; width:18%"><label class = "medium_lbl_grey">Part</label></div>
-			  <div style="float: right; width:82%"><input  ng-model="part_number" type="text" /></div><!--id="part_number" class='search_part'-->
-		</div>
-		 <div style="width: 25%;float: left;padding-left: 5%;">
-			  <a ng-click="searchPartPrices()" class="button_link">Search</a>
-			  <img id="spinner_search" src="/images/spinner.gif" ng-show="searchGoingOn"/>
-			  <a ng-click="resetSearchParams()" class="button_link">Reset</a>
-			</div>
+			  <div style="float: right; width:82%"><input  ng-model="search.part_number" type="text" /></div><!--id="part_number" class='search_part'-->
 		</div>
 	</div>
 	<div id="results" name="results" style="padding-top: 3%; width: 100%">
@@ -53,7 +47,7 @@
 			</td>
       </tr>
 	
-	  	  <tr id="part_prices_{{part_price.id}}" ng-repeat="part_price in part_prices | orderBy : sort:order" ng-show="part_price">
+	  	  <tr id="part_prices_{{part_price.id}}" ng-repeat="part_price in part_prices  | filter:search | orderBy : sort:order" ng-show="part_price">
 		    <td>{{$index + 1}}</td>
 		    <td>
 	    	  <label ng-hide="editEnabled">{{part_price.model}}</label>
