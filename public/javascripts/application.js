@@ -3,18 +3,6 @@ server_url = 'http://obscure-atoll-7710.herokuapp.com/'
 
 $(document).ready(function() {
 	
-	$(".popup").dialog({
-	    autoOpen : false,
-		width : 350,
-		height : 350,
-		modal : true
-	});
-	$(".large-popup").dialog({
-	    autoOpen : false,
-		width : 400,
-		height : 450,
-		modal : true
-	});
 	$('#priceMenuDivMain').live('mouseleave', function(e){
 		hidePriceMenuDiv()
 	})
@@ -75,12 +63,6 @@ function hideAdminMenuDiv(timeout){
 	el = document.getElementById("adminMenuDivMain");
 	el.style.visibility = "hidden" 
 		}, timeout);
-}
-
-function searchPartPrice(make, currency){
-	$('#make').val(make)
-	$('#currency').val(currency)
-	$('#partPriceSearchForm').submit()
 }
 
 $(".decimal_places2").live('blur', function() {
