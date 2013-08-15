@@ -27,7 +27,7 @@ function PartPriceCtrl($scope, $http, $timeout, $routeParams) {
 	  for(var i = 0; i < $scope.part_prices.length;i++){
 	    if($scope.part_prices[i].id === part_price.id)
 		  $scope.part_prices.splice(i,1);
-	    //$scope.showMessage('successMessage', 'Part successfully deleted.', 2000)
+	    $scope.showMessage('successMessage', 'Part successfully deleted.', 2000)
 	  }
 	}
   }
@@ -44,21 +44,21 @@ function PartPriceCtrl($scope, $http, $timeout, $routeParams) {
 	    part_price.id = result.part_price_id
 	    	 $scope.backupPartPriceData(part_price)
 	    $scope.part_prices[$scope.part_prices.length] = part_price;
-	    //$scope.showMessage('successMessage', 'Part successfully created.', 2000)
+	    $scope.showMessage('successMessage', 'Part successfully created.', 2000)
 	  }
 	  else{
-		//$scope.showMessage('errorMessages', result.messages, 2000)
+		$scope.showMessage('errorMessages', result.messages, 2000)
 	  }
 	})
   }
   $scope.updatePartPrice = function(part_price){
 	$http.put('part_prices/' + part_price.id, {part_price: part_price}).success(function(result){
 	  if(result.status == 'SUCCESS'){
-	    //$scope.showMessage('successMessage', 'Part successfully updated.', 2000)
+	    $scope.showMessage('successMessage', 'Part successfully updated.', 2000)
 	    	 $scope.backupPartPriceData(part_price)
 		}
-	  //else
-		//$scope.showMessage('errorMessages', result.messages, 2000)
+	  else
+		$scope.showMessage('errorMessages', result.messages, 2000)
 	})
   }
   $scope.cancelEdit = function(part_price){
@@ -81,6 +81,12 @@ function PartPriceCtrl($scope, $http, $timeout, $routeParams) {
   		return 'sort_default'
   	else
   		return 'sort_' + $scope.order
+  }
+  $scope.showMessage = function(messageElement, message, time){
+  	$scope[messageElement] = message
+  	$timeout(function(){
+  	  $scope[messageElement] = null
+  	}, time)
   }
 }
 
