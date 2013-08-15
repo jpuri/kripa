@@ -105,22 +105,6 @@
 	<div name="dialog_update" id="dialog_update" class="popup" title="<font color='#60AFFE'>Edit Price</font>"></div>
 <div>
 <script type="text/javascript">
-	$(".search_model").change(function() {
-	  $(".search_part").val('')
-	});
-	$(".search_model").focusin(function() {
-	  var data = {make: $('#part_price_make').val(),
-	  currency: $('#part_price_currency').val()}
-	  populateModelsAutoComplete(data, "search_model");
-	});
-	$(".search_part").focusin(function() {
-	  var data = {model_number: $('#model').val(),
-	  currency: $('#part_price_currency').val(),
-	  make: $('#part_price_make').val()}
-	  populatePartsAutoComplete(data, "search_part");
-	});
-	$('.sortable').attr('class' , 'sortable sort_default')
-	$('[name="' + SortUtility.sort + '"]').attr('class' , 'sortable sort_' + SortUtility.order)
 	if(role == 'admin')
 		$(".admin_action").css('visibility','visible')
 </script>

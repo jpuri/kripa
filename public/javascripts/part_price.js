@@ -3,8 +3,10 @@ function PartPriceCtrl($scope, $http, $timeout, $routeParams) {
   $scope.currency = $routeParams.currency
   $scope.model = ""
   $scope.part_number = ""
-  $scope.sort = "part_number"
-  $scope.order = false
+  $scope.resetSortParams = function(){
+    $scope.sort = "part_number"
+    $scope.order = false
+  }
   $scope.searchPartPrices = function(){
 	  $scope.searchGoingOn = true;
 	  $http.get('part_prices?make=' + $scope.make + "&currency=" + $scope.currency + "&model=" + $scope.model + 
@@ -12,6 +14,7 @@ function PartPriceCtrl($scope, $http, $timeout, $routeParams) {
 	    $scope.part_prices = data;
 	  });
 	  $scope.searchGoingOn = false;
+	  $scope.resetSortParams();
   }
   $scope.searchPartPrices()
   $scope.deletePartPrice = function(part_price){
@@ -68,5 +71,5 @@ function PartPriceCtrl($scope, $http, $timeout, $routeParams) {
   }
 }
 
-//message display for success or failure
+//message display //for success or failure
 //cancel edit to be implemented
