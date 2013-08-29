@@ -3,7 +3,6 @@
 <head>
 	
 <script src="/javascripts/vendorjs/jquery.alphanum.js"></script>
-<script src="/javascripts/vendorjs/jquery.number.min.js"></script>
 <script src="/javascripts/vendorjs/jquery-1.6.1.min.js"></script>
 <script src="/javascripts/vendorjs/jquery-ui-1.8.15.custom.min.js"></script>
 <script src="/javascripts/vendorjs/angular.min.js"></script>
@@ -18,15 +17,16 @@
 <%= csrf_meta_tag %>
   
 </head>
-<body >
+<body>
   <script>
 	var role = '<%= current_user ? current_user.role : nil %>'
   </script>
   
   <div style="width: 100%">
-  	<% if current_user %>
+  	<div ng-controller="SessionCtrl">
+  		
     <div style="font-family:Verdana;position:fixed;left:0%;bottom:0%;top:0%;
-    width:10%;background-color: #60AFFE; height: 100%">
+    width:10%;background-color: #60AFFE; height: 100%" ng-show="user_name">
       <div id="priceMenuDivMain">
         <div id="priceMenuDivSub">
 	      <div ng-repeat="make in ['HAMWORTHY', 'Hatlapa', 'SALAR', 'SPERRE', 'TANABE']" style="padding-bottom: 3%">
@@ -44,8 +44,8 @@
         </form>
       </div>
 
-		<div id="currentUserName"> 
-	      <%=current_user.username%>
+		<div id="currentUserName">
+			{{username}} 
 	    </div>
 	    <div id="currentUserName"> 
 	      <%=Date.today.strftime("%d %b %Y")%>
@@ -59,22 +59,38 @@
 	    	<!--<div style="height: 10px"></div>
 	    	<div class="partPriceMenuLinkSub"><a id="price_menu_link" >DATA BACKUP</a></div>-->
 	    </div>
-	    <% if current_user.role == 'admin' %>
 	    	<div id="adminMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_div" onmouseover="showAdminMenuDiv()"> 
 		      <a>Admin</a>
 		    </div>
-    	<% end %>
     	<div style="padding-top:5%;padding-bottom:5%; margin-top: 7%;" class="menu_div"> 
-	      <%= link_to 'Log Out', :controller => "sessions", :action => "destroy"%>
+	      <a ng-click="deleteSession()">Logout</a>
 		</div>
 	</div>
-	<div style="margin-left: 20%; margin-right: 20%; font-family:Verdana; width: 70%; height: 100%" align="center">
+	<div style="width:30%; margin-left: 40%; margin-top: 10%;" ng-hide="user_name">
+		
+		<div class="heading">Login</div>
+		  <div style="width: 100%; padding-top: 20%">
+		    <div style="width: 30%; float: left">Username</div>
+		    <div style="width: 40%; float: left"><input type="text" ng-model="username" name="username"/>
+		    	
+		    </div>
+		  </div><br/>
+		
+		  <div style="width: 100%; padding-top: 10%">
+		    <span style="width: 30%; float: left">Password</span>
+		    <span style="width: 40%; float: left"><input type="password" ng-model="password" name="password"></span>
+		  </div>
+		
+		  <div style="width:20%; height: 5%; padding-top: 15%; padding-left: 25%">
+		  	<a type="button" ng-click="createSession(username, password)" value="Login" class="button_link">Login</a>
+		  </div>
+		
+	</div>
+	</div>
+	<div style="margin-left: 20%; margin-right: 20%; font-family:Verdana; width: 70%; height: 100%" align="center" ng-show="user_name">
 		<div id="success_msg" class="success"></div>
 		<div id="failure_msg" class="failure"></div>
    		<div ng-view></div>
     </div>
-    <% else %>
-      <%= render :template => "sessions/new"%>
-    <% end %>
 </body>
 </html>

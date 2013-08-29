@@ -7,16 +7,26 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:username], params[:password])
     if user
       session[:user_id] = user.id
-      redirect_to root_url, :notice => "Logged in!"
+      render :json => {:status => 'SUCCESS', :username => user.username, :role => user.role}
     else
-      @message = "Invalid username or password"
-      render "new"
+      render :json => {:status => 'FAILURE', :message => "Invalid username or password"}
     end
   end
+
+#  def create
+#    user = User.authenticate(params[:username], params[:password])
+##    if user
+#      session[:user_id] = user.id
+#      redirect_to root_url, :notice => "Logged in!"
+#    else
+#      @message = "Invalid username or password"
+#      render "new"
+#    end
+#  end
   
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => "Logged out!"
+    render :json => {:status => 'SUCCESS'}
   end
   
 end

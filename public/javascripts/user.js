@@ -1,4 +1,4 @@
-function UserCtrl($scope, $http, UtilService) {
+function UserCtrl($rootScope, $scope, $http, GenericService) {
   $scope.backupData = {}
 
   $http.get('users').success(function(data) {
@@ -22,11 +22,11 @@ function UserCtrl($scope, $http, UtilService) {
   $scope.updateUser = function(user){
 	$http.put('users/' + user.id, {user: user}).success(function(result){
 	  if(result.status == 'SUCCESS'){
-	    UtilService.showMessage('successMessage', 'User successfully updated.', 2000)
+	    GenericService.showMessage('successMessage', 'User successfully updated.', 2000)
 	    $scope.backupUserData(user)
 	   }
 	  else
-		UtilService.showMessage('errorMessages', result.messages, 2000)
+		GenericService.showMessage('errorMessages', result.messages, 2000)
 	})
   }
   
@@ -37,11 +37,11 @@ function UserCtrl($scope, $http, UtilService) {
 	    user.id = result.user_id
 	    $scope.backupUserData(user)
 	    $scope.users[$scope.users.length] = user;
-	    UtilService.showMessage('successMessage', 'User successfully created.', 2000)
+	    GenericService.showMessage('successMessage', 'User successfully created.', 2000)
 	    $scope.user = null
 	  }
 	  else{
-		UtilService.showMessage('errorMessages', result.messages, 2000)
+		GenericService.showMessage('errorMessages', result.messages, 2000)
 	  }
 	})
   }
@@ -53,7 +53,7 @@ function UserCtrl($scope, $http, UtilService) {
 	    if($scope.users[i].id === user.id)
 		  $scope.users.splice(i,1);
 	  }
-	  UtilService.showMessage('successMessage', 'User successfully deleted.', 2000)
+	  GenericService.showMessage('successMessage', 'User successfully deleted.', 2000)
 	}
   }
   
@@ -65,14 +65,14 @@ function UserCtrl($scope, $http, UtilService) {
   $scope.updatePassword = function(){
 	$http.put('users/' + $scope.changePasswordUser.id, {user: $scope.changePasswordUser, changePassword: true}).success(function(result){
 	  if(result.status == 'SUCCESS'){
-	    UtilService.showMessage('successMessage', 'Password successfully updated for ' + $scope.changePasswordUser.username, 2000)
+	    GenericService.showMessage('successMessage', 'Password successfully updated for ' + $scope.changePasswordUser.username, 2000)
   		$scope.changePasswordUser.password = undefined
   		$scope.changePasswordUser.password_confirmation = undefined
   		$scope.changePasswordUser = undefined
 		$scope.changePassword = !$scope.changePassword
 	  }
 	  else{
-	    UtilService.showMessage('passwordErrorMessage', result.messages, 2000)
+	    GenericService.showMessage('passwordErrorMessage', result.messages, 2000)
 	  }
 	})
   }

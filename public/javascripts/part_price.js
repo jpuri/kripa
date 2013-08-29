@@ -1,4 +1,4 @@
-function PartPriceCtrl($scope, $http, $routeParams, UtilService) {
+function PartPriceCtrl($scope, $http, $timeout, $routeParams, GenericService) {
   $scope.backupData = {}
   $scope.make = $routeParams.make
   $scope.currency = $routeParams.currency
@@ -32,7 +32,7 @@ function PartPriceCtrl($scope, $http, $routeParams, UtilService) {
 	    if($scope.part_prices[i].id === part_price.id)
 		  $scope.part_prices.splice(i,1);
 	  }
-      UtilService.showMessage('successMessage', 'Part successfully deleted.', 2000)
+      GenericService.showMessage('successMessage', 'Part successfully deleted.', 2000)
 	}
   }
   
@@ -46,10 +46,10 @@ function PartPriceCtrl($scope, $http, $routeParams, UtilService) {
 	    $scope.backupPartPriceData(part_price)
 	    $scope.part_price = null
 	    $scope.part_prices[$scope.part_prices.length] = part_price;
-	    UtilService.showMessage('successMessage', 'Part successfully created.', 2000)
+	    GenericService.showMessage('successMessage', 'Part successfully created.', 2000)
 	  }
 	  else{
-		UtilService.showMessage('errorMessages', result.messages, 2000)
+		GenericService.showMessage('errorMessages', result.messages, 2000)
 	  }
 	})
   }
@@ -57,11 +57,11 @@ function PartPriceCtrl($scope, $http, $routeParams, UtilService) {
   $scope.updatePartPrice = function(part_price){
 	$http.put('part_prices/' + part_price.id, {part_price: part_price}).success(function(result){
 	  if(result.status == 'SUCCESS'){
-	    UtilService.showMessage('successMessage', 'Part successfully updated.', 2000)
+	    GenericService.showMessage('successMessage', 'Part successfully updated.', 2000)
 	    $scope.backupPartPriceData(part_price)
 	  }
 	  else
-		UtilService.showMessage('errorMessages', result.messages, 2000)
+		GenericService.showMessage('errorMessages', result.messages, 2000)
 	})
   }
   
@@ -91,4 +91,4 @@ function PartPriceCtrl($scope, $http, $routeParams, UtilService) {
   
 }
 
-//REFACTORED 
+//create generic functionality for proper error message display 
