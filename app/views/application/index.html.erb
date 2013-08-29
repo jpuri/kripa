@@ -12,14 +12,14 @@
 <script src="/javascripts/user.js"></script>
 <script src="/javascripts/part_price.js"></script>
 
+<LINK href="/stylesheets/main.css" rel="stylesheet" type="text/css">
+	
 <title>Kripa</title>
-<%= stylesheet_link_tag :all %>
-<%= csrf_meta_tag %>
   
 </head>
 <body>
   <script>
-	var role = '<%= current_user ? current_user.role : nil %>'
+	var role = 'admin'
   </script>
   
   <div style="width: 100%">
@@ -48,7 +48,7 @@
 			{{username}} 
 	    </div>
 	    <div id="currentUserName"> 
-	      <%=Date.today.strftime("%d %b %Y")%>
+	      current date
 	    </div>
 	    
     	<div id="priceMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_div" onmouseover="showPriceMenuDiv()"> 

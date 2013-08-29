@@ -3,7 +3,6 @@ var kripa = angular.module('kripa', []).
   $routeProvider.
       when('/users', {templateUrl: 'partials/users-index.html',   controller: UserCtrl}).
       when('/part_prices', {templateUrl: 'partials/part_price-index.html',   controller: PartPriceCtrl})
-      .otherwise({ redirectTo: 'partials/index.html' })
 }]);
 
 kripa.factory('GenericService', function($rootScope, $timeout) {
