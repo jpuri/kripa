@@ -17,6 +17,7 @@ kripa.factory('GenericService', function($rootScope, $timeout) {
 });
 
 function SessionCtrl($rootScope, $scope, $http, GenericService) {
+	$scope.today = new Date();
   $scope.createSession = function(username, password){
 	$http.post('sessions', {username: username, password: password}).success(function(result){
 	  if(result.status == 'SUCCESS'){

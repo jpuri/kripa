@@ -18,18 +18,14 @@
   
 </head>
 <body>
-  <script>
-	var role = 'admin'
-  </script>
   
   <div style="width: 100%">
   	<div ng-controller="SessionCtrl">
-  		
-    <div style="font-family:Verdana;position:fixed;left:0%;bottom:0%;top:0%;
-    width:10%;background-color: #60AFFE; height: 100%" ng-show="user_name">
-      <div id="priceMenuDivMain">
-        <div id="priceMenuDivSub">
-	      <div ng-repeat="make in ['HAMWORTHY', 'Hatlapa', 'SALAR', 'SPERRE', 'TANABE']" style="padding-bottom: 3%">
+      <div style="font-family:Verdana;position:fixed;left:0%;bottom:0%;top:0%;
+       width:10%;background-color: #60AFFE; height: 100%" ng-show="user_name">
+        <div id="priceMenuDivMain">
+          <div id="priceMenuDivSub">
+	        <div ng-repeat="make in ['HAMWORTHY', 'Hatlapa', 'SALAR', 'SPERRE', 'TANABE']" style="padding-bottom: 3%">
  		    <div class="partPriceMenuLinkMain">{{make}}</div>
 		    <div class="partPriceMenuLinkSub">
 			  <span ng-repeat="currency in ['EURO', 'GBP', 'USD']">
@@ -48,7 +44,7 @@
 			{{username}} 
 	    </div>
 	    <div id="currentUserName"> 
-	      current date
+	      {{today | date:'dd-MM-yyyy'}}
 	    </div>
 	    
     	<div id="priceMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_div" onmouseover="showPriceMenuDiv()"> 
@@ -56,8 +52,6 @@
 	    </div>
 	    <div id="adminMenuDivMain" class="partPriceMenuLinkSub">
 	    	<div class="partPriceMenuLinkSub"><a id="user_mgt_link" href="/#users">USER MANAGEMENT</a></div>
-	    	<!--<div style="height: 10px"></div>
-	    	<div class="partPriceMenuLinkSub"><a id="price_menu_link" >DATA BACKUP</a></div>-->
 	    </div>
 	    	<div id="adminMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_div" onmouseover="showAdminMenuDiv()"> 
 		      <a>Admin</a>
@@ -67,30 +61,27 @@
 		</div>
 	</div>
 	<div style="width:30%; margin-left: 40%; margin-top: 10%;" ng-hide="user_name">
-		
-		<div class="heading">Login</div>
-		  <div style="width: 100%; padding-top: 20%">
-		    <div style="width: 30%; float: left">Username</div>
-		    <div style="width: 40%; float: left"><input type="text" ng-model="username" name="username"/>
-		    	
-		    </div>
-		  </div><br/>
-		
-		  <div style="width: 100%; padding-top: 10%">
-		    <span style="width: 30%; float: left">Password</span>
-		    <span style="width: 40%; float: left"><input type="password" ng-model="password" name="password"></span>
-		  </div>
-		
-		  <div style="width:20%; height: 5%; padding-top: 15%; padding-left: 25%">
-		  	<a type="button" ng-click="createSession(username, password)" value="Login" class="button_link">Login</a>
-		  </div>
-		
+	  <div class="heading">Login</div>
+		<div style="width: 100%; padding-top: 20%">
+		  <div style="width: 30%; float: left">Username</div>
+		  <div style="width: 40%; float: left"><input type="text" ng-model="username" name="username"/>
+	    </div>
+	  </div>
+	  <div style="width: 100%; padding-top: 10%">
+	    <span style="width: 30%; float: left">Password</span>
+		<span style="width: 40%; float: left"><input type="password" ng-model="password" name="password"></span>
+	  </div>
+	  <div style="width:20%; height: 5%; padding-top: 15%; padding-left: 25%">
+	  	 <a type="button" ng-click="createSession(username, password)" value="Login" class="button_link">Login</a>
+	  </div>
 	</div>
 	</div>
 	<div style="margin-left: 20%; margin-right: 20%; font-family:Verdana; width: 70%; height: 100%" align="center" ng-show="user_name">
-		<div id="success_msg" class="success"></div>
-		<div id="failure_msg" class="failure"></div>
    		<div ng-view></div>
     </div>
 </body>
 </html>
+
+<!--//role to be managed
+//extra divs to be removed
+//gneric error msg handling-->
