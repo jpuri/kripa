@@ -1,4 +1,4 @@
-function UserCtrl($rootScope, $scope, $http, GenericService) {
+function UserCtrl($scope, $http, GenericService) {
   $scope.backupData = {}
 
   $http.get('users').success(function(data) {

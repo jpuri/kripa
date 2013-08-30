@@ -174,11 +174,21 @@ label{
 	visibility: hidden;
 	padding-left: 5px;
 }
-#currentUserName{
+.menu_info{
 	margin-top: 5px;
 	margin-left: 15px;
 	color: white;
 	font-size: 11px;
+}
+.menu_bar{
+	font-family:Verdana;
+	position:fixed;
+	left:0%;
+	bottom:0%;
+	top:0%;
+    width:10%;
+    background-color: #60AFFE; 
+    height: 100%;
 }
 .header_div{ 
 	background-color: #60AFFE; 

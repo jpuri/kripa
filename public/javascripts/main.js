@@ -17,12 +17,19 @@ kripa.factory('GenericService', function($rootScope, $timeout) {
 });
 
 function SessionCtrl($rootScope, $scope, $http, GenericService) {
-	$scope.today = new Date();
+  $scope.today = new Date();
+  $http.get('sessions/0').success(function(result) {
+	  if(result.status == 'SUCCESS'){
+	  	$scope.setCurrentUser(result)
+	  }
+	  else{
+	  	$scope.showLogin = true
+	  }
+  });
   $scope.createSession = function(username, password){
 	$http.post('sessions', {username: username, password: password}).success(function(result){
 	  if(result.status == 'SUCCESS'){
-	  	$rootScope.user_name = result.username
-	  	$rootScope.user_role = result.role
+	  	$scope.setCurrentUser(result)
 	  }
 	  else{
 	  }
@@ -31,12 +38,22 @@ function SessionCtrl($rootScope, $scope, $http, GenericService) {
   $scope.deleteSession = function(){
 	$http.delete('sessions/0').success(function(result){
 	  if(result.status == 'SUCCESS'){
-	  	$rootScope.user_name = null
-	  	$rootScope.user_role = null
+	  	$scope.removeCurrentUser()
 	  }
 	  else{
 	  }
 	})
+  }
+  $scope.setCurrentUser = function(result){
+  	$rootScope.user_name = result.username
+  	$rootScope.user_role = result.role
+  	if(result.role == 'admin')
+  	  $rootScope.user_isadmin = true
+  }
+  $scope.removeCurrentUser = function(){
+  	$rootScope.user_name = null
+  	$rootScope.user_role = null
+    $rootScope.user_isadmin = null
   }
 }
 

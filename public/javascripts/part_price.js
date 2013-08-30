@@ -1,4 +1,4 @@
-function PartPriceCtrl($scope, $http, $timeout, $routeParams, GenericService) {
+function PartPriceCtrl($scope, $http, $routeParams, GenericService) {
   $scope.backupData = {}
   $scope.make = $routeParams.make
   $scope.currency = $routeParams.currency

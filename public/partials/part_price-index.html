@@ -24,7 +24,7 @@
 </div>
 
 <div id="results" name="results" style="padding-top: 3%; width: 100%">
-  <div style="float: right" class="admin_action" >
+  <div style="float: right" ng-show="user_isadmin">
     <span style="float: left">
       <img id="spinner_search" src="/images/plus.jpg" ng-click="createEnabled = !createEnabled" class="button_image">
     </span>
@@ -39,9 +39,9 @@
 	    <th width="25%"><a ng-click="changeSortOrder('part_desc')" class="{{getSortClass('part_desc')}}">Part Description</a></th>
 	    <th width="10%"><a ng-click="changeSortOrder('weight')" class="{{getSortClass('weight')}}">Weight(Kg)</a></th>
 	    <th width="10%"><a ng-click="changeSortOrder('price')" class="{{getSortClass('price')}}">Price({{currency}})</a></th>
-	    <th width="7%" class="admin_action">Action</th>
+	    <th width="7%" ng-show="user_isadmin">Action</th>
 	  </tr>
-	  <tr ng-show="createEnabled" class="admin_action" >
+	  <tr ng-show="createEnabled">
         <td></td>
         <td><input ng-model="part_price.model"/></td>
         <td><input ng-model="part_price.part_number"/></td>
@@ -79,7 +79,7 @@
 	      <label ng-hide="editEnabled">{{part_price.price}}</label>
 	      <input ng-show="editEnabled" ng-model="part_price.price"/>
 		</td>
-		<td class="admin_action" ng-hide="editEnabled">
+		<td ng-hide="editEnabled" ng-show="user_isadmin">
 		  <span style="margin-left: 15%;">
 		    <img src="/images/pencil_edit.jpg" id="edit_{{part_price.id}}" class="edit_image"  ng-click="editEnabled = !editEnabled"/>
 		  </span>
@@ -87,7 +87,7 @@
 		    <img src="/images/minus_red.jpg" id="delete_{{part_price.id}}" class="edit_image" ng-click="deletePartPrice(part_price)"/>
 		  </span>
 		</td>
-		<td ng-show="editEnabled" class="admin_action">
+		<td ng-show="editEnabled" ng-show="user_isadmin">
 		  <span style="margin-left: 15%;">
 		    <img src="/images/right_green.jpg" class="edit_image"  ng-click="editEnabled = !editEnabled; updatePartPrice(part_price)"/>
 		  </span>
@@ -101,9 +101,4 @@
 	</table>
   </div>
 </div>
-
-<script type="text/javascript">
-	if(role == 'admin')
-		$(".admin_action").css('visibility','visible')
-</script>
 <!--price formatting for amount values-->
