@@ -17,7 +17,7 @@ kripa.factory('GenericService', function($rootScope, $timeout) {
 });
 
 function SessionCtrl($rootScope, $scope, $http, GenericService) {
-  $scope.today = new Date();
+  $scope.today = new Date()
   $http.get('sessions/0').success(function(result) {
 	  if(result.status == 'SUCCESS'){
 	  	$scope.setCurrentUser(result)
