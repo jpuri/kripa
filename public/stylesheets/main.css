@@ -155,19 +155,19 @@ label{
 	 margin-top: 5px;
 }
 
-.partPriceMenuLinkMain{
+.menuLinkMain{
 	color: white;
 	font-size: 15px;
 }
-.partPriceMenuLinkSub a{
+.menuLinkSub a{
 	color: #3300FF;
 	font-size: 12px;
 	text-decoration:none;
 }
-.partPriceMenuLinkMain:hover{
+.menuLinkMain:hover{
 	cursor: default;
 }
-.partPriceMenuLinkSub:hover{
+.menuLinkSub:hover{
 	cursor: pointer;
 }
 .admin_action{
@@ -195,6 +195,12 @@ label{
 	padding:4px;
 	color:white;
 }
-
+.main_pane{
+	margin-left: 20%; 
+	margin-right: 20%; 
+	font-family:Verdana; 
+	width: 70%; 
+	height: 100%;
+}
 /*to ne enhanced by twitter bootstrap
  css related refactoring of html pages*/

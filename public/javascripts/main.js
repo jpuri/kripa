@@ -60,3 +60,4 @@ function SessionCtrl($rootScope, $scope, $http, GenericService) {
 //REFACTORED
 
 //deleting useless vendor js files 
+//error messages in failure cases to be handled
