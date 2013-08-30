@@ -3,18 +3,18 @@ server_url = 'http://obscure-atoll-7710.herokuapp.com/'
 
 $(document).ready(function() {
 	
-	$('#priceMenuDivMain').live('mouseleave', function(e){
+	$('#priceMegaMenuDiv').live('mouseleave', function(e){
 		hidePriceMenuDiv()
 	})
-	$('#adminMenuDivMain').live('mouseleave', function(e){
+	$('#adminMegaMenuDiv').live('mouseleave', function(e){
 		hideAdminMenuDiv()
 	})
 	$('#priceMenuDiv').live('mouseleave', function(e){
-		if(e.toElement.id != 'priceMenuDivMain')
+		if(e.toElement.id != 'priceMegaMenuDiv')
 			hidePriceMenuDiv()
 	})
 	$('#adminMenuDiv').live('mouseleave', function(e){
-		if(e.toElement.id != 'adminMenuDivMain')
+		if(e.toElement.id != 'adminMegaMenuDiv')
 			hideAdminMenuDiv()
 	})
 	$(document).ajaxError(function(event, jqXHR, settings, throwError){
@@ -27,13 +27,13 @@ $(document).ready(function() {
 
 function showPriceMenuDiv(){
 	hideAdminMenuDivImmediate()
-	el = document.getElementById("priceMenuDivMain");
+	el = document.getElementById("priceMegaMenuDiv");
 	el.style.visibility = "visible";
 }
 
 function showAdminMenuDiv(){
 	hidePriceMenuDivImmediate()
-	el = document.getElementById("adminMenuDivMain");
+	el = document.getElementById("adminMegaMenuDiv");
 	el.style.visibility = "visible";
 }
 	
@@ -41,18 +41,18 @@ function hidePriceMenuDiv(timeout){
 	if(!timeout)
 		timeout = 4000
 	setTimeout(function () { 
-		el = document.getElementById("priceMenuDivMain");
+		el = document.getElementById("priceMegaMenuDiv");
 		el.style.visibility = "hidden" 
 	}, timeout);
 }
 
 function hidePriceMenuDivImmediate(){
-		el = document.getElementById("priceMenuDivMain");
+		el = document.getElementById("priceMegaMenuDiv");
 		el.style.visibility = "hidden" 
 }
 
 function hideAdminMenuDivImmediate(){
-		el = document.getElementById("adminMenuDivMain");
+		el = document.getElementById("adminMegaMenuDiv");
 		el.style.visibility = "hidden" 
 }
 
@@ -60,7 +60,7 @@ function hideAdminMenuDiv(timeout){
 	if(!timeout)
 		timeout = 4000
 	setTimeout(function () { 
-	el = document.getElementById("adminMenuDivMain");
+	el = document.getElementById("adminMegaMenuDiv");
 	el.style.visibility = "hidden" 
 		}, timeout);
 }

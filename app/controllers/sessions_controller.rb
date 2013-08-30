@@ -4,14 +4,17 @@ class SessionsController < ApplicationController
   end
 
   def show
-    user_id = session[:user_id] 
+    user_id = session[:user_id]
+    session_live = false 
     if user_id
-    user = User.find(user_id)
+      user = User.find(user_id)
+      if user
+        render :json => {:status => 'SUCCESS', :username => user.username, :role => user.role}
+        session_live = true 
+      end
     end
-    if user
-      render :json => {:status => 'SUCCESS', :username => user.username, :role => user.role}
-    else
-      render :json => {:status => 'FAILURE', :message => "Invalid username or password"}
+    if !session_live
+      render :json => {:status => 'FAILURE'}
     end
   end
 

@@ -19,7 +19,8 @@
     <div ng-controller="SessionCtrl">
       <div style="font-family:Verdana;position:fixed;left:0%;bottom:0%;top:0%;
        width:10%;background-color: #60AFFE; height: 100%" ng-show="user_name">
-        <div id="priceMenuDivMain">
+       
+        <div id="priceMegaMenuDiv">
           <div ng-repeat="make in ['HAMWORTHY', 'Hatlapa', 'SALAR', 'SPERRE', 'TANABE']" style="padding-bottom: 3%">
  		    <div class="partPriceMenuLinkMain">{{make}}</div>
 		    <div class="partPriceMenuLinkSub">
@@ -29,46 +30,46 @@
 	        </div>
 	      </div>	    			
         </div>
-
+        
 		<div class="menu_info">
-			{{username}} 
+		  {{user_name}} 
 	    </div>
 	    <div class="menu_info"> 
 	      {{today | date:'dd-MM-yyyy'}}
 	    </div>
-	    
     	<div id="priceMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_div" onmouseover="showPriceMenuDiv()"> 
 	      <a>Prices</a>
 	    </div>
-	    <div id="adminMenuDivMain" class="partPriceMenuLinkSub">
-	    	<div class="partPriceMenuLinkSub"><a id="user_mgt_link" href="/#users">USER MANAGEMENT</a></div>
+	    <div id="adminMegaMenuDiv" class="partPriceMenuLinkSub">
+	      <div class="partPriceMenuLinkSub"><a id="user_mgt_link" href="/#users">USER MANAGEMENT</a></div>
 	    </div>
-	    	<div id="adminMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_div" onmouseover="showAdminMenuDiv()" ng-show="user_isadmin"> 
-		      <a>Admin</a>
-		    </div>
+    	<div id="adminMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_div" onmouseover="showAdminMenuDiv()" ng-show="user_isadmin"> 
+	      <a>Admin</a>
+	    </div>
     	<div style="padding-top:5%;padding-bottom:5%; margin-top: 7%;" class="menu_div"> 
 	      <a ng-click="deleteSession()">Logout</a>
 		</div>
-	</div>
-	<div style="width:30%; margin-left: 40%; margin-top: 10%;" ng-hide="user_name" ng-show="showLogin">
-	  <div class="heading">Login</div>
-		<div style="width: 100%; padding-top: 20%">
+		
+	  </div>
+      <div style="width:30%; margin-left: 40%; margin-top: 10%;" ng-hide="user_name" ng-show="showLogin">
+	    <div class="heading">Login</div>
+	    <div style="width: 100%; padding-top: 20%">
 		  <div style="width: 30%; float: left">Username</div>
-		  <div style="width: 40%; float: left"><input type="text" ng-model="username" name="username"/>
+		  <div style="width: 40%; float: left"><input type="text" ng-model="username" name="username"/></div>
 	    </div>
-	  </div>
-	  <div style="width: 100%; padding-top: 10%">
-	    <span style="width: 30%; float: left">Password</span>
-		<span style="width: 40%; float: left"><input type="password" ng-model="password" name="password"></span>
-	  </div>
-	  <div style="width:20%; height: 5%; padding-top: 15%; padding-left: 25%">
-	  	 <a type="button" ng-click="createSession(username, password)" value="Login" class="button_link">Login</a>
-	  </div>
-	</div>
-	</div>
-	<div style="margin-left: 20%; margin-right: 20%; font-family:Verdana; width: 70%; height: 100%" align="center" ng-show="user_name">
-   		<div ng-view></div>
+	    <div style="width: 100%; padding-top: 10%">
+	      <span style="width: 30%; float: left">Password</span>
+		  <span style="width: 40%; float: left"><input type="password" ng-model="password" name="password"></span>
+	    </div>
+	    <div style="width:20%; height: 5%; padding-top: 15%; padding-left: 25%">
+	      <a type="button" ng-click="createSession(username, password)" value="Login" class="button_link">Login</a>
+	    </div>
+      </div>
     </div>
+    <div style="margin-left: 20%; margin-right: 20%; font-family:Verdana; width: 70%; height: 100%" align="center" ng-show="user_name">
+      <div ng-view></div>
+    </div>
+  </div>
 </body>
 </html>
 
