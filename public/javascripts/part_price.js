@@ -55,14 +55,14 @@ function PartPriceCtrl($scope, $http, $routeParams, GenericService) {
   }
   
   $scope.updatePartPrice = function(part_price){
-	$http.put('part_prices/' + part_price.id, {part_price: part_price}).success(function(result){
-	  if(result.status == 'SUCCESS'){
-	    GenericService.showMessage('successMessage', 'Part successfully updated.', 2000)
-	    $scope.backupPartPriceData(part_price)
-	  }
-	  else
-		GenericService.showMessage('errorMessages', result.messages, 2000)
-	})
+	var result = $scope.savePartPrice(part_price)
+	alert(result.status)
+    if(result.status == 'SUCCESS'){
+      GenericService.showMessage('successMessage', 'Part successfully updated.', 2000)
+      $scope.backupPartPriceData(part_price)
+    }
+    else
+	  GenericService.showMessage('errorMessages', result.messages, 2000)
   }
   
   $scope.cancelEdit = function(part_price){
@@ -71,6 +71,16 @@ function PartPriceCtrl($scope, $http, $routeParams, GenericService) {
   	part_price.part_desc = $scope.backupData[part_price.id].part_desc
   	part_price.weight = $scope.backupData[part_price.id].weight
   	part_price.price = $scope.backupData[part_price.id].price
+  }
+  
+  $scope.savePartPrice = function(part_price){
+  	var save_result = 'test'
+	$http.put('part_prices/' + part_price.id, {part_price: part_price}).success(function(result){
+	  save_result = result
+	alert(this.save_result)
+	})
+	alert(save_result.status)
+  	return save_result	
   }
 
   $scope.changeSortOrder = function(sort_field){
@@ -89,6 +99,17 @@ function PartPriceCtrl($scope, $http, $routeParams, GenericService) {
   	  return 'sort_' + $scope.order
   }
   
+  $scope.toggleColor = function(part_price){
+  	$scope.colorSelectedPartPrice = part_price
+  	part_price.color = (part_price.color == '#FFFFFF')? '#E8E8E8': '#FFFFFF'
+  }
+  
+  $scope.setPartPriceColor = function(color){
+  	if($scope.colorSelectedPartPrice){
+  	  $scope.colorSelectedPartPrice.color = color
+  	  $scope.updatePartPrice($scope.colorSelectedPartPrice)
+    }
+  }
 }
 
 //create generic functionality for proper error message display 

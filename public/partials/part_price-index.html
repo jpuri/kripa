@@ -21,9 +21,15 @@
     <div style="float: left; width:18%"><label class = "medium_lbl_grey">Part</label></div>
 	<div style="float: right; width:82%"><input  ng-model="search.part_number" type="text" /></div>
   </div>
+  <div style="width: 30%;float: right">
+	  <img src="/images/pink.jpg" class="button_image" ng-click="setPartPriceColor('#FFB6C1')"/>
+	  <img src="/images/green.jpg" class="button_image" ng-click="setPartPriceColor('#66FF66')"/>
+	  <img src="/images/yellow.jpg" class="button_image" ng-click="setPartPriceColor('#FFFF4D')"/>
+	  <img src="/images/blue.jpg" class="button_image" ng-click="setPartPriceColor('#75D1FF')"/>
+  </div>
 </div>
 
-<div id="results" name="results" style="padding-top: 3%; width: 100%">
+<div id="results" name="results" style="padding-top:6%; width: 100%">
   <div style="float: right" ng-show="user_isadmin">
     <span style="float: left">
       <img id="spinner_search" src="/images/plus.jpg" ng-click="createEnabled = !createEnabled" class="button_image">
@@ -57,25 +63,26 @@
 		  </span>
         </td>
       </tr>
-  	  <tr id="part_prices_{{part_price.id}}" ng-repeat="part_price in part_prices  | filter:search | orderBy : sort:order" ng-show="part_price">
-        <td><label>{{$index + 1}}</label></td>
-		<td>
+  	  <tr id="part_prices_{{part_price.id}}" ng-repeat="part_price in part_prices  | filter:search | orderBy : sort:order" ng-show="part_price"
+  	    style="background-color: {{part_price.color}}">
+        <td ng-click="toggleColor(part_price)"><label>{{$index + 1}}</label></td>
+		<td ng-click="toggleColor(part_price)">
 	      <label ng-hide="editEnabled">{{part_price.model}}</label>
 	      <input ng-show="editEnabled" ng-model="part_price.model" class="search_model_form"/>
 		</td>
-		<td>
+		<td ng-click="toggleColor(part_price)">
 	      <label ng-hide="editEnabled">{{part_price.part_number}}</label>
 	      <input ng-show="editEnabled" ng-model="part_price.part_number"/>
 		</td>
-		<td>
+		<td ng-click="toggleColor(part_price)">
 	      <label ng-hide="editEnabled">{{part_price.part_desc}}</label>
 	      <input ng-show="editEnabled" ng-model="part_price.part_desc"/>
 		</td>
-		<td>
+		<td ng-click="toggleColor(part_price)">
 	      <label ng-hide="editEnabled">{{part_price.weight}}</label>
 	      <input ng-show="editEnabled" ng-model="part_price.weight"/>
 		</td>
-	    <td>
+	    <td ng-click="toggleColor(part_price)">
 	      <label ng-hide="editEnabled">{{part_price.price}}</label>
 	      <input ng-show="editEnabled" ng-model="part_price.price"/>
 		</td>

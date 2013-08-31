@@ -95,10 +95,11 @@ ActiveRecord::Schema.define(:version => 20130705171141) do
     t.string   "part_number"
     t.string   "part_desc"
     t.float    "weight"
+    t.string   "currency"
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "currency"
+    t.string   "color",       :default => "#FFFFFF"
   end
 
   create_table "parts", :force => true do |t|
@@ -134,7 +135,7 @@ ActiveRecord::Schema.define(:version => 20130705171141) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "role"
-    t.string   "name"
+    t.string   "username"
   end
 
 end

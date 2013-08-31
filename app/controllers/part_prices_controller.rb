@@ -10,7 +10,7 @@ class PartPricesController < ApplicationController
     render :json => @part_prices.collect { |part_price| 
       {:id => part_price.id, :model => part_price.model, 
       :part_number => part_price.part_number, :part_desc => part_price.part_desc, 
-      :weight => part_price.weight , :price => part_price.price}}
+      :weight => part_price.weight, :price => part_price.price, :color => part_price.color}}
   end
 
   def create
