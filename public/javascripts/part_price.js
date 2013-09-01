@@ -1,5 +1,6 @@
 function PartPriceCtrl($scope, $http, $routeParams, GenericService) {
   $scope.backupData = {}
+  $scope.colorPartPrices = []
   $scope.make = $routeParams.make
   $scope.currency = $routeParams.currency
   
@@ -21,7 +22,8 @@ function PartPriceCtrl($scope, $http, $routeParams, GenericService) {
 	  part_number: part_price.part_number, 
 	  part_desc: part_price.part_desc, 
 	  weight: part_price.weight, 
-	  price: part_price.price
+	  price: part_price.price,
+	  color: part_price.color
 	}
   }
   
@@ -91,20 +93,22 @@ function PartPriceCtrl($scope, $http, $routeParams, GenericService) {
   
   $scope.toggleColor = function(part_price){
   	if(part_price.color == '#E8E8E8'){
-  	  $scope.colorSelectedPartPrice = null
-  	  part_price.color = '#FFFFFF'
+  	  $scope.splice($scope.colorPartPrices.indexOf(part_price),1)
+  	  part_price.color = $scope.backupData[part_price.id].color
   	}
   	else{
-  	  $scope.colorSelectedPartPrice = part_price
+  	  $scope.colorPartPrices.push(part_price)
   	  part_price.color = '#E8E8E8'
   	}
   }
   
   $scope.setPartPriceColor = function(color){
-  	if($scope.colorSelectedPartPrice){
-  	  $scope.colorSelectedPartPrice.color = color
-  	  $http.put('part_prices/' + $scope.colorSelectedPartPrice.id, {part_price: $scope.colorSelectedPartPrice})
-    }
+    angular.forEach($scope.colorPartPrices, function(part_price){
+      part_price.color = color
+  	  $http.put('part_prices/' + part_price.id, {part_price: {color: color}})
+	  $scope.backupPartPriceData(part_price)
+    });
+    $scope.colorPartPrices = []
   }
 }
 

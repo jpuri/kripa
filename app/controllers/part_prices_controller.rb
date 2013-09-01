@@ -5,7 +5,7 @@ class PartPricesController < ApplicationController
   def index
     @make = params[:make]
     @currency = params[:currency]
-    @part_prices = PartPrice.where("make = ? and currency =  ?", "#{params[:make]}", "#{params[:currency]}")
+    @part_prices = PartPrice.where("make = ? and currency =  ?", "#{params[:make]}", "#{params[:currency]}").order("part_number ASC")
 
     render :json => @part_prices.collect { |part_price| 
       {:id => part_price.id, :model => part_price.model, 
