@@ -21,7 +21,7 @@
     <div style="float: left; width:18%"><label class = "medium_lbl_grey">Part</label></div>
 	<div style="float: right; width:82%"><input  ng-model="search.part_number" type="text" /></div>
   </div>
-  <div style="width: 30%;float: right">
+  <div style="width: 30%;float: right" ng-show="user_isadmin">
 	  <img src="/images/pink.jpg" class="button_image" ng-click="setPartPriceColor('#FFB6C1')"/>
 	  <img src="/images/green.jpg" class="button_image" ng-click="setPartPriceColor('#66FF66')"/>
 	  <img src="/images/yellow.jpg" class="button_image" ng-click="setPartPriceColor('#FFFF4D')"/>
