@@ -92,14 +92,14 @@ function PartPriceCtrl($scope, $http, $routeParams, GenericService) {
   }
   
   $scope.toggleColor = function(part_price){
-  	//if(part_price.color == '#E8E8E8'){
-  	//  $scope.colorPartPrices.splice($scope.colorPartPrices.indexOf(part_price),1)
-  	//  part_price.color = $scope.backupData[part_price.id].color
-  	//}
-  	//else{
+  	if(part_price.color == '#E8E8E8'){
+  	  $scope.colorPartPrices.splice($scope.colorPartPrices.indexOf(part_price),1)
+  	  part_price.color = $scope.backupData[part_price.id].color
+  	}
+  	else{
   	  $scope.colorPartPrices.push(part_price)
   	  part_price.color = '#E8E8E8'
-  	//}
+  	}
   }
   
   $scope.setPartPriceColor = function(color){
