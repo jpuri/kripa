@@ -64,6 +64,7 @@ function PartPriceCtrl($scope, $http, $routeParams, GenericService) {
 	  }
 	  else
 		GenericService.showMessage('errorMessages', result.messages, 2000)
+		$scope.cancelEdit(part_price)
 	})
   }
   
