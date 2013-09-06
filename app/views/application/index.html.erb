@@ -17,7 +17,7 @@
 <body>
   <div style="width: 100%">
     <div ng-controller="SessionCtrl">
-      <div class="menu_bar">
+      <div class="menu_bar" ng-show="user_name">
         <div id="priceMegaMenuDiv">
           <div ng-repeat="make in ['HAMWORTHY', 'Hatlapa', 'SALAR', 'SPERRE', 'TANABE']" style="padding-bottom: 3%">
  		    <div class="menuLinkMain">{{make}}</div>
@@ -43,7 +43,7 @@
 	      <div class="menuLinkSub"><a id="user_mgt_link" href="/#users">USER MANAGEMENT</a></div>
 	    </div>
     	<div id="adminMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" 
-    	  class="menu_div" onmouseover="showAdminMenuDiv()" > 
+    	  class="menu_div" onmouseover="showAdminMenuDiv()" ng-show="user_isadmin"> 
 	      <a>Admin</a>
 	    </div>
     	<div style="padding-top:5%;padding-bottom:5%; margin-top: 7%;" class="menu_div"> 
@@ -66,7 +66,7 @@
       </div>
     </div>
     <div class="main_pane" 
-      align="center" >
+      align="center" ng-show="user_name">
       <div ng-view></div>
     </div>
   </div>
