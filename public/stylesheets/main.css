@@ -1,18 +1,18 @@
 select, input{
 	width:100%; 
-	color: #60AFFE;
+	color: #4d90fe;
 }
 table.borderedTable{ 
 	border-collapse:collapse;
 	border-top:1px solid black;
 	border-right:1px solid black; 
 	border-left:1px solid black; 
-	border-color: #60AFFE;
+	border-color: #4d90fe;
 	padding:4px; 
 	width:100%;
 }
 table.borderedTable th{ 
-	background-color: #60AFFE; 
+	background-color: #4d90fe; 
 	padding:4px;
 	color:white;
 	font-weight: 200;
@@ -20,9 +20,9 @@ table.borderedTable th{
 	font-size:11pt;
 }
 table.borderedTable td{ 
-	border-bottom:1px solid #60AFFE;
-	border-right:1px solid #60AFFE; 
-	border-left:1px solid #60AFFE; 
+	border-bottom:1px solid #4d90fe;
+	border-right:1px solid #4d90fe; 
+	border-left:1px solid #4d90fe; 
 	color:black;
 	padding:4px; 
 }
@@ -73,24 +73,24 @@ a.sort_default {
 	padding: 0;
 	font-weight: 300;
 	font-size:20pt;
-	color: #60AFFE;
+	color: #4d90fe;
 	float: left;
 }
 .medium{
 	font-weight: 200;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size:11pt;
-	color: #60AFFE;
+	color: #4d90fe;
 }
 label{
 	font-weight: 200;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size:10pt;
-	color: #60AFFE;
+	color: #4d90fe;
 }
 .button_link{
     text-decoration: none;
-    border: 1px solid #60AFFE; 
+    border: 1px solid #4d90fe; 
     padding: 0.5em 0.7em;
     display: block;
     float: left;
@@ -98,7 +98,7 @@ label{
 	font-weight: 200;
 	color: white;
 	border-radius: 10px;
-	background-color: #60AFFE;
+	background-color: #4d90fe;
 }
 .button_link:hover{
     cursor: pointer;
@@ -119,8 +119,12 @@ label{
 	color: white;
 	margin-left: 15%;
 }
+.menu_div{
+	background-color: #4d90fe;
+	cursor: default;
+}
 .menu_div:hover{
-	background-color: #FAAFBE;
+	background-color: #191970;
 	cursor: default;
 }
 .success{
@@ -155,7 +159,7 @@ label{
      margin: 3px auto;
      padding:15px;
 	 border-radius: 10px;
-	 background-color: #FAAFBE;
+	 background-color: #191970;
 	 margin-top: 10px;
 }
 
@@ -167,7 +171,7 @@ label{
      margin: 3px auto;
      padding:15px;
 	 border-radius: 10px;
-	 background-color: #FAAFBE;
+	 background-color: #191970;
 	 margin-top: 5px;
 }
 
@@ -176,8 +180,8 @@ label{
 	font-size: 15px;
 }
 .menuLinkSub a{
-	color: #3300FF;
-	font-size: 12px;
+	color: yellow;
+	font-size: 10px;
 	text-decoration:none;
 }
 .menuLinkMain:hover{
@@ -203,11 +207,11 @@ label{
 	bottom:0%;
 	top:0%;
     width:10%;
-    background-color: #60AFFE; 
+    background-color: #4d90fe; 
     height: 100%;
 }
 .header_div{ 
-	background-color: #60AFFE; 
+	background-color: #4d90fe; 
 	padding:4px;
 	color:white;
 }
