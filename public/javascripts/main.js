@@ -58,17 +58,18 @@ function SessionCtrl($rootScope, $scope, $http, GenericService) {
 }
 
 angular.module('kripa').directive('ngEnter', function() {
-        return function(scope, element, attrs) {
-            element.bind("keydown keypress", function(event) {
-                if(event.which === 13) {
-                    scope.$apply(function(){
-                        scope.$eval(attrs.ngEnter);
-                    });
-                    event.preventDefault();
-                }
-            });
-        };
+  return function(scope, element, attrs) {
+    element.bind("keydown keypress", function(event) {
+      if(event.which === 13) {
+        scope.$apply(function(){
+          scope.$eval(attrs.ngEnter);
+        });
+        event.preventDefault();
+      }
     });
+  };
+});
+
 //REFACTORED
 
 //deleting useless vendor js files 
