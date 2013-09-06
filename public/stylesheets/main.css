@@ -73,6 +73,12 @@ a.sort_default {
 	color: #60AFFE;
 	float: left;
 }
+.medium{
+	font-weight: 200;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:11pt;
+	color: #60AFFE;
+}
 label{
 	font-weight: 200;
 	font-family: Arial, Helvetica, sans-serif;

@@ -50,18 +50,18 @@
 	      <a ng-click="deleteSession()">Logout</a>
 		</div>
 	  </div>
-      <div style="width:30%; margin-left: 40%; margin-top: 10%;" ng-hide="user_name" ng-show="showLogin">
+      <div style="width:30%; margin-left: 40%; margin-top: 10%;" ng-hide="user_name" ng-show="showLogin" ng-enter="createSession(username, password)">
 	    <div class="heading">Login</div>
 	    <div style="width: 100%; padding-top: 20%">
-		  <div style="width: 30%; float: left">Username</div>
+		  <div style="width: 30%; float: left"><label class="medium">Username</label></div>
 		  <div style="width: 40%; float: left"><input type="text" ng-model="username" name="username"/></div>
 	    </div>
 	    <div style="width: 100%; padding-top: 10%">
-	      <span style="width: 30%; float: left">Password</span>
+	      <span style="width: 30%; float: left"><label class="medium">Username</label></span>
 		  <span style="width: 40%; float: left"><input type="password" ng-model="password" name="password"></span>
 	    </div>
 	    <div style="width:20%; height: 5%; padding-top: 15%; padding-left: 25%">
-	      <a type="button" ng-click="createSession(username, password)" value="Login" class="button_link">Login</a>
+	      <input type="button" ng-click="createSession(username, password)" value="Login" class="button_link"></input>
 	    </div>
       </div>
     </div>
