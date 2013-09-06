@@ -36,18 +36,15 @@
 	      {{today | date:'dd-MM-yyyy'}}
 	    </div>
     	<div id="priceMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" 
-    	  class="menu_div" onmouseover="showPriceMenuDiv()"> 
+    	  class="menu_link" onmouseover="showPriceMenuDiv()"> 
 	      <a>Prices</a>
 	    </div>
-	    <div id="adminMegaMenuDiv">
-	      <div class="menuLinkSub"><a id="user_mgt_link" href="/#users">USER MANAGEMENT</a></div>
-	    </div>
     	<div id="adminMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" 
-    	  class="menu_div" onmouseover="showAdminMenuDiv()" ng-show="user_isadmin"> 
-	      <a>Admin</a>
+    	  class="menu_link" onmouseover="showAdminMenuDiv()" ng-show="user_isadmin"> 
+	      <a id="user_mgt_link" href="/#users">Users</a>
 	    </div>
-    	<div style="padding-top:5%;padding-bottom:5%; margin-top: 7%;" class="menu_div"> 
-	      <a ng-click="deleteSession()">Logout</a>
+    	<div style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_link" ng-click="deleteSession()"> 
+	      <a >Logout</a>
 		</div>
 	  </div>
       <div style="width:30%; margin-left: 40%; margin-top: 10%;" ng-hide="user_name" ng-show="showLogin" ng-enter="createSession(username, password)">
@@ -73,6 +70,4 @@
 </body>
 </html>
 
-<!--//role to be managed
-//gneric error msg handling
-login link should be click by default on the page-->
+//gneric error msg handling-->
