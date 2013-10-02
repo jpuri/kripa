@@ -56,6 +56,8 @@ function PartPriceCtrl($scope, $http, $routeParams, GenericService) {
   }
   
   $scope.updatePartPrice = function(part_price){
+  	if(part_price.color == 'grey')
+  	  part_price.color = 'white'
 	$http.put('part_prices/' + part_price.id, {part_price: part_price}).success(function(result){
 	  if(result.status == 'SUCCESS'){
 	    GenericService.showMessage('successMessage', 'Part successfully updated.', 2000)

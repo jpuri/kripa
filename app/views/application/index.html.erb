@@ -17,7 +17,7 @@
   <div style="width: 100%">
     <div ng-controller="SessionCtrl">
       <div class="menu_bar" ng-show="user_name">
-        <div id="priceMegaMenuDiv">
+        <div id="priceMegaMenuDiv" ng-show="showMegaMenu">
           <div ng-repeat="make in ['HAMWORTHY', 'Hatlapa', 'SALAR', 'SPERRE', 'TANABE']" style="padding-bottom: 3%">
  		    <div class="menuLinkMain">{{make}}</div>
 		    <div class="menuLinkSub">
@@ -37,6 +37,8 @@
     	<div id="priceMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" 
     	  class="menu_link" onmouseover="showPriceMenuDiv()"> 
 	      <a>Prices</a>
+	      <img src="/images/arror_right.jpg" class="small_image" ng-click="showMegaMenu = !showMegaMenu" style="margin-left: 20%" ng-hide="showMegaMenu"/>
+	      <img src="/images/arror_left.jpg" class="small_image" ng-click="showMegaMenu = !showMegaMenu" style="margin-left: 20%" ng-show="showMegaMenu"/>
 	    </div>
     	<div id="adminMenuDiv" style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" 
     	  class="menu_link" onmouseover="showAdminMenuDiv()" ng-show="user_isadmin"> 
