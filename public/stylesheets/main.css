@@ -208,5 +208,23 @@ label{
 	width: 70%; 
 	height: 100%;
 }
+.grey{
+background-color: #E8E8E8;	
+}
+.pink{
+background-color: #FFB6C1;	
+}
+.green{
+background-color: #66FF66;	
+}
+.yellow{
+background-color: #FFFF4D;	
+}
+.blue{
+background-color: #75D1FF;	
+}
+.white{
+background-color: #FFFFFF;	
+}
 /*to ne enhanced by twitter bootstrap
  css related refactoring of html pages*/

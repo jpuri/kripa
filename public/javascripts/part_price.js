@@ -92,15 +92,15 @@ function PartPriceCtrl($scope, $http, $routeParams, GenericService) {
   }
   
   $scope.toggleColor = function(part_price){
-  	if(part_price.color == '#E8E8E8')
+  	if(part_price.color == 'grey')
   	  part_price.color = $scope.backupData[part_price.id].color
   	else
-  	  part_price.color = '#E8E8E8'
+  	  part_price.color = 'grey'
   }
   
   $scope.setPartPriceColor = function(color){
     angular.forEach($scope.part_prices, function(part_price){
-  	  if(part_price.color == '#E8E8E8'){
+  	  if(part_price.color == 'grey'){
         part_price.color = color
   	    $http.put('part_prices/' + part_price.id, {part_price: {color: color}})
 	    $scope.backupPartPriceData(part_price)

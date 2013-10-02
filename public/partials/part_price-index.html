@@ -22,11 +22,11 @@
 	<div style="float: right; width:82%"><input  ng-model="search.part_number" type="text" /></div>
   </div>
   <div style="width: 30%;float: right" ng-show="user_isadmin">
-	  <img src="/images/pink.jpg" class="button_image" ng-click="setPartPriceColor('#FFB6C1')"/>
-	  <img src="/images/green.jpg" class="button_image" ng-click="setPartPriceColor('#66FF66')"/>
-	  <img src="/images/yellow.jpg" class="button_image" ng-click="setPartPriceColor('#FFFF4D')"/>
-	  <img src="/images/blue.jpg" class="button_image" ng-click="setPartPriceColor('#75D1FF')"/>
-	  <img src="/images/white.jpg" class="button_image" ng-click="setPartPriceColor('#FFFFFF')"/>
+	  <img src="/images/pink.jpg" class="button_image" ng-click="setPartPriceColor('pink')"/>
+	  <img src="/images/green.jpg" class="button_image" ng-click="setPartPriceColor('green')"/>
+	  <img src="/images/yellow.jpg" class="button_image" ng-click="setPartPriceColor('yellow')"/>
+	  <img src="/images/blue.jpg" class="button_image" ng-click="setPartPriceColor('blue')"/>
+	  <img src="/images/white.jpg" class="button_image" ng-click="setPartPriceColor('white')"/>
   </div>
 </div>
 
@@ -64,8 +64,8 @@
 		  </span>
         </td>
       </tr>
-  	  <tr id="part_prices_{{part_price.id}}" ng-repeat="part_price in part_prices  | filter:search | orderBy : sort:order" ng-show="part_price"
-  	    style="background-color: {{part_price.color}}">
+  	  <tr id="part_prices_{{part_price.id}}" class="{{part_price.color}}"
+  	   ng-repeat="part_price in part_prices  | filter:search | orderBy : sort:order" ng-show="part_price">
         <td ng-click="toggleColor(part_price)"><label>{{$index + 1}}</label></td>
 		<td ng-click="toggleColor(part_price)">
 	      <label ng-hide="editEnabled">{{part_price.model}}</label>
@@ -104,9 +104,9 @@
 		  </span>
 		</td>
 	  </tr>
-	  <div class="failure" style="position: fixed; margin-top: 5%; margin-left: 20%" ng-show="part_prices.length == 0">
-	  	There are no records matching your search parameters.</div>
 	</table>
+    <div class="failure" style="position: fixed; margin-top: 5%; margin-left: 20%" ng-show="part_prices.length == 0">
+  	There are no records matching your search parameters.</div>
   </div>
 </div>
 <!--price formatting for amount values-->

@@ -2,7 +2,6 @@
 <html ng-app="kripa">
 
 <head>
-<script src="/javascripts/vendorjs/jquery.alphanum.js?2"></script>
 <script src="/javascripts/vendorjs/jquery-1.6.1.min.js?2"></script>
 <script src="/javascripts/vendorjs/jquery-ui-1.8.15.custom.min.js?2"></script>
 <script src="/javascripts/vendorjs/angular.min.js?2"></script>
@@ -44,7 +43,7 @@
 	      <a id="user_mgt_link" href="/#users">Users</a>
 	    </div>
     	<div style="padding-top:5%;padding-bottom:5%; margin-top: 10%; width:100%" class="menu_link" ng-click="deleteSession()"> 
-	      <a >Logout</a>
+	      <a>Logout</a>
 		</div>
 	  </div>
       <div style="width:30%; margin-left: 40%; margin-top: 10%;" ng-hide="user_name" ng-show="showLogin" ng-enter="createSession(username, password)">
