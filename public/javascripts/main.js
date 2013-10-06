@@ -9,9 +9,10 @@ kripa.factory('GenericService', function($rootScope, $timeout) {
   return {
     showMessage : function(messageElement, message, time){
 	  $rootScope[messageElement] = message
-	  $timeout(function(){
-	    $rootScope[messageElement] = null
-	  }, time)
+	  if(time >= 0)
+		  $timeout(function(){
+		    $rootScope[messageElement] = null
+		  }, time)
     }
   };
 });
@@ -30,8 +31,10 @@ function SessionCtrl($rootScope, $scope, $http, GenericService) {
 	$http.post('sessions', {username: username, password: password}).success(function(result){
 	  if(result.status == 'SUCCESS'){
 	  	$scope.setCurrentUser(result)
+	  	$scope.loginErrorMessage = ""
 	  }
 	  else{
+		GenericService.showMessage('loginErrorMessage', 'Username/ Password entered is not valid. Login failed.', -1)
 	  }
 	})
   }
@@ -54,6 +57,8 @@ function SessionCtrl($rootScope, $scope, $http, GenericService) {
   	$rootScope.user_name = null
   	$rootScope.user_role = null
     $rootScope.user_isadmin = null
+    $scope.username = ""
+    $scope.password = ""
   }
 }
 

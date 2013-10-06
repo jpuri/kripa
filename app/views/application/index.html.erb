@@ -2,14 +2,13 @@
 <html ng-app="kripa">
 
 <head>
-<script src="/javascripts/vendorjs/jquery-1.6.1.min.js?2"></script>
-<script src="/javascripts/vendorjs/jquery-ui-1.8.15.custom.min.js?2"></script>
-<script src="/javascripts/vendorjs/angular.min.js?2"></script>
-<script src="/javascripts/application.js?2"></script>
-<script src="/javascripts/main.js?2"></script>
-<script src="/javascripts/user.js?2"></script>
-<script src="/javascripts/part_price.js?2"></script>
-<LINK href="/stylesheets/main.css?2" rel="stylesheet" type="text/css">
+<script src="/javascripts/vendorjs/jquery-1.6.1.min.js"></script>
+<script src="/javascripts/vendorjs/jquery-ui-1.8.15.custom.min.js"></script>
+<script src="/javascripts/vendorjs/angular.min.js"></script>
+<script src="/javascripts/main.js"></script>
+<script src="/javascripts/user.js"></script>
+<script src="/javascripts/part_price.js"></script>
+<LINK href="/stylesheets/main.css" rel="stylesheet" type="text/css">
 <title>Kripa</title>
 </head>
 
@@ -48,14 +47,17 @@
 	      <a>Logout</a>
 		</div>
 	  </div>
-      <div style="width:30%; margin-left: 40%; margin-top: 10%;" ng-hide="user_name" ng-show="showLogin" ng-enter="createSession(username, password)">
+      <div style="width:30%; margin-left: 40%; margin-top: 10%;" ng-hide="user_name" ng-show="showLogin" ng-enter="createSession(username, password)">	
+		<div ng-show="loginErrorMessage" class="failure" style="padding-left: 5%; padding-bottom: 5%">
+		  {{loginErrorMessage}}
+		</div>
 	    <div class="heading">Login</div>
 	    <div style="width: 100%; padding-top: 20%">
 		  <div style="width: 30%; float: left"><label class="medium">Username</label></div>
 		  <div style="width: 40%; float: left"><input type="text" ng-model="username" name="username"/></div>
 	    </div>
 	    <div style="width: 100%; padding-top: 10%">
-	      <span style="width: 30%; float: left"><label class="medium">Username</label></span>
+	      <span style="width: 30%; float: left"><label class="medium">Password</label></span>
 		  <span style="width: 40%; float: left"><input type="password" ng-model="password" name="password"></span>
 	    </div>
 	    <div style="width:20%; height: 5%; padding-top: 15%; padding-left: 25%">
